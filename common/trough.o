@@ -1,0 +1,115 @@
+XH2
+H 3 areas 1A global symbols 2 banks 1 modes
+M trough.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _task_sleep Ref0000
+S _device_remove_live Ref0000
+S _end_ball Ref0000
+S _audit_increment Ref0000
+S m1 Ref0000
+S .__.ABS. Def0000
+S _device_add_live Ref0000
+S _task_create_gid1 Ref0000
+S _task_exit Ref0000
+S _system_audits Ref0000
+S _set_ball_count Ref0000
+S _get_is_back_in_the_fridge_in_ball_save Ref0000
+S _device_recount Ref0000
+S __far_call_handler Ref0000
+S _in_game Ref0000
+S _task_kill_gid Ref0000
+S _device_table Ref0000
+S _callset_single_ball_play Ref0000
+S _live_balls Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size A0 flags D00
+S _trough_mb_trough_recount_timer_start Def000C
+S _trough_dev_trough_enter Def0083
+S _trough_mb_trough_recount_timer_exit Def0007
+S _mb_trough_recount_timer_task Def0029
+S _trough_dev_trough_kick_success Def007F
+S _trough_dev_trough_recount Def0014
+S _trough_trough_zero_out_kick_request Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 7F 00 1F 7F 00 20 39
+R 00 00 00 02 81 03 00 10 81 06 00 10
+T 00 07
+R 00 00 00 02
+T 00 07 C6 37 7E 00 00
+R 00 00 00 02 81 05 00 0F
+T 00 0C
+R 00 00 00 02
+T 00 0C 8E 00 29 C6 37 7E 00 00
+R 00 00 00 02 01 03 00 02 81 08 00 07
+T 00 14
+R 00 00 00 02
+T 00 14 8E 00 18 BD 00 00 D7
+R 00 00 00 02 81 03 00 10 81 06 00 0C
+T 00 1B 00 00 C6 05 D0 00 00 F1
+R 00 00 00 02 A0 02 00 04 A0 07 00 04
+T 00 21 00 00 24 03 F7 00 00
+R 00 00 00 02 81 02 00 12 81 07 00 12
+T 00 28
+R 00 00 00 02
+T 00 28 39
+R 00 00 00 02
+T 00 29
+R 00 00 00 02
+T 00 29 32 7F
+R 00 00 00 02
+T 00 2B
+R 00 00 00 02
+T 00 2B 6F E4
+R 00 00 00 02
+T 00 2D
+R 00 00 00 02
+T 00 2D 0D 00 00 27 3C C6 3C BD 00 00 6C E4 E6
+R 00 00 00 02 A0 03 00 0E 81 0A 00 00
+T 00 39 E4 C1 06 26 EF 8E 00 18 BD 00 00 D7
+R 00 00 00 02 81 08 00 10 81 0B 00 0C
+T 00 45 00 00 C6 05 D0 00 00 F1
+R 00 00 00 02 A0 02 00 04 A0 07 00 04
+T 00 4B 00 00 24 03 F7 00 00
+R 00 00 00 02 81 02 00 12 81 07 00 12
+T 00 52
+R 00 00 00 02
+T 00 52 BD 00 00 00 00 34 5D 26 15 F6
+R 00 00 00 02 81 03 00 0D 81 05 00 0B
+T 00 5C 00 00 FB 00 1F C1 01 27 12 5D 26 C3 BD
+R 00 00 00 02 81 02 00 12 81 05 00 10
+T 00 69 00 00 20 BE
+R 00 00 00 02 81 02 00 02
+T 00 6D
+R 00 00 00 02
+T 00 6D 7E 00 00
+R 00 00 00 02 81 03 00 08
+T 00 70
+R 00 00 00 02
+T 00 70 C6 05 BD 00 00 20 B4
+R 00 00 00 02 81 05 00 0A
+T 00 77
+R 00 00 00 02
+T 00 77 BD 00 00 00 00 3B 20 AC
+R 00 00 00 02 81 03 00 0D 81 05 00 11
+T 00 7F
+R 00 00 00 02
+T 00 7F BD 00 00 39
+R 00 00 00 02 81 03 00 06
+T 00 83
+R 00 00 00 02
+T 00 83 F6 00 00 C1 01 23 0A
+R 00 00 00 02 81 03 00 12
+T 00 8A
+R 00 00 00 02
+T 00 8A 8E 00 2A BD 00 00 BD
+R 00 00 00 02 81 03 00 09 81 06 00 03
+T 00 91 00 00 39
+R 00 00 00 02 81 02 00 01
+T 00 94
+R 00 00 00 02
+T 00 94 C6 36 BD 00 00 5D 27 EE BD 00 00 39
+R 00 00 00 02 81 05 00 0F 81 0B 00 01

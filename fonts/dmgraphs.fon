@@ -1,0 +1,103 @@
+#include <freewpc.h>
+
+#define target_width  8
+#define target_height 4
+static char target_bits[] = { target_width, target_height,
+	0x18, //    ##
+	0xFF, // ########
+	0x3C, //   ####
+	0x66, //  ##  ##
+};
+
+#define target2_width  8
+#define target2_height 7
+static char target2a_bits[] = { target2_width, target2_height,
+		0x19, // #  ##
+		0x19, // #  ##
+		0xff, // ########
+		0x98, //    ##  #
+		0x18, //    ##
+		0x12, //  #  #
+		0x13, // ##  #
+};
+
+static char target2b_bits[] = { target2_width, target2_height,
+		0x18, //    ##
+		0x18, //    ##
+		0xff, // ########
+		0x98, //    ##  #
+		0x18, //    ##
+		0x22, //  #   #
+		0x64, //  #   ##
+};
+
+static char target2c_bits[] = { target2_width, target2_height,
+		0x18, //    ##
+		0x18, //    ##
+		0xff, // ########
+		0x19, // #  ##
+		0x39, // #  ###
+		0x84, //   #  #
+		0x83, // ##   #
+};
+
+
+static char target2d_bits[] = { target2_width, target2_height,
+		0x18, //    ##
+		0x18, //    ##
+		0xff, // ########
+		0x18, //    ##
+		0x38, //    #####
+		0x07, // ###  
+		0x00, //   
+};
+
+
+#define bullet_width  4
+#define bullet_height 2
+static char bullet_bits[] = { bullet_width, bullet_height,
+	0x3,
+	0x3,
+};
+
+
+
+
+
+
+#define BASECHAR ' '
+#
+static char *dmgraphs_glyphs[] = {
+   ['A' - BASECHAR] = target_bits,
+   ['B' - BASECHAR] = target2a_bits,
+   ['C' - BASECHAR] = target2b_bits,
+   ['D' - BASECHAR] = target2c_bits,
+   ['E' - BASECHAR] = target2d_bits,
+   ['F' - BASECHAR] = bullet_bits,
+   ['G' - BASECHAR] = bullet_bits,
+   ['H' - BASECHAR] = bullet_bits,
+   ['I' - BASECHAR] = bullet_bits,
+   ['J' - BASECHAR] = bullet_bits,
+   ['K' - BASECHAR] = bullet_bits,
+   ['L' - BASECHAR] = bullet_bits,
+   ['M' - BASECHAR] = bullet_bits,
+   ['N' - BASECHAR] = bullet_bits,
+   ['O' - BASECHAR] = bullet_bits,
+   ['P' - BASECHAR] = bullet_bits,
+   ['Q' - BASECHAR] = bullet_bits,
+   ['R' - BASECHAR] = bullet_bits,
+   ['S' - BASECHAR] = bullet_bits,
+   ['T' - BASECHAR] = bullet_bits,
+   ['U' - BASECHAR] = bullet_bits,
+   ['V' - BASECHAR] = bullet_bits,
+   ['W' - BASECHAR] = bullet_bits,
+   ['X' - BASECHAR] = bullet_bits,
+   ['Y' - BASECHAR] = bullet_bits,
+   ['Z' - BASECHAR] = bullet_bits,
+};
+const font_t font_dmgraphs = {
+	.spacing = 2,
+	.height = 7,
+	.glyphs = dmgraphs_glyphs,
+	.basechar = BASECHAR,
+};

@@ -1,0 +1,65 @@
+XH2
+H 4 areas B global symbols 2 banks 1 modes
+M farcall.s
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _wpc_rom_bank Ref0000
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A direct size 3 flags C00
+S __far_call_page Def0002
+S __far_call_address Def0000
+A .text size 7A flags D00
+S _far_indirect_call_handler Def0023
+S _far_read8 Def0056
+S __far_call_handler Def0000
+S _far_call_pointer_handler Def003A
+S _far_read_pointer Def0068
+S _far_read16 Def0068
+S _far_indirect_call_value_handler Def0023
+T 00 00
+R 00 00 00 02
+T 00 02
+R 00 00 00 02
+T 00 00
+R 00 00 00 03
+T 00 00 34 44 EE 63 EC C1 DD 00 00 E6 C0 EF 63
+R 00 00 00 03 20 09 00 02
+T 00 0C 96 00 00 D7 00 00 F7 3F FC 35 44 34 02
+R 00 00 00 03 A0 03 00 00 A0 06 00 00
+T 00 17 AD 9F 00 00 35 02 97 00 00 B7 3F FC 39
+R 00 00 00 03 01 04 00 02 A0 09 00 00
+T 00 23
+R 00 00 00 03
+T 00 23
+R 00 00 00 03
+T 00 23 96 00 00 9F 00 00 D7
+R 00 00 00 03 A0 03 00 00 20 06 00 02
+T 00 28 00 00 F7 3F FC 34 02 AD 9F 00 00 35 02
+R 00 00 00 03 A0 02 00 00 01 0B 00 02
+T 00 34 97 00 00 B7 3F FC 39
+R 00 00 00 03 A0 03 00 00
+T 00 3A
+R 00 00 00 03
+T 00 3A 34 04 96 00 00 F6 00 02 D7
+R 00 00 00 03 A0 05 00 00 01 08 00 02
+T 00 42 00 00 F7 3F FC 35 04 34 02 AD 9F 00 00
+R 00 00 00 03 A0 02 00 00 01 0D 00 02
+T 00 4E 35 02 97 00 00 B7 3F FC 39
+R 00 00 00 03 A0 05 00 00
+T 00 56
+R 00 00 00 03
+T 00 56 34 02 96 00 00 D7 00 00 F7 3F FC E6 84
+R 00 00 00 03 A0 05 00 00 A0 08 00 00
+T 00 61 97 00 00 B7 3F FC 35 82
+R 00 00 00 03 A0 03 00 00
+T 00 68
+R 00 00 00 03
+T 00 68
+R 00 00 00 03
+T 00 68 34 02 96 00 00 D7 00 00 F7 3F FC AE 84
+R 00 00 00 03 A0 05 00 00 A0 08 00 00
+T 00 73 97 00 00 B7 3F FC 35 82
+R 00 00 00 03 A0 03 00 00

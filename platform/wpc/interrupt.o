@@ -1,0 +1,43 @@
+XH2
+H 3 areas 8 global symbols 2 banks 1 modes
+M interrupt.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _dmd_rtt Ref0000
+S .__.ABS. Def0000
+S _fatal Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 28 flags D00
+S _do_firq Def0000
+S _do_nmi Def0023
+S _do_swi2 Def0019
+S _do_swi3 Def0014
+S _do_swi Def001E
+T 00 00
+R 00 00 00 02
+T 00 00 34 16 F6 3F F8 2D 07 AD 9F 00 00 35 16
+R 00 00 00 02 81 0B 00 00
+T 00 0D 3B
+R 00 00 00 02
+T 00 0E
+R 00 00 00 02
+T 00 0E 7F 3F F8 35 16 3B
+R 00 00 00 02
+T 00 14
+R 00 00 00 02
+T 00 14 C6 08 7E 00 00
+R 00 00 00 02 81 05 00 02
+T 00 19
+R 00 00 00 02
+T 00 19 C6 07 7E 00 00
+R 00 00 00 02 81 05 00 02
+T 00 1E
+R 00 00 00 02
+T 00 1E C6 06 7E 00 00
+R 00 00 00 02 81 05 00 02
+T 00 23
+R 00 00 00 02
+T 00 23 C6 05 7E 00 00
+R 00 00 00 02 81 05 00 02

@@ -1,0 +1,5 @@
+#define MAX_FLAGS 0
+#define MAX_GLOBAL_FLAGS 0
+#define MACHINE_DMD 1
+#define WPC_DMD_LOW_PAGE 0
+#define WPC_DMD_HIGH_PAGE 0

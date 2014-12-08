@@ -1,0 +1,72 @@
+XH2
+H 4 areas E global symbols 2 banks 1 modes
+M flipcode.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _task_recreate_gid Ref0000
+S _task_sleep_sec1 Ref0000
+S _callset_flipper_code_entered Ref0000
+S m1 Ref0000
+S .__.ABS. Def0000
+S _task_exit Ref0000
+S _deff_get_active Ref0000
+S __far_call_handler Ref0000
+S _task_kill_gid Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size 76 flags D00
+S _flipcode_amode_start Def0000
+S _flipcode_sw_right_button Def0021
+S _flipcode_sw_left_button Def000E
+A ram size 3 flags C00
+S _flipcode_digit Def0000
+S _flipcode_value Def0001
+T 00 00
+R 00 00 00 02
+T 00 00 7F 00 00 CC 00 00 FD 00 01 C6 21 7E
+R 00 00 00 02 01 03 00 03 01 09 00 03
+T 00 0C 00 00
+R 00 00 00 02 81 02 00 08
+T 00 0E
+R 00 00 00 02
+T 00 0E BD 00 00 C1 01 27 01 39
+R 00 00 00 02 81 03 00 06
+T 00 16
+R 00 00 00 02
+T 00 16 7C 00 00 8E 00 60 C6 21 7E
+R 00 00 00 02 01 03 00 03 01 06 00 02
+T 00 1F 00 00
+R 00 00 00 02 81 02 00 00
+T 00 21
+R 00 00 00 02
+T 00 21 BD 00 00 C1 01 27 01
+R 00 00 00 02 81 03 00 06
+T 00 28
+R 00 00 00 02
+T 00 28 39
+R 00 00 00 02
+T 00 29
+R 00 00 00 02
+T 00 29 F6 00 00 4F 4F C4 0F DD 00 00 FC
+R 00 00 00 02 01 03 00 03 A0 0A 00 03
+T 00 33 00 01 58 49 58 49 58 49 58 49 9E 00 00
+R 00 00 00 02 01 02 00 03 A0 0D 00 03
+T 00 3F 34 10 AA E0 EA E0 FD 00 01 7F 00 00 10
+R 00 00 00 02 01 09 00 03 01 0C 00 03
+T 00 4C 83 00 00 27 D7 8E 00 60 C6 21 BD 00 00
+R 00 00 00 02 01 08 00 02 81 0D 00 00
+T 00 59 BD 00 00 00 00 3B 39
+R 00 00 00 02 81 03 00 07 81 05 00 02
+T 00 60
+R 00 00 00 02
+T 00 60 C6 05 BD 00 00 7F 00 00 CC 00 00 FD
+R 00 00 00 02 81 05 00 01 01 08 00 03
+T 00 6C 00 01 C6 21 BD 00 00 7E
+R 00 00 00 02 01 02 00 03 81 07 00 08
+T 00 74 00 00
+R 00 00 00 02 81 02 00 05
+T 00 00
+R 00 00 00 03
+T 00 01
+R 00 00 00 03

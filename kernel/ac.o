@@ -1,0 +1,49 @@
+XH2
+H 5 areas 6 global symbols 2 banks 1 modes
+M ac.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 26 flags D00
+S _ac_rtt Def0000
+S _ac_init Def001B
+A direct size 1 flags D00
+S _zc_timer Def0000
+A ram size 2 flags C00
+S _ac_zerocross_errors Def0001
+S _zc_status Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 F6 00 00 27 12 C1 02 27 05 F6 3F FF 2D
+R 00 00 00 02 01 03 00 04
+T 00 0D 0A
+R 00 00 00 02
+T 00 0E
+R 00 00 00 02
+T 00 0E D6 00 00 5C C1 0B 22 03 D7 00 00
+R 00 00 00 02 20 03 00 03 20 0B 00 03
+T 00 17
+R 00 00 00 02
+T 00 17 39
+R 00 00 00 02
+T 00 18
+R 00 00 00 02
+T 00 18 0F 00 00 39
+R 00 00 00 02 20 03 00 03
+T 00 1B
+R 00 00 00 02
+T 00 1B 0F 00 00 7F 00 01 C6 01 F7
+R 00 00 00 02 20 03 00 03 01 06 00 04
+T 00 23 00 00 39
+R 00 00 00 02 01 02 00 04
+T 00 00
+R 00 00 00 03
+T 00 00 00
+R 00 00 00 03
+T 00 00
+R 00 00 00 04
+T 00 01
+R 00 00 00 04

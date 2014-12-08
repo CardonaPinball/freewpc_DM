@@ -1,0 +1,101 @@
+XH2
+H 5 areas 14 global symbols 2 banks 1 modes
+M adj.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _file_register Ref0000
+S _callset_adjustment_changed Ref0000
+S _adj_verify_all Ref0000
+S .__.ABS. Def0000
+S _fatal Ref0000
+S _adj_reset_all Ref0000
+S __far_call_handler Ref0000
+S _csum_area_update Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 52 flags D00
+S _adj_file_register Def0000
+S _nvram_idle_every_100ms Def0006
+S _adj_init Def0020
+S _adj_csum_failure Def0042
+S _adj_modified Def0027
+S _adj_csum_info Def0049
+A nvram size 5B flags D00
+S _price_config Def0037
+S _system_config Def0000
+S _feature_config Def005A
+S _hstd_config Def0051
+S _nvram_test_byte Def005A
+A ram size 2 flags C00
+S _last_adjustment_changed Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 8E 00 49 7E 00 00
+R 00 00 00 02 01 03 00 02 81 06 00 00
+T 00 06
+R 00 00 00 02
+T 00 06 32 7F F6 00 5A E7 E4 5C F7 00 5A E6 E4
+R 00 00 00 02 01 05 00 03 01 0B 00 03
+T 00 13 F1 00 5A 26 03 32 61 39
+R 00 00 00 02 01 03 00 03
+T 00 1B
+R 00 00 00 02
+T 00 1B C6 14 7E 00 00
+R 00 00 00 02 81 05 00 04
+T 00 20
+R 00 00 00 02
+T 00 20 BD 00 00 00 00 3C 39
+R 00 00 00 02 81 03 00 06 81 05 00 02
+T 00 27
+R 00 00 00 02
+T 00 27 34 40 33 84 8E 00 49 BD 00 00 11 83
+R 00 00 00 02 01 07 00 02 81 0A 00 07
+T 00 33 00 00 27 09 FF 00 00 BD 00 00
+R 00 00 00 02 01 07 00 04 81 0A 00 06
+T 00 3D 00 00 3B
+R 00 00 00 02 81 02 00 01
+T 00 40
+R 00 00 00 02
+T 00 40 35 C0
+R 00 00 00 02
+T 00 42
+R 00 00 00 02
+T 00 42 BD 00 00 00 00 3C 39
+R 00 00 00 02 81 03 00 06 81 05 00 05
+T 00 49
+R 00 00 00 02
+T 00 49 01 00 00 5A 00 00 01 00 42
+R 00 00 00 02 01 03 00 03 01 09 00 02
+T 00 00
+R 00 00 00 03
+T 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 0C 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 18 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 24 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 30 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 37
+R 00 00 00 03
+T 00 37 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 43 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 4F 00 00
+R 00 00 00 03
+T 00 51
+R 00 00 00 03
+T 00 51 00 00 00 00 00 00 00 00 00
+R 00 00 00 03
+T 00 5A
+R 00 00 00 03
+T 00 00
+R 00 00 00 04
+T 00 5A
+R 00 00 00 03
+T 00 5A 00
+R 00 00 00 03

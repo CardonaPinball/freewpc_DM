@@ -1,0 +1,418 @@
+/***********************************************************************
+ *
+ *  written by James Cardona and based on previous work in motorbank.ct and bivar.ct 
+ *
+ * handles a duty-cycled, single direction motor which has 2 limit switches, either
+ * upper and lower or left and right to turn off the motor.  The motor, if run
+ * continuously will go up and down due to cam mechanism.  This driver has support
+ * for task based shutdown of motor if limit switches are broken and a testing 
+ * algorithm. 
+ */
+
+@@class motorbank2
+@@parameter sol
+@@parameter up_sw_event
+@@parameter down_sw_event
+@@parameter initial_position
+
+
+
+@@
+@@file @self.sched
+@@
+!@self_service		16		80c
+
+
+
+@@
+@@file @self.h
+@@
+
+/***********************************************************************
+ * @self.h
+ ***********************************************************************/
+
+#include <freewpc.h>
+
+typedef enum {
+	@SELF_INIT,
+	@SELF_UP,
+	@SELF_DOWN,
+	@SELF_OFF,
+}@self_state_t;
+
+//this number is equivalent to off time of duty cycle
+#define @SELF_DUTY_100 0
+#define @SELF_DUTY_50  TIME_16MS
+#define @SELF_DUTY_25  TIME_50MS
+#define @SELF_DUTY_10  TIME_166MS
+
+extern __fastram__ @self_state_t @self_state;
+extern __fastram__ U8 @self_timer;
+extern U8 @self_speed;
+
+
+/* User APIs */
+void @self_stop (void);
+void @self_move_up (void);
+void @self_move_down (void);
+void @self_bump_up (void);
+void @self_bump_down (void);
+
+
+extern inline void @self_stop_from_interrupt (void) {
+	@self_state = @SELF_OFF;
+	sol_disable (@sol);
+}
+
+
+extern inline void @self_set_speed (U8 speed) { @self_speed = speed; }
+
+extern inline U8 @self_get_speed (void) { return @self_speed; }
+
+extern inline @self_state_t @self_get_state (void) { return @self_state; }
+
+
+/**
+ * Realtime update of a duty-cycled device.
+ */
+/* RTT(name=@self_service freq=16) */
+extern inline void @self_service (void) {
+	/* Only act if device is enabled */
+	if (@self_state != @SELF_OFF) {
+		if (@self_timer == 0) {
+			/* enabled for 1 tick.  We need to
+			turn it off, and restart the off delay. */
+			if (@self_speed == 0)
+				;
+			else if (@self_state == @SELF_UP
+					|| @self_state == @SELF_DOWN)
+						sol_disable (@sol);
+			@self_timer = @self_speed;
+		}
+		else if (--@self_timer == 0) {
+			/* We are in off delay, if timer reaches zero,
+			then turn it back on. */
+			if (@self_state == @SELF_UP
+					|| @self_state == @SELF_DOWN)
+						sol_enable (@sol);
+		}
+	}
+}
+
+
+
+
+
+
+
+@@
+@@file @self.c
+@@
+/***********************************************************************
+ * @self.c
+ ***********************************************************************/
+
+#include <freewpc.h>
+#include "@self.h"
+
+__fastram__ @self_state_t @self_state;
+__fastram__ U8 @self_timer;
+U8 @self_speed;
+
+__boolean @self_timer;
+
+
+void @self_move_monitor (void) {
+//	sol_enable (@sol);
+	task_sleep_sec (4);
+	sol_disable (@sol);
+	@self_state = @SELF_OFF;
+	task_exit ();
+}
+
+
+void @self_stop (void) {
+	dbprintf ("Stopping\n");
+	task_kill_gid (GID_@SELF_MONITOR);
+	@self_state = @SELF_OFF;
+	sol_disable (@sol);
+}
+
+
+
+void @self_move_up (void) {
+	disable_interrupts ();
+	task_create_gid1 (GID_@SELF_MONITOR, @self_move_monitor);
+	@self_timer = 1;
+	sol_enable (@sol);
+	if (@self_state != @SELF_UP)
+		@self_state = @SELF_UP;
+	enable_interrupts ();
+}
+
+
+
+void @self_move_down (void) {
+	disable_interrupts ();
+	task_create_gid1 (GID_@SELF_MONITOR, @self_move_monitor);
+	@self_timer = 1;
+	sol_enable (@sol);
+	if (@self_state != @SELF_DOWN) 
+		@self_state = @SELF_DOWN;
+	enable_interrupts ();
+}
+
+
+
+CALLSET_ENTRY (@self, @up_sw_event) {
+	if (@self_state == @SELF_UP)
+		@self_stop ();
+}
+
+
+
+CALLSET_ENTRY (@self, @down_sw_event) {
+	if (@self_state == @SELF_DOWN)
+		@self_stop ();
+}
+
+
+
+void @self_bump_monitor (void) {
+	sol_enable (@sol);
+	task_sleep(TIME_66MS);
+	sol_disable (@sol);
+	@self_state = @SELF_OFF;
+	task_exit ();
+}
+
+
+
+void @self_bump_up (void) {
+	disable_interrupts ();
+	task_create_gid1 (GID_@SELF_B_MONITOR, @self_bump_monitor);
+	@self_timer = 1;
+	sol_enable (@sol);
+	if (@self_state != @SELF_UP)
+		@self_state = @SELF_UP;
+	enable_interrupts ();
+}
+
+
+
+void @self_bump_down (void) {
+	disable_interrupts ();
+	task_create_gid1 (GID_@SELF_B_MONITOR, @self_bump_monitor);
+	@self_timer = 1;
+	sol_enable (@sol);
+	if (@self_state != @SELF_DOWN) 
+		@self_state = @SELF_DOWN;
+	enable_interrupts ();
+}
+
+
+
+CALLSET_ENTRY (@self, tilt, test_start) {
+	@self_state = @SELF_OFF;
+	@self_stop ();
+}
+
+
+
+
+
+CALLSET_ENTRY (@self, init) {
+	@self_state = @SELF_OFF;
+	@self_set_speed (@SELF_DUTY_25);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* vim: set filetype=c: */
+
+@@
+@@file @self_test.c
+@@
+
+ 
+/***********************************************************************
+ * @self test:
+ ***********************************************************************/
+ 
+
+#include <freewpc.h>
+#include <window.h>
+#include <test.h>
+#include "@self.h"
+
+// FIXME - font_render_string_right vertically offsets the text by 1 pixel (downwards)
+// When this is removed removed all references to FR_WORKAROUND
+#define FRSR_WORKAROUND 1
+
+enum {
+	FIRST_TEST = 0,
+	UP  = FIRST_TEST,
+	DOWN,
+	STOP,
+	LAST_TEST = STOP
+} @self_test_command;
+
+
+
+char *@self_test_short_names[] = {
+	"UP",
+	"DOWN",
+	"STOP"
+};
+
+__boolean in_@self_test;
+
+
+
+
+void @self_test_draw (void) {
+	dmd_alloc_low_clean ();
+	font_render_string_center (&font_var5, 64, 2, "@SELF TEST");
+	dmd_draw_horiz_line ((U16 *)dmd_low_buffer, 5);
+	dmd_draw_horiz_line ((U16 *)dmd_low_buffer, 25);
+
+	//display status of upper limit switch
+			sprintf ("@up_sw_event");
+			font_render_string_center (&font_var5, 64, 13, sprintf_buffer);
+			if (switch_poll_logical (@up_sw_event) ) 	sprintf ("X");
+			 else 										sprintf ("O"); 
+			font_render_string_center (&font_var5, 20, 13, sprintf_buffer);
+
+	//display status of lower limit switch
+			sprintf ("@down_sw_event");
+			font_render_string_center (&font_var5, 64, 20, sprintf_buffer);
+			if (switch_poll_logical (@down_sw_event) ) 	sprintf ("X");
+			 else 										sprintf ("O"); 
+			font_render_string_center (&font_var5, 20, 20, sprintf_buffer);
+
+	//name of currently running test
+			sprintf(@self_test_short_names[@self_test_command]);
+			font_render_string_left (&font_var5, 0, 27, sprintf_buffer);
+	dmd_show_low ();
+}
+
+
+
+
+void @self_test_init (void) { 
+	@self_test_command = UP; 
+	in_@self_test = TRUE;
+	@self_test_draw ();
+}
+
+
+
+
+void @self_test_thread (void) {
+	for (;;) {
+		task_sleep (TIME_1S);  //this was set to run faster but seemed to cause problems
+		@self_test_draw ();
+	}
+}
+
+
+
+
+
+
+
+//up test button pressed
+void @self_test_up (void) {
+	if (@self_test_command < LAST_TEST) @self_test_command++;
+	@self_test_draw ();
+}
+
+
+
+//down test button pressed
+void @self_test_down (void) {
+	if (@self_test_command > FIRST_TEST) @self_test_command--;
+	@self_test_draw ();
+}
+
+
+//escape test button pressed
+void @self_test_escape (void) {
+	// stop everything
+	@self_stop();
+	in_@self_test = FALSE;
+	window_pop();
+}
+
+
+//enter test button pressed
+void @self_test_enter (void) {
+	sound_send (SND_TEST_ENTER);
+  	switch (@self_test_command) {
+  		case UP:
+			@self_move_up();
+			@self_test_command = STOP;
+  		break;
+  		case DOWN:
+			@self_move_down();
+			@self_test_command = STOP;
+  		break;
+  		case STOP:
+			@self_stop();
+			@self_test_command = STOP;
+  		break;
+  	}
+	@self_test_draw ();
+ }
+
+
+CALLSET_ENTRY (@self_test, @up_sw_event) {
+	if (in_@self_test) {
+		@self_stop();
+		@self_test_draw ();
+	}
+}
+
+
+
+CALLSET_ENTRY (@self_test, @down_sw_event) {
+		if (in_@self_test) {
+			@self_stop();
+			@self_test_draw ();
+		}
+}
+
+
+struct window_ops @self_test_window = {
+	DEFAULT_WINDOW,
+	.init = @self_test_init,
+	.draw = @self_test_draw,
+	.up = @self_test_up,
+	.down = @self_test_down,
+	.enter = @self_test_enter,
+	.escape = @self_test_escape,
+	.thread = @self_test_thread,
+};
+
+
+
+struct menu @self_test_item = {
+	.name = "@SELF TEST", // needs @SELF for uppercase version of 'self' as test menu font doesn't have lower-case letters.
+	.flags = M_ITEM,
+	.var = { .subwindow = { &@self_test_window, NULL } },
+};
+
+
+
+

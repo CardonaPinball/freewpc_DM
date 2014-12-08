@@ -1,0 +1,49 @@
+XH2
+H 3 areas E global symbols 2 banks 1 modes
+M shootalert.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _deff_start Ref0000
+S _switch_poll Ref0000
+S _in_test Ref0000
+S _task_sleep_sec1 Ref0000
+S _deff_stop Ref0000
+S .__.ABS. Def0000
+S _global_bits Ref0000
+S _task_create_gid1 Ref0000
+S _task_kill_gid Ref0000
+S _bit_test Ref0000
+S _GLOBAL_FLAG_COIN_DOOR_OPENED Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page57 size 42 flags D00
+S _shoot_alert_task Def0012
+S _shootalert_start_ball Def000A
+S _shootalert_valid_playfield Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 C6 2F BD 00 00 C6 12 7E 00 00
+R 00 00 00 02 81 05 00 08 81 0A 00 04
+T 00 0A
+R 00 00 00 02
+T 00 0A 8E 00 12 C6 2F 7E 00 00
+R 00 00 00 02 01 03 00 02 81 08 00 07
+T 00 12
+R 00 00 00 02
+T 00 12 C6 0F BD 00 00 20 05
+R 00 00 00 02 81 05 00 03
+T 00 19
+R 00 00 00 02
+T 00 19 C6 07 BD 00 00
+R 00 00 00 02 81 05 00 03
+T 00 1E
+R 00 00 00 02
+T 00 1E C6 16 BD 00 00 5D 27 F3 7D 00 00 26 EE
+R 00 00 00 02 81 05 00 01 81 0B 00 02
+T 00 2B C6 00 00 8E 00 00 BD
+R 00 00 00 02 80 03 00 0A 81 06 00 06
+T 00 31 00 00 5D 26 E3 C6 12 BD 00 00 C6 07 BD
+R 00 00 00 02 81 02 00 09 81 0A 00 00
+T 00 3E 00 00 20 DC
+R 00 00 00 02 81 02 00 03

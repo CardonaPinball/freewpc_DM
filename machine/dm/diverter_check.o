@@ -1,0 +1,60 @@
+XH2
+H 3 areas 11 global symbols 2 banks 1 modes
+M diverter_check.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _get_back_in_the_fridge_ending Ref0000
+S _bit_matrix Ref0000
+S _get_back_in_the_fridge_running Ref0000
+S _get_fortress_running Ref0000
+S _rramp_clawready_on Ref0000
+S _is_huxley_running Ref0000
+S .__.ABS. Def0000
+S _get_wasteland_running Ref0000
+S _is_cryoclaw_mode_running Ref0000
+S __far_call_handler Ref0000
+S _FLAG_IS_R_RAMP_CLAWREADY Ref0000
+S _get_demotime_running Ref0000
+S _get_capture_simon_arrows Ref0000
+S _get_cryoprison_running Ref0000
+S _get_museum_running Ref0000
+S _bit_test Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 6B flags D00
+S _diverter_check Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 C6 00 00 8E 00 00 BD
+R 00 00 00 02 80 03 00 0A 81 06 00 01
+T 00 06 00 00 5D 26 01
+R 00 00 00 02 81 02 00 0F
+T 00 0B
+R 00 00 00 02
+T 00 0B 39
+R 00 00 00 02
+T 00 0C
+R 00 00 00 02
+T 00 0C BD 00 00 00 00 34 5D 26 F6 BD
+R 00 00 00 02 81 03 00 09 81 05 00 02
+T 00 16 00 00 00 00 34 5D 26 ED BD
+R 00 00 00 02 81 02 00 09 81 04 00 00
+T 00 1F 00 00 00 00 36 5D 26 E4 BD
+R 00 00 00 02 81 02 00 09 81 04 00 03
+T 00 28 00 00 00 00 34 5D 26 DB BD
+R 00 00 00 02 81 02 00 09 81 04 00 0E
+T 00 31 00 00 00 00 34 5D 26 D2 BD
+R 00 00 00 02 81 02 00 09 81 04 00 0D
+T 00 3A 00 00 00 00 36 5D 26 C9 BD
+R 00 00 00 02 81 02 00 09 81 04 00 07
+T 00 43 00 00 00 00 34 5D 26 C0 C6 04 BD
+R 00 00 00 02 81 02 00 09 81 04 00 0B
+T 00 4E 00 00 00 00 36 5D 26 B5 BD
+R 00 00 00 02 81 02 00 09 81 04 00 0C
+T 00 57 00 00 00 00 34 5D 26 AC BD
+R 00 00 00 02 81 02 00 09 81 04 00 05
+T 00 60 00 00 00 00 37 5D 26 A3 7E
+R 00 00 00 02 81 02 00 09 81 04 00 08
+T 00 69 00 00
+R 00 00 00 02 81 02 00 04

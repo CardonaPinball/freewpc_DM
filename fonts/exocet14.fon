@@ -1,0 +1,725 @@
+#include <freewpc.h>
+//BASED ON 16 POINT TTF
+
+#define glyph_exocet14_A_width 15
+#define glyph_exocet14_A_height 15
+static char glyph_exocet14_A_bits[] = { glyph_exocet14_A_width, glyph_exocet14_A_height,
+	0x80, 0x00, //        0       
+	0x80, 0x00, //        0       
+	0xC0, 0x01, //       000      
+	0xC0, 0x03, //       0000     
+	0xE0, 0x03, //      00000     
+	0xE0, 0x07, //      000000    
+	0x70, 0x07, //     000 000    
+	0x70, 0x0E, //     000  000   
+	0x38, 0x0E, //    000   000   
+	0xF8, 0x1F, //    0000000000  
+	0xFC, 0x1F, //   00000000000  
+	0xFC, 0x3F, //   000000000000 
+	0x0F, 0x78, // 0000       0000
+	0x0C, 0x18, //   00       00  
+	0x10, 0x08, //     0      0   
+};
+
+#define glyph_exocet14_B_width 9
+#define glyph_exocet14_B_height 12
+static char glyph_exocet14_B_bits[] = { glyph_exocet14_B_width, glyph_exocet14_B_height,
+	0x7E, 0x00, //  000000  
+	0xFE, 0x00, //  0000000 
+	0xCE, 0x00, //  000  00 
+	0xCE, 0x00, //  000  00 
+	0x7E, 0x00, //  000000  
+	0x7E, 0x00, //  000000  
+	0xFE, 0x00, //  0000000 
+	0xCE, 0x01, //  000  000
+	0xCE, 0x01, //  000  000
+	0xEE, 0x01, //  000 0000
+	0xFE, 0x00, //  0000000 
+	0x7F, 0x00, // 0000000  
+};
+
+#define glyph_exocet14_C_width 10
+#define glyph_exocet14_C_height 13
+static char glyph_exocet14_C_bits[] = { glyph_exocet14_C_width, glyph_exocet14_C_height,
+	0xF0, 0x01, //     00000 
+	0xFC, 0x03, //   00000000
+	0xFE, 0x03, //  000000000
+	0x1E, 0x03, //  0000   00
+	0x0F, 0x02, // 0000     0
+	0x07, 0x00, // 000       
+	0x07, 0x00, // 000       
+	0x07, 0x00, // 000       
+	0x0F, 0x00, // 0000      
+	0x1E, 0x02, //  0000    0
+	0xFE, 0x03, //  000000000
+	0xFC, 0x03, //   00000000
+	0xF0, 0x01, //     00000 
+};
+
+#define glyph_exocet14_D_width 11
+#define glyph_exocet14_D_height 12
+static char glyph_exocet14_D_bits[] = { glyph_exocet14_D_width, glyph_exocet14_D_height,
+	0x7F, 0x00, // 0000000    
+	0xFE, 0x01, //  00000000  
+	0xCE, 0x03, //  000  0000 
+	0x0E, 0x07, //  000    000
+	0x0E, 0x07, //  000    000
+	0x0E, 0x07, //  000    000
+	0x0E, 0x07, //  000    000
+	0x0E, 0x07, //  000    000
+	0x8E, 0x07, //  000   0000
+	0xEE, 0x03, //  000 00000 
+	0xFE, 0x01, //  00000000  
+	0x7F, 0x00, // 0000000    
+};
+
+#define glyph_exocet14_E_width 9
+#define glyph_exocet14_E_height 14
+static char glyph_exocet14_E_bits[] = { glyph_exocet14_E_width, glyph_exocet14_E_height,
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0x0E, 0x00, //  000     
+	0x0F, 0x01, // 0000    0
+	0xFF, 0x01, // 000000000
+	0xFF, 0x01, // 000000000
+	0x0F, 0x01, // 0000    0
+	0x0E, 0x00, //  000     
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0x06, 0x00, //  00      
+	0x02, 0x00, //  0       
+};
+
+
+#define glyph_exocet14_F_width 9
+#define glyph_exocet14_F_height 14
+static char glyph_exocet14_F_bits[] = { glyph_exocet14_F_width, glyph_exocet14_F_height,
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0xFE, 0x01, //  00000000
+	0x0E, 0x00, //  000     
+	0x0F, 0x01, // 0000    0
+	0xFF, 0x01, // 000000000
+	0xFF, 0x01, // 000000000
+	0x0F, 0x01, // 0000    0
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x06, 0x00, //  00      
+	0x02, 0x00, //  0       
+};
+
+
+#define glyph_exocet14_G_width 11
+#define glyph_exocet14_G_height 13
+static char glyph_exocet14_G_bits[] = { glyph_exocet14_G_width, glyph_exocet14_G_height,
+	0xF0, 0x01, //     00000  
+	0xFC, 0x03, //   00000000 
+	0xFE, 0x03, //  000000000 
+	0x1E, 0x03, //  0000   00 
+	0x0F, 0x02, // 0000     0 
+	0x07, 0x00, // 000        
+	0xC7, 0x07, // 000   00000
+	0xC7, 0x07, // 000   00000
+	0x4F, 0x07, // 0000  0 000
+	0x1E, 0x07, //  0000   000
+	0xFE, 0x07, //  0000000000
+	0xFC, 0x07, //   000000000
+	0xF0, 0x01, //     00000  
+};
+
+
+#define glyph_exocet14_H_width 11
+#define glyph_exocet14_H_height 12
+static char glyph_exocet14_H_bits[] = { glyph_exocet14_H_width, glyph_exocet14_H_height,
+	0xDF, 0x07, // 00000 00000
+	0x8E, 0x03, //  000   000 
+	0x8E, 0x03, //  000   000 
+	0x8E, 0x03, //  000   000 
+	0xFE, 0x03, //  000000000 
+	0xFE, 0x03, //  000000000 
+	0xFE, 0x03, //  000000000 
+	0x8E, 0x03, //  000   000 
+	0x8E, 0x03, //  000   000 
+	0x8E, 0x03, //  000   000 
+	0x8E, 0x03, //  000   000 
+	0xDF, 0x07, // 00000 00000
+};
+
+
+#define glyph_exocet14_I_width 5
+#define glyph_exocet14_I_height 12
+static char glyph_exocet14_I_bits[] = { glyph_exocet14_I_width, glyph_exocet14_I_height,
+	0x1F, // 00000
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x1F, // 00000
+ };
+
+
+#define glyph_exocet14_J_width 3
+#define glyph_exocet14_J_height 15
+static char glyph_exocet14_J_bits[] = { glyph_exocet14_J_width, glyph_exocet14_J_height,
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x07, // 000
+	0x03, // 00 
+	0x01, // 0  
+
+};
+
+#define glyph_exocet14_K_width 12
+#define glyph_exocet14_K_height 12
+static char glyph_exocet14_K_bits[] = { glyph_exocet14_K_width, glyph_exocet14_K_height,
+	0x1F, 0x0F, // 00000   0000
+	0xEE, 0x01, //  000 0000   
+	0xFE, 0x00, //  0000000    
+	0x7E, 0x00, //  000000     
+	0x3E, 0x00, //  00000      
+	0x3E, 0x00, //  00000      
+	0x7E, 0x00, //  000000     
+	0xFE, 0x00, //  0000000    
+	0xEE, 0x01, //  000 0000   
+	0xCE, 0x03, //  000  0000  
+	0x8E, 0x07, //  000   0000 
+	0x1F, 0x0F, // 00000   0000
+};
+
+
+#define glyph_exocet14_L_width 8
+#define glyph_exocet14_L_height 14
+static char glyph_exocet14_L_bits[] = { glyph_exocet14_L_width, glyph_exocet14_L_height,
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x07, // 000     
+	0x87, // 000    0
+	0xFF, // 00000000
+	0xFF, // 00000000
+	0xFF, // 00000000
+	0x83, // 00     0
+	0x01, // 0       
+};
+
+#define glyph_exocet14_M_width 16
+#define glyph_exocet14_M_height 12
+static char glyph_exocet14_M_bits[] = { glyph_exocet14_M_width, glyph_exocet14_M_height,
+	0xFF, 0xFF, // 0000000000000000 
+	0xFE, 0x7F, //  00000000000000 
+	0xFE, 0x7F, //  00000000000000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0x8E, 0x71, //  000   00   000 
+	0xDF, 0xFD, // 00000 0000 00000
+};
+
+#define glyph_exocet14_N_width 11
+#define glyph_exocet14_N_height 11
+static char glyph_exocet14_N_bits[] = { glyph_exocet14_N_width, glyph_exocet14_N_height,
+	0x8F, 0x07, // 0000   0000
+	0x0E, 0x07, //  000    000
+	0x1E, 0x07, //  0000   000
+	0x3E, 0x07, //  00000  000
+	0x7E, 0x07, //  000000 000
+	0xFE, 0x07, //  0000000000
+	0xEE, 0x07, //  000 000000
+	0xEE, 0x07, //  000 000000
+	0xCE, 0x07, //  000  00000
+	0x8E, 0x07, //  000   0000
+	0x0E, 0x07, //  000    000
+	0x8F, 0x07, // 0000   0000
+};
+
+#define glyph_exocet14_O_width 13
+#define glyph_exocet14_O_height 13
+static char glyph_exocet14_O_bits[] = { glyph_exocet14_O_width, glyph_exocet14_O_height,
+	0xF0, 0x01, //     00000    
+	0xFC, 0x07, //   000000000  
+	0xFE, 0x0F, //  00000000000 
+	0x5E, 0x0F, //  0000 0 0000 
+	0x4F, 0x1E, // 0000  0  0000
+	0x47, 0x1C, // 000   0   000
+	0xFF, 0x1F, // 0000000000000
+	0xFF, 0x1F, // 0000000000000
+	0x47, 0x1C, // 000   0   000
+	0x4E, 0x0E, //  000  0  000 
+	0xFE, 0x0F, //  00000000000 
+	0xFC, 0x07, //   000000000  
+	0xF0, 0x01, //     00000    
+};
+
+
+#define glyph_exocet14_P_width 9
+#define glyph_exocet14_P_height 12
+static char glyph_exocet14_P_bits[] = { glyph_exocet14_P_width, glyph_exocet14_P_height,
+	0x7E, 0x00, //  000000  
+	0xFE, 0x00, //  0000000 
+	0xCE, 0x01, //  000  000
+	0xCE, 0x01, //  000  000
+	0xCE, 0x01, //  000  000
+	0xFE, 0x00, //  0000000 
+	0x7E, 0x00, //  000000  
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x0E, 0x00, //  000     
+	0x1F, 0x00, // 00000    
+};
+
+
+#define glyph_exocet14_Q_width 13
+#define glyph_exocet14_Q_height 16
+static char glyph_exocet14_Q_bits[] = { glyph_exocet14_Q_width, glyph_exocet14_Q_height,
+	0xF0, 0x01, //     00000    
+	0xFC, 0x07, //   000000000  
+	0xFE, 0x0F, //  00000000000 
+	0x1E, 0x0F, //  0000   0000 
+	0x0F, 0x1E, // 0000     0000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0xF7, 0x1D, // 000 00000 000
+	0xEE, 0x0E, //  000 000 000 
+	0xFE, 0x0F, //  00000000000 
+	0xFC, 0x07, //   000000000  
+	0xF8, 0x01, //    000000    
+	0xE0, 0x00, //      000     
+	0xE0, 0x00, //      000     
+	0xF0, 0x01, //     00000    
+};
+
+
+#define glyph_exocet14_R_width 13
+#define glyph_exocet14_R_height 12
+static char glyph_exocet14_R_bits[] = { glyph_exocet14_R_width, glyph_exocet14_R_height,
+	0x7E, 0x00, //  000000      
+	0xFE, 0x00, //  0000000     
+	0xCE, 0x01, //  000  000    
+	0xCE, 0x01, //  000  000    
+	0xCE, 0x01, //  000  000    
+	0xFE, 0x00, //  0000000     
+	0x7E, 0x00, //  000000      
+	0xEE, 0x00, //  000 000     
+	0xCE, 0x01, //  000  000    
+	0x8E, 0x03, //  000   000   
+	0x0E, 0x07, //  000    000  
+	0x1F, 0x1E, // 00000    0000
+};
+
+
+#define glyph_exocet14_S_width 8
+#define glyph_exocet14_S_height 13
+static char glyph_exocet14_S_bits[] = { glyph_exocet14_S_width, glyph_exocet14_S_height,
+	0x3C, //   0000  
+	0x7E, //  000000 
+	0x7F, // 0000000 
+	0x47, // 000   0 
+	0x07, // 000     
+	0x1E, //  0000   
+	0x3C, //   0000  
+	0x78, //    0000 
+	0xE0, //      000
+	0xF1, // 0   0000
+	0x7F, // 0000000 
+	0x7F, // 0000000 
+	0x3E, //  00000  
+};
+
+
+#define glyph_exocet14_T_width 12
+#define glyph_exocet14_T_height 12
+static char glyph_exocet14_T_bits[] = { glyph_exocet14_T_width, glyph_exocet14_T_height,
+	0xF0, 0x01, //     00000    
+	0xE0, 0x00, //      000    
+	0xE0, 0x00, //      000    
+	0xE1, 0xA0, // 0    000   0 
+	0xFF, 0x0F, // 000000000000
+	0xFF, 0x0F, // 000000000000
+	0xFF, 0x0F, // 000000000000
+	0xE1, 0xA0, // 0    000   0 
+	0xE0, 0x00, //      000    
+	0xE0, 0x00, //      000    
+	0xE0, 0x00, //      000    
+	0xF0, 0x01, //     00000    
+};
+
+#define glyph_exocet14_U_width 13
+#define glyph_exocet14_U_height 12
+static char glyph_exocet14_U_bits[] = { glyph_exocet14_U_width, glyph_exocet14_U_height,
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x07, 0x1C, // 000       000
+	0x0E, 0x0E, //  000     000 
+	0xFE, 0x0F, //  00000000000 
+	0xFC, 0x07, //   000000000  
+	0xF0, 0x01, //     00000    
+};
+
+
+#define glyph_exocet14_V_width 13
+#define glyph_exocet14_V_height 12
+static char glyph_exocet14_V_bits[] = { glyph_exocet14_V_width, glyph_exocet14_V_height,
+	0x0F, 0x1E, // 0000     0000
+	0x0E, 0x0E, //  000     000 
+	0x0E, 0x0F, //  000    0000 
+	0x1C, 0x07, //   000   000  
+	0x9C, 0x03, //   000  000   
+	0xB8, 0x03, //    000 000   
+	0xF8, 0x01, //    000000    
+	0xF0, 0x01, //     00000    
+	0xF0, 0x00, //     0000     
+	0xE0, 0x00, //      000     
+	0x40, 0x00, //       0      
+	0x40, 0x00, //       0      
+};
+
+
+#define glyph_exocet14_W_width 19
+#define glyph_exocet14_W_height 12
+static char glyph_exocet14_W_bits[] = { glyph_exocet14_W_width, glyph_exocet14_W_height,
+	0xCF, 0xFD, 0x07, // 0000  000 000000000
+	0xCE, 0x8F, 0x03, //  000  000000   000 
+	0x8E, 0xCF, 0x01, //  000   00000  000  
+	0x9C, 0xC7, 0x01, //   000  0000   000  
+	0x9C, 0xE7, 0x00, //   000  0000  000   
+	0xB8, 0xEF, 0x00, //    000 00000 000   
+	0xF8, 0x7F, 0x00, //    000000000000    
+	0xF0, 0x7D, 0x00, //     00000 00000    
+	0xF0, 0x3C, 0x00, //     0000  0000     
+	0xE0, 0x38, 0x00, //      000   000     
+	0x40, 0x18, 0x00, //       0    00      
+	0x40, 0x10, 0x00, //       0     0      
+};
+
+
+#define glyph_exocet14_X_width 15
+#define glyph_exocet14_X_height 16
+static char glyph_exocet14_X_bits[] = { glyph_exocet14_X_width, glyph_exocet14_X_height,
+	0x08, 0x08, //    0       0   
+	0x0C, 0x10, //   00        0  
+	0x0E, 0x38, //  000       000 
+	0x1F, 0x7C, // 00000     00000
+	0x3C, 0x1E, //   0000   0000  
+	0x78, 0x0F, //    0000 0000   
+	0xF0, 0x07, //     0000000    
+	0xE0, 0x03, //      00000     
+	0xE0, 0x03, //      00000     
+	0xF0, 0x07, //     0000000    
+	0x78, 0x0F, //    0000 0000   
+	0x3C, 0x1E, //   0000   0000  
+	0x1F, 0x7C, // 00000     00000
+	0x0E, 0x38, //  000       000 
+	0x0C, 0x10, //   00        0  
+	0x08, 0x08, //    0       0   
+};
+
+
+#define glyph_exocet14_Y_width 15
+#define glyph_exocet14_Y_height 14
+static char glyph_exocet14_Y_bits[] = { glyph_exocet14_Y_width, glyph_exocet14_Y_height,
+	0x08, 0x08, //    0       0   
+	0x0C, 0x10, //   00        0  
+	0x0E, 0x38, //  000       000 
+	0x1F, 0x7C, // 00000     00000
+	0x3C, 0x1E, //   0000   0000  
+	0x78, 0x0F, //    0000 0000   
+	0xF0, 0x07, //     0000000    
+	0xE0, 0x03, //      00000     
+	0xC0, 0x01, //       000      
+	0xC0, 0x01, //       000      
+	0xC0, 0x01, //       000      
+	0xC0, 0x01, //       000      
+	0xC0, 0x01, //       000      
+	0xE0, 0x03, //      00000     
+};
+
+
+#define glyph_exocet14_Z_width 10
+#define glyph_exocet14_Z_height 14
+static char glyph_exocet14_Z_bits[] = { glyph_exocet14_Z_width, glyph_exocet14_Z_height,
+	0x01, 0x00, // 0         
+	0xFF, 0x03, // 0000000000
+	0xFF, 0x01, // 000000000 
+	0xE1, 0x01, // 0    0000 
+	0xE0, 0x00, //      000  
+	0xF0, 0x00, //     0000  
+	0x70, 0x00, //     000   
+	0x38, 0x00, //    000    
+	0x38, 0x00, //    000    
+	0x1C, 0x02, //   000    0
+	0xFE, 0x03, //  000000000
+	0xFE, 0x03, //  000000000
+	0xFF, 0x03, // 0000000000
+	0x00, 0x02, //          0
+};
+
+
+#define glyph_exocet14_0_width 13
+#define glyph_exocet14_0_height 13
+static char glyph_exocet14_0_bits[] = { glyph_exocet14_0_width, glyph_exocet14_0_height,
+	0xF0, 0x01, //     00000    
+	0xFC, 0x07, //   000000000  
+	0xFE, 0x0F, //  00000000000 
+	0x1E, 0x0F, //  0000   0000 
+	0x8F, 0x1F, // 0000   000000
+	0xC7, 0x1D, // 000   000 000
+	0xE7, 0x1C, // 000  000  000
+	0x67, 0x1C, // 000  00   000
+	0x37, 0x1C, // 000 00    000
+	0x1E, 0x0F, //  0000   0000 
+	0xFE, 0x0F, //  00000000000 
+	0xFC, 0x07, //   000000000  
+	0xF0, 0x01, //     00000    
+};
+
+
+#define glyph_exocet14_1_width 5
+#define glyph_exocet14_1_height 12
+static char glyph_exocet14_1_bits[] = { glyph_exocet14_1_width, glyph_exocet14_1_height,
+	0x1F, // 00000
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x0E, //  000 
+	0x1F, // 00000
+};
+
+
+#define glyph_exocet14_2_width 8
+#define glyph_exocet14_2_height 13
+static char glyph_exocet14_2_bits[] = { glyph_exocet14_2_width, glyph_exocet14_2_height,
+	0x3C, //   0000  
+	0x7E, //  000000 
+	0xFF, // 00000000
+	0xE7, // 000  000
+	0xE7, // 000  000
+	0xE8, //    0 000
+	0x70, //     000 
+	0x78, //    0000 
+	0x3C, //   0000  
+	0x1E, //  0000   
+	0xFF, // 00000000
+	0xFF, // 00000000
+	0xFF, // 00000000
+};
+
+
+#define glyph_exocet14_3_width 8
+#define glyph_exocet14_3_height 12
+static char glyph_exocet14_3_bits[] = { glyph_exocet14_3_width, glyph_exocet14_3_height,
+	0xFE, //  0000000
+	0xFE, //  0000000
+	0x72, //  0  000 
+	0x30, //     00  
+	0x38, //    000  
+	0x7C, //   00000 
+	0xF0, //     0000
+	0xE0, //      000
+	0xE7, // 000  000
+	0xFF, // 00000000
+	0x7E, //  000000 
+	0x3C, //   0000  
+};
+
+
+#define glyph_exocet14_4_width 11
+#define glyph_exocet14_4_height 12
+static char glyph_exocet14_4_bits[] = { glyph_exocet14_4_width, glyph_exocet14_4_height,
+	0x00, 0x01, //         0  
+	0x80, 0x01, //        00  
+	0xC0, 0x01, //       000  
+	0xE0, 0x01, //      0000  
+	0xF0, 0x01, //     00000  
+	0xF0, 0x01, //     00000  
+	0xF8, 0x01, //    000000  
+	0xDC, 0x05, //   000 000 0
+	0xFE, 0x07, //  0000000000
+	0xFF, 0x07, // 00000000000
+	0xC0, 0x05, //       000 0
+	0xC0, 0x01, //       000  
+};
+
+
+#define glyph_exocet14_5_width 8
+#define glyph_exocet14_5_height 12
+static char glyph_exocet14_5_bits[] = { glyph_exocet14_5_width, glyph_exocet14_5_height,
+	0x7C, //   00000 
+	0x7C, //   00000 
+	0x4C, //   00  0 
+	0x0E, //  000    
+	0x3E, //  00000  
+	0x7E, //  000000 
+	0xF0, //     0000
+	0xE0, //      000
+	0xE7, // 000  000
+	0xFF, // 00000000
+	0x7E, //  000000 
+	0x3C, //   0000  
+};
+
+
+#define glyph_exocet14_6_width 8
+#define glyph_exocet14_6_height 12
+static char glyph_exocet14_6_bits[] = { glyph_exocet14_6_width, glyph_exocet14_6_height,
+	0x78, //    0000 
+	0x38, //    000  
+	0x1C, //   000   
+	0x1C, //   000   
+	0x1E, //  0000   
+	0x7E, //  000000 
+	0xFF, // 00000000
+	0xE7, // 000  000
+	0xE7, // 000  000
+	0xFF, // 00000000
+	0x7E, //  000000 
+	0x3C, //   0000  
+};
+
+
+#define glyph_exocet14_7_width 9
+#define glyph_exocet14_7_height 13
+static char glyph_exocet14_7_bits[] = { glyph_exocet14_7_width, glyph_exocet14_7_height,
+	0xFF, 0x01, // 000000000
+	0xFF, 0x01, // 000000000
+	0xE1, 0x00, // 0    000 
+	0xE0, 0x00, //      000 
+	0x70, 0x00, //     000  
+	0x70, 0x00, //     000  
+	0x78, 0x00, //    0000  
+	0x38, 0x00, //    000   
+	0x38, 0x00, //    000   
+	0x1C, 0x00, //   000    
+	0x1C, 0x00, //   000    
+	0x1E, 0x00, //  0000    
+	0x10, 0x00, //     0    
+};
+
+
+
+#define glyph_exocet14_8_width 8
+#define glyph_exocet14_8_height 13
+static char glyph_exocet14_8_bits[] = { glyph_exocet14_8_width, glyph_exocet14_8_height,
+	0x3C, //   0000  
+	0x7E, //  000000 
+	0x7E, //  000000 
+	0x66, //  00  00 
+	0x7E, //  000000 
+	0x3C, //   0000  
+	0x7E, //  000000 
+	0xFF, // 00000000
+	0xE7, // 000  000
+	0xE7, // 000  000
+	0xFF, // 00000000
+	0x7E, //  000000 
+	0x3C, //   0000  
+};
+
+
+
+#define glyph_exocet14_9_width 9
+#define glyph_exocet14_9_height 13
+static char glyph_exocet14_9_bits[] = { glyph_exocet14_9_width, glyph_exocet14_9_height,
+	0x3C, //   0000  
+	0x7E, //  000000 
+	0xFF, // 00000000
+	0xE7, // 000  000
+	0xE7, // 000  000
+	0xF7, // 000 0000
+	0x7E, //  000000 
+	0x7C, //   00000 
+	0x38, //    000  
+	0x38, //    000  
+	0x3C, //   0000  
+	0x1C, //   000   
+	0x1E, //  0000   
+};
+
+
+
+#define BASECHAR ' '
+#
+static char *exocet14_glyphs[] = {
+   ['A' - BASECHAR] = glyph_exocet14_A_bits,
+   ['B' - BASECHAR] = glyph_exocet14_B_bits,
+   ['C' - BASECHAR] = glyph_exocet14_C_bits,
+   ['D' - BASECHAR] = glyph_exocet14_D_bits,
+   ['E' - BASECHAR] = glyph_exocet14_E_bits,
+   ['F' - BASECHAR] = glyph_exocet14_F_bits,
+   ['G' - BASECHAR] = glyph_exocet14_G_bits,
+   ['H' - BASECHAR] = glyph_exocet14_H_bits,
+   ['I' - BASECHAR] = glyph_exocet14_I_bits,
+   ['J' - BASECHAR] = glyph_exocet14_J_bits,
+   ['K' - BASECHAR] = glyph_exocet14_K_bits,
+   ['L' - BASECHAR] = glyph_exocet14_L_bits,
+   ['M' - BASECHAR] = glyph_exocet14_M_bits,
+   ['N' - BASECHAR] = glyph_exocet14_N_bits,
+   ['O' - BASECHAR] = glyph_exocet14_O_bits,
+   ['P' - BASECHAR] = glyph_exocet14_P_bits,
+   ['Q' - BASECHAR] = glyph_exocet14_Q_bits,
+   ['R' - BASECHAR] = glyph_exocet14_R_bits,
+   ['S' - BASECHAR] = glyph_exocet14_S_bits,
+   ['T' - BASECHAR] = glyph_exocet14_T_bits,
+   ['U' - BASECHAR] = glyph_exocet14_U_bits,
+   ['V' - BASECHAR] = glyph_exocet14_V_bits,
+   ['W' - BASECHAR] = glyph_exocet14_W_bits,
+   ['X' - BASECHAR] = glyph_exocet14_X_bits,
+   ['Y' - BASECHAR] = glyph_exocet14_Y_bits,
+   ['Z' - BASECHAR] = glyph_exocet14_Z_bits,
+   ['0' - BASECHAR] = glyph_exocet14_0_bits,
+   ['1' - BASECHAR] = glyph_exocet14_1_bits,
+   ['2' - BASECHAR] = glyph_exocet14_2_bits,
+   ['3' - BASECHAR] = glyph_exocet14_3_bits,
+   ['4' - BASECHAR] = glyph_exocet14_4_bits,
+   ['5' - BASECHAR] = glyph_exocet14_5_bits,
+   ['6' - BASECHAR] = glyph_exocet14_6_bits,
+   ['7' - BASECHAR] = glyph_exocet14_7_bits,
+   ['8' - BASECHAR] = glyph_exocet14_8_bits,
+   ['9' - BASECHAR] = glyph_exocet14_9_bits,
+};
+const font_t font_exocet14 = {
+	.spacing = 2,
+	.height = 12,
+	.glyphs = exocet14_glyphs,
+	.basechar = BASECHAR,
+};

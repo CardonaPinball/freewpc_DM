@@ -1,0 +1,95 @@
+#
+# Copyright 2007-2011 by Brian Dominy <brian@oddchange.com>
+# 
+# This file is part of FreeWPC.
+# 
+# FreeWPC is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# FreeWPC is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with FreeWPC; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+# 
+
+
+# Schedule for FreeWPC's core real-time tasks
+# This file is processed by the 'sched' program in tools/sched.
+# Each line specifies a realtime function that needs to be called periodically.
+# It also says how often it should be called (in IRQs, roughly 1ms per IRQ)
+# and approximately how long the function takes to run on average (usually
+# given in terms of CPU cycles).
+#
+# The scheduler generates a top-level function which invokes everything
+# properly.  It also attempts to balance the load, so that the average
+# time per IRQ is as stable as possible.
+
+
+# Common processing required at the beginning of every IRQ.
+!do_irq_begin         1       10c
+!advance_time_rtt     16      6c
+
+# Read the flipper switches and update the flipper coils
+# Note: this only takes 51 cycles when flippers are disabled.
+# Not sure if this is still accurate when enabled or not.
+fliptronic_rtt?CONFIG_FLIPTRONIC   4       250c
+
+# Update the triacs
+triac_rtt?CONFIG_TRIAC 1       60c
+
+# Unlock the PIC if necessary; keep before switch polling
+!pic_rtt_start?CONFIG_PIC    2       6c
+
+# Update the lamps
+lamp_rtt              2       90c
+
+# Finish unlocking the PIC
+!pic_rtt_finish?CONFIG_PIC    2       8c
+
+# Read the regular switch matrix and coin door
+switch_rtt            2       560c
+
+# Resynchronize to the AC zero cross point.
+ac_rtt?CONFIG_AC      1       36c
+
+# Update flashers.  Each bank of 8 is updated
+# once every 4ms (the 2 banks are alternated every 2ms).
+sol_update_rtt/2      2       60c
+
+# Update one-at-a-time solenoid pulses.
+sol_req_rtt           4       12c
+
+# Toggle the CPU board LED
+!pinio_active_led_toggle 64   14c
+
+# Read/write the sound board
+sound_write_rtt       2       40c
+sound_read_rtt        8       35c
+
+# Toggle lamps that are in 'flash' mode
+lamp_flash_rtt        128     100c
+
+# Check for task-level lockup
+lockup_check_rtt      128     23c
+
+# Free running hardware-quality timers
+free_timer_rtt        32		94c
+
+# Update the segmented displays, if CONFIG_SEG is defined.
+seg_rtt?CONFIG_ALPHA  1       50c # guess?
+
+# Common processing required at the end of every IRQ
+### process_check_rtt     1       50c
+!do_irq_end           1       0c
+
+# Profile idle time
+idle_profile_rtt      1024    30c
+
+# TODO : service the coin switches correctly to ensure proper timing
+

@@ -1,0 +1,32 @@
+
+direct    XXXXXXXXXXXXXXXXXXXXXX..  warning: 89% full
+ram       XXXXXXXXXXXXXXXXXXXXX...  warning: 85% full
+local     XXXXXXXXXXXXXXX.........  warning: 62% full
+permanent XXXXX...................  warning: 23% full
+nvram     XXXXX...................  warning: 23% full
+dirtab    XXXXXXXXXXXXXXXXXXXXXXXXX  warning: 100% full
+registers ........................
+.flag     XXX.....................  warning: 12% full
+.globalfla........................
+.freetimer........................
+page52    XXXXXXXXXXXXXXXX........  warning: 67% full   (MACHINE5)
+page53    XXXXXXXXXXXXXXXXXXXXXXXX  warning: 99% full   (MACHINE4)
+page54    XXXXXXXXXXXXXXXXXX......  warning: 75% full   (MACHINE3)
+page55    XXXXXXXXXXXXXXXXXXXXXXX.  warning: 93% full   (MACHINE2)
+page56    XXXXXXXXXXXXXXXXXXXXX...  warning: 84% full   (COMMON)
+page57    XXXXXXXXXXXX............  warning: 48% full   (EFFECT DEFF LEFF TRANS INIT)
+page58    XXXXXXXXXXXXXXXXXXXX....  warning: 80% full   (TEST MACHINE_TEST)
+page59    XXXXXXXXXXXXXXXXXXX.....  warning: 77% full   (MACHINE EVENT)
+page60    XXXXXXXXXXXXXXXXXXXXXXX.  warning: 95% full   (PAGED_MD TEST2 COMMON2)
+page61    XXXXXXXXXXXXX...........  warning: 54% full   (FONT FON)
+.text     XXXXXXXXXXXXXXXXXXXXXXX.  warning: 95% full
+
+
+
+
+
+
+
+
+
+

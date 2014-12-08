@@ -1,0 +1,730 @@
+#include <freewpc.h>
+//BASED ON 14 POINT TTF
+
+
+#define glyph_telemarines14_A_width 14
+#define glyph_telemarines14_A_height 13
+static char glyph_telemarines14_A_bits[] = { glyph_telemarines14_A_width, glyph_telemarines14_A_height,
+	0xC0, 0x00, //       ##      
+	0xE0, 0x01, //      ####     
+	0xE0, 0x01, //      ####     
+	0xF0, 0x03, //     ######    
+	0x30, 0x03, //     ##  ##    
+	0x38, 0x07, //    ###  ###   
+	0x18, 0x06, //    ##    ##   
+	0x1C, 0x0E, //   ###    ###  
+	0x0C, 0x0C, //   ##      ##  
+	0x0E, 0x1C, //  ###      ### 
+	0xFE, 0x1F, //  ############ 
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+};
+
+#define glyph_telemarines14_B_width 14
+#define glyph_telemarines14_B_height 13
+static char glyph_telemarines14_B_bits[] = { glyph_telemarines14_B_width, glyph_telemarines14_B_height,
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x1F, // ############# 
+};
+
+#define glyph_telemarines14_C_width 14
+#define glyph_telemarines14_C_height 13
+static char glyph_telemarines14_C_bits[] = { glyph_telemarines14_C_width, glyph_telemarines14_C_height,
+	0xF0, 0x3F, //     ##########
+	0xFC, 0x3F, //   ############
+	0xFE, 0x3F, //  #############
+	0x0F, 0x30, // ####        ##
+	0x07, 0x00, // ###           
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x07, 0x00, // ###           
+	0x07, 0x00, // ###           
+	0xFE, 0x3F, //  #############
+	0xFC, 0x3F, //   ############
+	0xF0, 0x3F, //     ##########
+};
+
+#define glyph_telemarines14_D_width 14
+#define glyph_telemarines14_D_height 13
+static char glyph_telemarines14_D_bits[] = { glyph_telemarines14_D_width, glyph_telemarines14_D_height,
+	0xFF, 0x03, // ##########    
+	0xFF, 0x0F, // ############  
+	0xFF, 0x1F, // ############# 
+	0x03, 0x3C, // ##        ####
+	0x03, 0x38, // ##         ###
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x00, 0x38, //            ###
+	0x00, 0x3C, //           ####
+	0xFF, 0x1F, // ############# 
+	0xFF, 0x0F, // ############  
+	0xFF, 0x03, // ##########    
+};
+
+#define glyph_telemarines14_E_width 14
+#define glyph_telemarines14_E_height 13
+static char glyph_telemarines14_E_bits[] = { glyph_telemarines14_E_width, glyph_telemarines14_E_height,
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x00, //               
+	0x00, 0x00, //               
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x00, //               
+	0x00, 0x00, //               
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+};
+
+
+#define glyph_telemarines14_F_width 14
+#define glyph_telemarines14_F_height 13
+static char glyph_telemarines14_F_bits[] = { glyph_telemarines14_F_width, glyph_telemarines14_F_height,
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x00, //               
+	0x00, 0x00, //               
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+};
+
+
+#define glyph_telemarines14_G_width 14
+#define glyph_telemarines14_G_height 13
+static char glyph_telemarines14_G_bits[] = { glyph_telemarines14_G_width, glyph_telemarines14_G_height,
+	0xF0, 0x3F, //     ##########
+	0xFC, 0x3F, //   ############
+	0xFE, 0x3F, //  #############
+	0x0F, 0x00, // ####          
+	0x07, 0x00, // ###           
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x07, 0x30, // ###         ##
+	0x07, 0x30, // ###         ##
+	0xFE, 0x3F, //  #############
+	0xFE, 0x3F, //  #############
+	0xF8, 0x3F, //    ###########
+};
+
+
+#define glyph_telemarines14_H_width 14
+#define glyph_telemarines14_H_height 13
+static char glyph_telemarines14_H_bits[] = { glyph_telemarines14_H_width, glyph_telemarines14_H_height,
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+};
+
+
+#define glyph_telemarines14_I_width 2
+#define glyph_telemarines14_I_height 13
+static char glyph_telemarines14_I_bits[] = { glyph_telemarines14_I_width, glyph_telemarines14_I_height,
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+ };
+
+
+#define glyph_telemarines14_J_width 14
+#define glyph_telemarines14_J_height 13
+static char glyph_telemarines14_J_bits[] = { glyph_telemarines14_J_width, glyph_telemarines14_J_height,
+	0x80, 0x3F, //        #######
+	0x80, 0x3F, //        #######
+	0x80, 0x3F, //        #######
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x38, //            ###
+	0x00, 0x38, //            ###
+	0x00, 0x38, //            ###
+	0x00, 0x1C, //           ### 
+	0xFF, 0x1F, // ############# 
+	0xFF, 0x0F, // ############  
+	0xFF, 0x07, // ###########   
+ };
+
+#define glyph_telemarines14_K_width 14
+#define glyph_telemarines14_K_height 13
+static char glyph_telemarines14_K_bits[] = { glyph_telemarines14_K_width, glyph_telemarines14_K_height,
+	0x03, 0x3E, // ##       #####
+	0x83, 0x1F, // ##     ###### 
+	0xE3, 0x07, // ##   ######   
+	0xFB, 0x01, // ## ######     
+	0x7F, 0x00, // #######       
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+ };
+
+
+#define glyph_telemarines14_L_width 14
+#define glyph_telemarines14_L_height 13
+static char glyph_telemarines14_L_bits[] = { glyph_telemarines14_L_width, glyph_telemarines14_L_height,
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFE, 0x3F, //  #############
+};
+
+#define glyph_telemarines14_M_width 14
+#define glyph_telemarines14_M_height 13
+static char glyph_telemarines14_M_bits[] = { glyph_telemarines14_M_width, glyph_telemarines14_M_height,
+	0xFF, 0x03, // ##########    
+	0xFF, 0x0F, // ############  
+	0xFF, 0x1F, // ############# 
+	0x03, 0x3C, // ##        ####
+	0xC3, 0x38, // ##    ##   ###
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+};
+
+#define glyph_telemarines14_N_width 14
+#define glyph_telemarines14_N_height 13
+static char glyph_telemarines14_N_bits[] = { glyph_telemarines14_N_width, glyph_telemarines14_N_height,
+	0xFF, 0x03, // ##########    
+	0xFF, 0x0F, // ############  
+	0xFF, 0x1F, // ############# 
+	0x03, 0x3C, // ##        ####
+	0x03, 0x38, // ##         ###
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+};
+
+#define glyph_telemarines14_O_width 14
+#define glyph_telemarines14_O_height 13
+static char glyph_telemarines14_O_bits[] = { glyph_telemarines14_O_width, glyph_telemarines14_O_height,
+	0xF0, 0x03, //     ######    
+	0xFC, 0x0F, //   ##########  
+	0xFE, 0x1F, //  ############ 
+	0x0F, 0x3C, // ####      ####
+	0x07, 0x38, // ###        ###
+	0xFB, 0x37, // ## ######## ##
+	0xFB, 0x37, // ## ######## ##
+	0xFB, 0x37, // ## ######## ##
+	0x07, 0x38, // ###        ###
+	0x07, 0x38, // ###        ###
+	0xFE, 0x1F, //  ############ 
+	0xFC, 0x0F, //   ##########  
+	0xF8, 0x07, //    ########   
+};
+
+
+#define glyph_telemarines14_P_width 14
+#define glyph_telemarines14_P_height 13
+static char glyph_telemarines14_P_bits[] = { glyph_telemarines14_P_width, glyph_telemarines14_P_height,
+	0xFF, 0x1F, // #############  
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0xFF, 0x3F, // ############## 
+	0x07, 0x00, // ###            
+	0x07, 0x00, // ###            
+	0x07, 0x00, // ###            
+	0x07, 0x00, // ###            
+	0x07, 0x00, // ###            
+
+};
+
+
+#define glyph_telemarines14_Q_width 14
+#define glyph_telemarines14_Q_height 13
+static char glyph_telemarines14_Q_bits[] = { glyph_telemarines14_Q_width, glyph_telemarines14_Q_height,
+	0xF0, 0x03, //     ######    
+	0xFC, 0x0F, //   ##########  
+	0xFE, 0x1F, //  ############ 
+	0x0F, 0x3C, // ####      ####
+	0x07, 0x38, // ###        ###
+	0x03, 0x30, // ##          ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC7, 0x38, // ###   ##   ###
+	0xCF, 0x38, // ####  ##   ###
+	0xC2, 0x1F, //  #    ####### 
+	0xC0, 0x0F, //       ######  
+	0xC0, 0x07, //       #####   
+};
+
+
+#define glyph_telemarines14_R_width 14
+#define glyph_telemarines14_R_height 13
+static char glyph_telemarines14_R_bits[] = { glyph_telemarines14_R_width, glyph_telemarines14_R_height,
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x1F, // ############# 
+	0x3E, 0x00, //  #####        
+	0xF8, 0x00, //    #####      
+	0xE0, 0x03, //      #####    
+	0x80, 0x0F, //        #####  
+	0x00, 0x3E, //          #####
+};
+
+
+#define glyph_telemarines14_S_width 14
+#define glyph_telemarines14_S_height 13
+static char glyph_telemarines14_S_bits[] = { glyph_telemarines14_S_width, glyph_telemarines14_S_height,
+	0xFC, 0x7F, //   #############
+	0xFE, 0x7F, //  ##############
+	0xFE, 0x7F, //  ##############
+	0x06, 0x00, //  ##            
+	0x07, 0x00, // ###            
+	0x1E, 0x18, //  ####      ##  
+	0x1E, 0x78, //  ####      ####
+	0x1C, 0x78, //   ###      ####
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0xFF, 0x3F, // ############## 
+};
+
+
+#define glyph_telemarines14_T_width 14
+#define glyph_telemarines14_T_height 13
+static char glyph_telemarines14_T_bits[] = { glyph_telemarines14_T_width, glyph_telemarines14_T_height,
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+};
+
+#define glyph_telemarines14_U_width 14
+#define glyph_telemarines14_U_height 13
+static char glyph_telemarines14_U_bits[] = { glyph_telemarines14_U_width, glyph_telemarines14_U_height,
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0x07, 0x38, // ###        ###
+	0x07, 0x38, // ###        ###
+	0xFE, 0x1F, //  ############ 
+	0xFC, 0x0F, //   ##########  
+	0xF8, 0x07, //    ########   
+};
+
+
+#define glyph_telemarines14_V_width 14
+#define glyph_telemarines14_V_height 13
+static char glyph_telemarines14_V_bits[] = { glyph_telemarines14_V_width, glyph_telemarines14_V_height,
+	0x07, 0x60, // ###          ##
+	0x0E, 0x70, //  ###        ###
+	0x0E, 0x30, //  ###        ## 
+	0x1C, 0x38, //   ###      ### 
+	0x18, 0x18, //    ##      ##  
+	0x38, 0x1C, //    ###    ###  
+	0x30, 0x0C, //     ##    ##   
+	0x70, 0x0E, //     ###  ###   
+	0x60, 0x06, //      ##  ##    
+	0xE0, 0x07, //      ######    
+	0xC0, 0x03, //       ####     
+	0xC0, 0x03, //       ####     
+	0x80, 0x01, //        ##      
+};
+
+
+#define glyph_telemarines14_W_width 14
+#define glyph_telemarines14_W_height 13
+static char glyph_telemarines14_W_bits[] = { glyph_telemarines14_W_width, glyph_telemarines14_W_height,
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x30, // ##    ##    ##
+	0xC3, 0x38, // ##    ##   ###
+	0x03, 0x38, // ##         ###
+	0xFF, 0x1F, // ############# 
+	0xFF, 0x0F, // ############  
+	0xFF, 0x07, // ###########   
+};
+
+
+#define glyph_telemarines14_X_width 14
+#define glyph_telemarines14_X_height 13
+static char glyph_telemarines14_X_bits[] = { glyph_telemarines14_X_width, glyph_telemarines14_X_height,
+	0x07, 0xE0, // ###          ###
+	0x0E, 0x70, //  ###        ### 
+	0x1C, 0x38, //   ###      ###  
+	0x38, 0x1C, //    ###    ###   
+	0x70, 0x0E, //     ###  ###    
+	0x20, 0x07, //      #  ###     
+	0x80, 0x03, //        ###      
+	0xC0, 0x00, //       ##        
+	0x60, 0x06, //      ##  ##     
+	0x30, 0x0E, //     ##   ###    
+	0x18, 0x1C, //    ##     ###   
+	0x0C, 0x38, //   ##       ###  
+	0x06, 0x70, //  ##         ### 
+};
+
+
+#define glyph_telemarines14_Y_width 14
+#define glyph_telemarines14_Y_height 13
+static char glyph_telemarines14_Y_bits[] = { glyph_telemarines14_Y_width, glyph_telemarines14_Y_height,
+	0x07, 0x60, // ###          ##
+	0x07, 0x60, // ###          ##
+	0x07, 0x60, // ###          ##
+	0x07, 0x60, // ###          ##
+	0x07, 0x60, // ###          ##
+	0xFE, 0x7F, //  ##############
+	0xFE, 0x7F, //  ##############
+	0xFC, 0x7F, //   #############
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0xFF, 0x3F, // ############## 
+};
+
+
+#define glyph_telemarines14_Z_width 14
+#define glyph_telemarines14_Z_height 13
+static char glyph_telemarines14_Z_bits[] = { glyph_telemarines14_Z_width, glyph_telemarines14_Z_height,
+	0xFF, 0x00, // ########      
+	0xFF, 0x00, // ########      
+	0xFF, 0x00, // ########      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x00, //       ##      
+	0xC0, 0x3F, //       ########
+	0xC0, 0x3F, //       ########
+	0xC0, 0x3F, //       ########
+};
+
+
+
+#define glyph_telemarines14_0_width 14
+#define glyph_telemarines14_0_height 13
+static char glyph_telemarines14_0_bits[] = { glyph_telemarines14_0_width, glyph_telemarines14_0_height,
+	0xF0, 0x03, //     ######    
+	0xFC, 0x0F, //   ##########  
+	0xFE, 0x1F, //  ############ 
+	0x0F, 0x3C, // ####      ####
+	0x07, 0x38, // ###        ###
+	0xFB, 0x37, // ## ######## ##
+	0xFB, 0x37, // ## ######## ##
+	0xFB, 0x37, // ## ######## ##
+	0x07, 0x38, // ###        ###
+	0x07, 0x38, // ###        ###
+	0xFE, 0x1F, //  ############ 
+	0xFC, 0x0F, //   ##########  
+	0xF8, 0x07, //    ########   
+};
+
+
+#define glyph_telemarines14_1_width 2
+#define glyph_telemarines14_1_height 13
+static char glyph_telemarines14_1_bits[] = { glyph_telemarines14_1_width, glyph_telemarines14_1_height,
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+	0x03, // ##
+};
+
+
+#define glyph_telemarines14_2_width 14
+#define glyph_telemarines14_2_height 13
+static char glyph_telemarines14_2_bits[] = { glyph_telemarines14_2_width, glyph_telemarines14_2_height,
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x0C, 0x3C, //   ##      ####
+	0x0F, 0x3C, // ####      ####
+	0x0F, 0x1C, // ####      ### 
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+};
+
+
+#define glyph_telemarines14_3_width 14
+#define glyph_telemarines14_3_height 13
+static char glyph_telemarines14_3_bits[] = { glyph_telemarines14_3_width, glyph_telemarines14_3_height,
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x1F, // ############# 
+};
+
+
+#define glyph_telemarines14_4_width 14
+#define glyph_telemarines14_4_height 13
+static char glyph_telemarines14_4_bits[] = { glyph_telemarines14_4_width, glyph_telemarines14_4_height,
+	0x00, 0x3E, //          #####
+	0x80, 0x1F, //        ###### 
+	0xE0, 0x07, //      ######   
+	0xF8, 0x01, //    ######     
+	0x7E, 0x00, //  ######       
+	0xFF, 0x0F, // ############  
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+};
+
+
+#define glyph_telemarines14_5_width 14
+#define glyph_telemarines14_5_height 13
+static char glyph_telemarines14_5_bits[] = { glyph_telemarines14_5_width, glyph_telemarines14_5_height,
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0x07, 0x00, // ###            
+	0x07, 0x00, // ###            
+	0x1E, 0x18, //  ####      ##  
+	0x1E, 0x78, //  ####      ####
+	0x1C, 0x78, //   ###      ####
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0xFF, 0x3F, // ############## 
+};
+
+
+#define glyph_telemarines14_6_width 14
+#define glyph_telemarines14_6_height 13
+static char glyph_telemarines14_6_bits[] = { glyph_telemarines14_6_width, glyph_telemarines14_6_height,
+	0xFE, 0x3F, //  #############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x00, // ##            
+	0x03, 0x00, // ##            
+	0xFF, 0x1F, // ############# 
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFE, 0x3F, //  #############
+};
+
+
+#define glyph_telemarines14_7_width 14
+#define glyph_telemarines14_7_height 13
+static char glyph_telemarines14_7_bits[] = { glyph_telemarines14_7_width, glyph_telemarines14_7_height,
+	0xFF, 0x3F, // ############## 
+	0xFF, 0x7F, // ###############
+	0xFF, 0x7F, // ###############
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+	0x00, 0x60, //              ##
+};
+
+
+
+#define glyph_telemarines14_8_width 14
+#define glyph_telemarines14_8_height 13
+static char glyph_telemarines14_8_bits[] = { glyph_telemarines14_8_width, glyph_telemarines14_8_height,
+	0xFE, 0x1F, //  ############ 
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x1F, // ############# 
+};
+
+
+
+#define glyph_telemarines14_9_width 14
+#define glyph_telemarines14_9_height 13
+static char glyph_telemarines14_9_bits[] = { glyph_telemarines14_9_width, glyph_telemarines14_9_height,
+	0xFE, 0x1F, //  ############ 
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x03, 0x30, // ##          ##
+	0x03, 0x30, // ##          ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0x00, 0x30, //             ##
+	0x00, 0x30, //             ##
+	0xFF, 0x3F, // ##############
+	0xFF, 0x3F, // ##############
+	0xFF, 0x1F, // ############# 
+};
+
+
+
+#define BASECHAR ' '
+#
+static char *telemarines14_glyphs[] = {
+   ['A' - BASECHAR] = glyph_telemarines14_A_bits,
+   ['B' - BASECHAR] = glyph_telemarines14_B_bits,
+   ['C' - BASECHAR] = glyph_telemarines14_C_bits,
+   ['D' - BASECHAR] = glyph_telemarines14_D_bits,
+   ['E' - BASECHAR] = glyph_telemarines14_E_bits,
+   ['F' - BASECHAR] = glyph_telemarines14_F_bits,
+   ['G' - BASECHAR] = glyph_telemarines14_G_bits,
+   ['H' - BASECHAR] = glyph_telemarines14_H_bits,
+   ['I' - BASECHAR] = glyph_telemarines14_I_bits,
+   ['J' - BASECHAR] = glyph_telemarines14_J_bits,
+   ['K' - BASECHAR] = glyph_telemarines14_K_bits,
+   ['L' - BASECHAR] = glyph_telemarines14_L_bits,
+   ['M' - BASECHAR] = glyph_telemarines14_M_bits,
+   ['N' - BASECHAR] = glyph_telemarines14_N_bits,
+   ['O' - BASECHAR] = glyph_telemarines14_O_bits,
+   ['P' - BASECHAR] = glyph_telemarines14_P_bits,
+   ['Q' - BASECHAR] = glyph_telemarines14_Q_bits,
+   ['R' - BASECHAR] = glyph_telemarines14_R_bits,
+   ['S' - BASECHAR] = glyph_telemarines14_S_bits,
+   ['T' - BASECHAR] = glyph_telemarines14_T_bits,
+   ['U' - BASECHAR] = glyph_telemarines14_U_bits,
+   ['V' - BASECHAR] = glyph_telemarines14_V_bits,
+   ['W' - BASECHAR] = glyph_telemarines14_W_bits,
+   ['X' - BASECHAR] = glyph_telemarines14_X_bits,
+   ['Y' - BASECHAR] = glyph_telemarines14_Y_bits,
+   ['Z' - BASECHAR] = glyph_telemarines14_Z_bits,
+   ['0' - BASECHAR] = glyph_telemarines14_0_bits,
+   ['1' - BASECHAR] = glyph_telemarines14_1_bits,
+   ['2' - BASECHAR] = glyph_telemarines14_2_bits,
+   ['3' - BASECHAR] = glyph_telemarines14_3_bits,
+   ['4' - BASECHAR] = glyph_telemarines14_4_bits,
+   ['5' - BASECHAR] = glyph_telemarines14_5_bits,
+   ['6' - BASECHAR] = glyph_telemarines14_6_bits,
+   ['7' - BASECHAR] = glyph_telemarines14_7_bits,
+   ['8' - BASECHAR] = glyph_telemarines14_8_bits,
+   ['9' - BASECHAR] = glyph_telemarines14_9_bits,
+};
+const font_t font_telemarines14 = {
+	.spacing = 2,
+	.height = 13,
+	.glyphs = telemarines14_glyphs,
+	.basechar = BASECHAR,
+};

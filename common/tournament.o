@@ -1,0 +1,69 @@
+XH2
+H 4 areas F global symbols 2 banks 1 modes
+M tournament.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _deff_start Ref0000
+S _switch_poll_logical Ref0000
+S _task_sleep Ref0000
+S _task_recreate_gid Ref0000
+S _in_test Ref0000
+S _system_config Ref0000
+S .__.ABS. Def0000
+S _task_exit Ref0000
+S _in_game Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size 47 flags D00
+S _tournament_player_detect Def0023
+S _tournament_start_game Def0000
+S _tournament_sw_left_button Def0020
+S _tournament_check_player_enable Def000E
+S _tournament_init Def000A
+A ram size 1 flags C00
+S _tournament_mode_enabled Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 F6 00 00 FA 00 16 F7
+R 00 00 00 02 01 03 00 03 81 06 00 05
+T 00 07 00 00 39
+R 00 00 00 02 01 02 00 03
+T 00 0A
+R 00 00 00 02
+T 00 0A 7F 00 00 39
+R 00 00 00 02 01 03 00 03
+T 00 0E
+R 00 00 00 02
+T 00 0E 0D 00 00 26 05 7D 00 00 27 01
+R 00 00 00 02 A0 03 00 08 81 08 00 04
+T 00 17
+R 00 00 00 02
+T 00 17 39
+R 00 00 00 02
+T 00 18
+R 00 00 00 02
+T 00 18 8E 00 23 C6 35 7E 00 00
+R 00 00 00 02 01 03 00 02 81 08 00 03
+T 00 20
+R 00 00 00 02
+T 00 20 7E 00 0E
+R 00 00 00 02 01 03 00 02
+T 00 23
+R 00 00 00 02
+T 00 23 32 7F C6 32 E7 E4
+R 00 00 00 02
+T 00 29
+R 00 00 00 02
+T 00 29 C6 4B BD 00 00 5D 27 13 C6 06 BD 00 00
+R 00 00 00 02 81 05 00 01 81 0D 00 02
+T 00 36 6A E4 26 EF C6 01 F7 00 00 C6 0F BD
+R 00 00 00 02 01 09 00 03
+T 00 42 00 00
+R 00 00 00 02 81 02 00 00
+T 00 44
+R 00 00 00 02
+T 00 44 7E 00 00
+R 00 00 00 02 81 03 00 07
+T 00 00
+R 00 00 00 03

@@ -1,0 +1,551 @@
+#include <freewpc.h>
+
+//BASED ON 11 POINT TTF BOLD
+
+
+#define glyph_halobold14_A_width 17
+#define glyph_halobold14_A_height 8
+static char glyph_halobold14_A_bits[] = { glyph_halobold14_A_width, glyph_halobold14_A_height,
+	0x00, 0x03, 0x00, //         ##       
+	0x80, 0x03, 0x00, //        ###       
+	0xC0, 0x07, 0x00, //       #####      
+	0x00, 0x0F, 0x00, //         ####     
+	0xF0, 0x1F, 0x00, //     #########    
+	0x78, 0x3C, 0x00, //    ####   ####   
+	0x3C, 0x78, 0x00, //   ####     ####  
+	0x7F, 0xF8, 0x01, // #######    ######
+};
+
+#define glyph_halobold14_B_width 17
+#define glyph_halobold14_B_height 8
+static char glyph_halobold14_B_bits[] = { glyph_halobold14_B_width, glyph_halobold14_B_height,
+	0xFF, 0x0F, 0x00, // ############     
+	0x1C, 0x38, 0x00, //   ###      ###   
+	0x1C, 0x60, 0x00, //   ###        ##  
+	0xFC, 0x3F, 0x00, //   ############   
+	0x3C, 0x60, 0x00, //   ####       ##  
+	0x3C, 0xE0, 0x01, //   ####       ####
+	0x3C, 0x78, 0x00, //   ####     ####  
+	0xFE, 0x1F, 0x00, //  ############    
+};
+
+#define glyph_halobold14_C_width 18
+#define glyph_halobold14_C_height 8
+static char glyph_halobold14_C_bits[] = { glyph_halobold14_C_width, glyph_halobold14_C_height,
+	0xC0, 0x3F, 0x00, //       ########    
+	0xF0, 0xE0, 0x00, //     ####     ###  
+	0x38, 0x80, 0x01, //    ###         ## 
+	0x1C, 0x00, 0x00, //   ###             
+	0x9F, 0x0F, 0x00, // #####  #####      
+	0x3C, 0x80, 0x01, //   ####         ## 
+	0xF8, 0xE0, 0x03, //    #####     #####
+	0xE0, 0x3F, 0x00, //      #########    
+};
+
+#define glyph_halobold14_D_width 16
+#define glyph_halobold14_D_height 8
+static char glyph_halobold14_D_bits[] = { glyph_halobold14_D_width, glyph_halobold14_D_height,
+	0xFF, 0x0F, // ############    
+	0x1C, 0x38, //   ###      ###  
+	0x1C, 0x60, //   ###        ## 
+	0x3C, 0xC6, //   ####   ##   ##
+	0x1C, 0x60, //   ###        ## 
+	0x1C, 0x38, //   ###      ###  
+	0x3C, 0x18, //   ####     ##   
+	0xFE, 0x0F, //  ###########    
+};
+
+#define glyph_halobold14_E_width 15
+#define glyph_halobold14_E_height 8
+static char glyph_halobold14_E_bits[] = { glyph_halobold14_E_width, glyph_halobold14_E_height,
+	0xFF, 0x00, // ########       
+	0xFC, 0x1F, //   ###########  
+	0x1C, 0x18, //   ###      ##  
+	0xFC, 0x03, //   ########     
+	0x3C, 0x00, //   ####         
+	0x3C, 0x00, //   ####         
+	0x3C, 0x60, //   ####       ##
+	0xFE, 0x7F, //  ##############
+};
+
+
+#define glyph_halobold14_F_width 13
+#define glyph_halobold14_F_height 8
+static char glyph_halobold14_F_bits[] = { glyph_halobold14_F_width, glyph_halobold14_F_height,
+	0x0F, 0x00, // ####         
+	0xFC, 0x1F, //   ###########
+	0x1C, 0x18, //   ###      ##
+	0xFC, 0x03, //   ########   
+	0x3C, 0x00, //   ####       
+	0x3C, 0x00, //   ####       
+	0x3C, 0x00, //   ####       
+	0x3E, 0x00, //  #####       
+};
+
+
+#define glyph_halobold14_G_width 17
+#define glyph_halobold14_G_height 8
+static char glyph_halobold14_G_bits[] = { glyph_halobold14_G_width, glyph_halobold14_G_height,
+	0xE0, 0x1F, 0x00, //      ########    
+	0x78, 0x70, 0x00, //    ####     ###  
+	0x1C, 0x00, 0x00, //   ###            
+	0x0E, 0x00, 0x00, //  ###             
+	0x0F, 0xF8, 0x01, // ####       ######
+	0x1E, 0xC0, 0x00, //  ####         ## 
+	0x7C, 0x70, 0x00, //   #####     ###  
+	0xF0, 0x1F, 0x00, //     #########    
+};
+
+
+#define glyph_halobold14_H_width 13
+#define glyph_halobold14_H_height 8
+static char glyph_halobold14_H_bits[] = { glyph_halobold14_H_width, glyph_halobold14_H_height,
+	0x0F, 0x00, // ####         
+	0x0E, 0x0E, //  ###     ### 
+	0x0E, 0x0E, //  ###     ### 
+	0xFE, 0x0F, //  ########### 
+	0x1E, 0x0E, //  ####    ### 
+	0x1E, 0x0E, //  ####    ### 
+	0x1E, 0x0E, //  ####    ### 
+	0x7F, 0x1C, // #######   ###
+};
+
+
+#define glyph_halobold14_I_width 6
+#define glyph_halobold14_I_height 8
+static char glyph_halobold14_I_bits[] = { glyph_halobold14_I_width, glyph_halobold14_I_height,
+	0x0F, // ####  
+	0x0E, //  ###  
+	0x0E, //  ###  
+	0x0E, //  ###  
+	0x0E, //  ###  
+	0x0E, //  ###  
+	0x0E, //  ###  
+	0x3F, // ######
+ };
+
+
+#define glyph_halobold14_J_width 12
+#define glyph_halobold14_J_height 8
+static char glyph_halobold14_J_bits[] = { glyph_halobold14_J_width, glyph_halobold14_J_height,
+	0x00, 0x0F, //         ####
+	0x00, 0x0E, //          ###
+	0x00, 0x0E, //          ###
+	0x00, 0x0E, //          ###
+	0x03, 0x0E, // ##       ###
+	0x06, 0x0E, //  ##      ###
+	0x0C, 0x0E, //   ##     ###
+	0xF8, 0x07, //    ######## 
+};
+
+#define glyph_halobold14_K_width 14
+#define glyph_halobold14_K_height 8
+static char glyph_halobold14_K_bits[] = { glyph_halobold14_K_width, glyph_halobold14_K_height,
+	0x0F, 0x1F, // ####    ##### 
+	0xCE, 0x07, //  ###  #####   
+	0xFE, 0x01, //  ########     
+	0x7E, 0x00, //  ######       
+	0xEE, 0x01, //  ### ####     
+	0x8E, 0x03, //  ###   ###    
+	0x0E, 0x0F, //  ###    ####  
+	0x3F, 0x3C, // ######    ####
+};
+
+
+#define glyph_halobold14_L_width 13
+#define glyph_halobold14_L_height 8
+static char glyph_halobold14_L_bits[] = { glyph_halobold14_L_width, glyph_halobold14_L_height,
+	0x1F, 0x00, // #####        
+	0x7C, 0x00, //   #####      
+	0x3C, 0x00, //   ####       
+	0x3C, 0x00, //   ####       
+	0x3C, 0x00, //   ####       
+	0x3C, 0x18, //   ####     ##
+	0xFC, 0x1F, //   ###########
+	0xFE, 0x1F, //  ############
+};
+
+#define glyph_halobold14_M_width 20
+#define glyph_halobold14_M_height 8
+static char glyph_halobold14_M_bits[] = { glyph_halobold14_M_width, glyph_halobold14_M_height,
+	0x1F, 0xC0, 0x0F, // #####         ######
+	0x3C, 0xE0, 0x03, //   ####       #####  
+	0x7C, 0xF0, 0x03, //   #####     ######  
+	0xFC, 0xF8, 0x03, //   ######   #######  
+	0xFC, 0xFF, 0x03, //   ################  
+	0x9C, 0x9F, 0x03, //   ###  ######  ###  
+	0x1C, 0x8F, 0x03, //   ###   ####   ###  
+	0x3E, 0xFE, 0x07, //  #####   ########## 
+};
+
+#define glyph_halobold14_N_width 16
+#define glyph_halobold14_N_height 8
+static char glyph_halobold14_N_bits[] = { glyph_halobold14_N_width, glyph_halobold14_N_height,
+	0x1F, 0xF8, // #####      #####
+	0x3C, 0x78, //   ####     #### 
+	0xF8, 0x78, //    #####   #### 
+	0xF8, 0x79, //    ######  #### 
+	0x38, 0x7F, //    ###  ####### 
+	0x38, 0x7E, //    ###   ###### 
+	0x3C, 0x78, //   ####     #### 
+	0x7E, 0x70, //  ######     ### 
+};
+
+#define glyph_halobold14_O_width 17
+#define glyph_halobold14_O_height 8
+static char glyph_halobold14_O_bits[] = { glyph_halobold14_O_width, glyph_halobold14_O_height,
+	0xE0, 0x0F, 0x00, //      #######     
+	0x38, 0x3C, 0x00, //    ###    ####   
+	0x0C, 0x70, 0x00, //   ##        ###  
+	0x06, 0xE0, 0x00, //  ##          ### 
+	0xC7, 0xE7, 0x01, // ###   #####  ####
+	0x06, 0xE0, 0x00, //  ##          ### 
+	0x18, 0x78, 0x00, //    ##      ####  
+	0xF0, 0x1F, 0x00, //     #########    
+};
+
+
+#define glyph_halobold14_P_width 14
+#define glyph_halobold14_P_height 8
+static char glyph_halobold14_P_bits[] = { glyph_halobold14_P_width, glyph_halobold14_P_height,
+	0xFF, 0x1F, // ############# 
+	0x1C, 0x38, //   ###      ###
+	0x1C, 0x38, //   ###      ###
+	0xFC, 0x1F, //   ########### 
+	0x3C, 0x00, //   ####        
+	0x3C, 0x00, //   ####        
+	0x3C, 0x00, //   ####        
+	0x7E, 0x00, //  ######       
+};
+
+
+#define glyph_halobold14_Q_width 16
+#define glyph_halobold14_Q_height 8
+static char glyph_halobold14_Q_bits[] = { glyph_halobold14_Q_width, glyph_halobold14_Q_height,
+	0xE0, 0x0F, //      #######    
+	0x38, 0x7C, //    ###    ##### 
+	0xC6, 0xE7, //  ##   #####  ###
+	0xC0, 0xE3, //        ###   ###
+	0xC6, 0xE7, //  ##   #####  ###
+	0x0F, 0xE0, // ####         ###
+	0x18, 0x7E, //    ##    ###### 
+	0xF0, 0xFF, //     ############
+};
+
+
+#define glyph_halobold14_R_width 15
+#define glyph_halobold14_R_height 8
+static char glyph_halobold14_R_bits[] = { glyph_halobold14_R_width, glyph_halobold14_R_height,
+	0xFF, 0x0F, // ############   
+	0x1C, 0x1C, //   ###     ###  
+	0x1C, 0x1C, //   ###     ###  
+	0x3C, 0x0C, //   ####    ##   
+	0xFC, 0x07, //   #########    
+	0x3C, 0x0F, //   ####  ####   
+	0x3C, 0x1E, //   ####   ####  
+	0x7E, 0x7C, //  ######   #####
+};
+
+
+#define glyph_halobold14_S_width 10
+#define glyph_halobold14_S_height 8
+static char glyph_halobold14_S_bits[] = { glyph_halobold14_S_width, glyph_halobold14_S_height,
+	0xFE, 0x00, //  #######  
+	0x87, 0x01, // ###    ## 
+	0x07, 0x00, // ###       
+	0x7E, 0x00, //  ######   
+	0xE0, 0x03, //      #####
+	0x80, 0x03, //        ###
+	0xC3, 0x03, // ##    ####
+	0xFE, 0x01, //  ######## 
+};
+
+
+#define glyph_halobold14_T_width 13
+#define glyph_halobold14_T_height 8
+static char glyph_halobold14_T_bits[] = { glyph_halobold14_T_width, glyph_halobold14_T_height,
+	0xFF, 0x1F, // #############
+	0xE0, 0x18, //      ###   ##
+	0xE0, 0x00, //      ###     
+	0xE0, 0x00, //      ###     
+	0xE0, 0x00, //      ###     
+	0xE0, 0x00, //      ###     
+	0xE0, 0x00, //      ###     
+	0xF0, 0x03, //     ######   
+};
+
+#define glyph_halobold14_U_width 13
+#define glyph_halobold14_U_height 8
+static char glyph_halobold14_U_bits[] = { glyph_halobold14_U_width, glyph_halobold14_U_height,
+	0x07, 0x00, // ###          
+	0x1E, 0x1C, //  ####     ###
+	0x0E, 0x1C, //  ###      ###
+	0x0E, 0x1C, //  ###      ###
+	0x0E, 0x1C, //  ###      ###
+	0x0E, 0x1C, //  ###      ###
+	0x0C, 0x0E, //   ##     ### 
+	0xF8, 0x03, //    #######   
+};
+
+
+#define glyph_halobold14_V_width 18
+#define glyph_halobold14_V_height 8
+static char glyph_halobold14_V_bits[] = { glyph_halobold14_V_width, glyph_halobold14_V_height,
+	0x7F, 0xE0, 0x03, // #######      #####
+	0x3C, 0xE0, 0x00, //   ####       ###  
+	0x78, 0x70, 0x00, //    ####     ###   
+	0xF0, 0x38, 0x00, //     ####   ###    
+	0xE0, 0x1E, 0x00, //      ### ####     
+	0xC0, 0x0F, 0x00, //       ######      
+	0x80, 0x07, 0x00, //        ####       
+	0x00, 0x03, 0x00, //         ##        
+};
+
+
+#define glyph_halobold14_W_width 20
+#define glyph_halobold14_W_height 8
+static char glyph_halobold14_W_bits[] = { glyph_halobold14_W_width, glyph_halobold14_W_height,
+	0x3F, 0x80, 0x0F, // ######         #####
+	0x1C, 0xC0, 0x03, //   ###         ####  
+	0x3C, 0xFF, 0x01, //   ####  #########   
+	0xF8, 0xEF, 0x00, //    ######### ###    
+	0xF0, 0xF7, 0x00, //     ####### ####    
+	0xE0, 0x7F, 0x00, //      ##########     
+	0xC0, 0x39, 0x00, //       ###  ###      
+	0xC0, 0x18, 0x00, //       ##   ##       
+};
+
+
+#define glyph_halobold14_X_width 15
+#define glyph_halobold14_X_height 8
+static char glyph_halobold14_X_bits[] = { glyph_halobold14_X_width, glyph_halobold14_X_height,
+	0x07, 0x00, // ###            
+	0x1E, 0x00, //  ####          
+	0x18, 0x0F, //    ##   ####   
+	0xF0, 0x03, //     ######     
+	0xE0, 0x03, //      #####     
+	0xB0, 0x07, //     ## ####    
+	0x7C, 0x1F, //   ##### #####  
+	0x3F, 0x7C, // ######    #####
+};
+
+
+#define glyph_halobold14_Y_width 15
+#define glyph_halobold14_Y_height 8
+static char glyph_halobold14_Y_bits[] = { glyph_halobold14_Y_width, glyph_halobold14_Y_height,
+	0x0F, 0x00, // ####           
+	0x3C, 0x00, //   ####         
+	0x70, 0x7C, //     ###   #####
+	0xE0, 0x0F, //      #######   
+	0xC0, 0x03, //       ####     
+	0xC0, 0x03, //       ####     
+	0xC0, 0x03, //       ####     
+	0xC0, 0x07, //       #####    
+};
+
+
+#define glyph_halobold14_Z_width 12
+#define glyph_halobold14_Z_height 8
+static char glyph_halobold14_Z_bits[] = { glyph_halobold14_Z_width, glyph_halobold14_Z_height,
+	0xFF, 0x0F, // ############
+	0x03, 0x07, // ##      ### 
+	0x80, 0x03, //        ###  
+	0xE0, 0x01, //      ####   
+	0x70, 0x00, //     ###     
+	0x1C, 0x0C, //   ###     ##
+	0xFC, 0x0F, //   ##########
+	0xFE, 0x0F, //  ###########
+};
+
+
+
+#define glyph_halobold14_0_width 17
+#define glyph_halobold14_0_height 8
+static char glyph_halobold14_0_bits[] = { glyph_halobold14_0_width, glyph_halobold14_0_height,
+	0xE0, 0x0F, 0x00, //      #######     
+	0x78, 0x18, 0x00, //    ####    ##    
+	0xFC, 0x30, 0x00, //   ######    ##   
+	0xDE, 0x61, 0x00, //  #### ###    ##  
+	0x0F, 0xC3, 0x01, // ####    ##    ###
+	0xDE, 0x61, 0x00, //  #### ###    ##  
+	0xFC, 0x30, 0x00, //   ######    ##   
+	0xF0, 0x1F, 0x00, //     #########    
+};
+
+
+#define glyph_halobold14_1_width 5
+#define glyph_halobold14_1_height 8
+static char glyph_halobold14_1_bits[] = { glyph_halobold14_1_width, glyph_halobold14_1_height,
+	0x0F, // #### 
+	0x0F, // #### 
+	0x0E, //  ### 
+	0x0E, //  ### 
+	0x0E, //  ### 
+	0x0E, //  ### 
+	0x0E, //  ### 
+	0x1F, // #####
+};
+
+
+#define glyph_halobold14_2_width 13
+#define glyph_halobold14_2_height 8
+static char glyph_halobold14_2_bits[] = { glyph_halobold14_2_width, glyph_halobold14_2_height,
+	0xF0, 0x07, //     #######  
+	0x38, 0x0E, //    ###   ### 
+	0x0C, 0x1C, //   ##      ###
+	0x00, 0x0E, //          ### 
+	0x00, 0x0F, //         #### 
+	0xF0, 0x01, //     #####    
+	0x78, 0x18, //    ####    ##
+	0xFF, 0x1F, // #############
+};
+
+
+#define glyph_halobold14_3_width 14
+#define glyph_halobold14_3_height 8
+static char glyph_halobold14_3_bits[] = { glyph_halobold14_3_width, glyph_halobold14_3_height,
+	0xF8, 0x1F, //    ########## 
+	0x0C, 0x07, //   ##    ###   
+	0x80, 0x0F, //        #####  
+	0x00, 0x3C, //           ####
+	0x03, 0x38, // ##         ###
+	0x0E, 0x38, //  ###       ###
+	0xF8, 0x1F, //    ########## 
+	0xC0, 0x01, //       ###     
+};
+
+
+#define glyph_halobold14_4_width 12
+#define glyph_halobold14_4_height 8
+static char glyph_halobold14_4_bits[] = { glyph_halobold14_4_width, glyph_halobold14_4_height,
+	0xC0, 0x07, //       ##### 
+	0x60, 0x07, //      ## ### 
+	0x38, 0x07, //    ###  ### 
+	0x0C, 0x07, //   ##    ### 
+	0xFF, 0x0F, // ############
+	0x80, 0x07, //        #### 
+	0x80, 0x07, //        #### 
+	0xC0, 0x0F, //       ######
+};
+
+
+#define glyph_halobold14_5_width 14
+#define glyph_halobold14_5_height 8
+static char glyph_halobold14_5_bits[] = { glyph_halobold14_5_width, glyph_halobold14_5_height,
+	0xF8, 0x0F, //    #########  
+	0x38, 0x0C, //    ###    ##  
+	0xF8, 0x07, //    ########   
+	0x3C, 0x1C, //   ####    ### 
+	0x03, 0x38, // ##         ###
+	0x0E, 0x3C, //  ###      ####
+	0xF8, 0x1F, //    ########## 
+	0xC0, 0x01, //       ###     
+};
+
+
+#define glyph_halobold14_6_width 13
+#define glyph_halobold14_6_height 8
+static char glyph_halobold14_6_bits[] = { glyph_halobold14_6_width, glyph_halobold14_6_height,
+	0xC0, 0x01, //       ###    
+	0xF8, 0x00, //    #####     
+	0x1C, 0x00, //   ###        
+	0xFE, 0x03, //  #########   
+	0x1F, 0x0E, // #####    ### 
+	0x07, 0x1C, // ###       ###
+	0x0E, 0x0E, //  ###     ### 
+	0xF8, 0x03, //    #######   
+};
+
+
+#define glyph_halobold14_7_width 13
+#define glyph_halobold14_7_height 8
+static char glyph_halobold14_7_bits[] = { glyph_halobold14_7_width, glyph_halobold14_7_height,
+	0xFF, 0x1F, // #############
+	0x03, 0x0E, // ##       ### 
+	0x00, 0x07, //         ###  
+	0x80, 0x03, //        ###   
+	0xC0, 0x01, //       ###    
+	0xE0, 0x00, //      ###     
+	0x70, 0x00, //     ###      
+	0xF8, 0x00, //    #####     
+};
+
+
+
+#define glyph_halobold14_8_width 12
+#define glyph_halobold14_8_height 8
+static char glyph_halobold14_8_bits[] = { glyph_halobold14_8_width, glyph_halobold14_8_height,
+	0xFC, 0x00, //   ######    
+	0x87, 0x03, // ###    ###  
+	0x87, 0x03, // ###    ###  
+	0xFC, 0x01, //   #######   
+	0x06, 0x07, //  ##     ### 
+	0x73, 0x0F, // ##  ### ####
+	0x06, 0x07, //  ##     ### 
+	0xFC, 0x01, //   #######   
+};
+
+
+
+#define glyph_halobold14_9_width 13
+#define glyph_halobold14_9_height 8
+static char glyph_halobold14_9_bits[] = { glyph_halobold14_9_width, glyph_halobold14_9_height,
+	0xF8, 0x03, //    #######   
+	0x1C, 0x0E, //   ###    ### 
+	0x0F, 0x18, // ####       ##
+	0x1C, 0x18, //   ###      ##
+	0xF8, 0x1F, //    ##########
+	0x00, 0x0F, //         #### 
+	0xC0, 0x03, //       ####   
+	0xF0, 0x00, //     ####     
+};
+
+
+
+
+#define BASECHAR ' '
+#
+static char *halobold14_glyphs[] = {
+   ['A' - BASECHAR] = glyph_halobold14_A_bits,
+   ['B' - BASECHAR] = glyph_halobold14_B_bits,
+   ['C' - BASECHAR] = glyph_halobold14_C_bits,
+   ['D' - BASECHAR] = glyph_halobold14_D_bits,
+   ['E' - BASECHAR] = glyph_halobold14_E_bits,
+   ['F' - BASECHAR] = glyph_halobold14_F_bits,
+   ['G' - BASECHAR] = glyph_halobold14_G_bits,
+   ['H' - BASECHAR] = glyph_halobold14_H_bits,
+   ['I' - BASECHAR] = glyph_halobold14_I_bits,
+   ['J' - BASECHAR] = glyph_halobold14_J_bits,
+   ['K' - BASECHAR] = glyph_halobold14_K_bits,
+   ['L' - BASECHAR] = glyph_halobold14_L_bits,
+   ['M' - BASECHAR] = glyph_halobold14_M_bits,
+   ['N' - BASECHAR] = glyph_halobold14_N_bits,
+   ['O' - BASECHAR] = glyph_halobold14_O_bits,
+   ['P' - BASECHAR] = glyph_halobold14_P_bits,
+   ['Q' - BASECHAR] = glyph_halobold14_Q_bits,
+   ['R' - BASECHAR] = glyph_halobold14_R_bits,
+   ['S' - BASECHAR] = glyph_halobold14_S_bits,
+   ['T' - BASECHAR] = glyph_halobold14_T_bits,
+   ['U' - BASECHAR] = glyph_halobold14_U_bits,
+   ['V' - BASECHAR] = glyph_halobold14_V_bits,
+   ['W' - BASECHAR] = glyph_halobold14_W_bits,
+   ['X' - BASECHAR] = glyph_halobold14_X_bits,
+   ['Y' - BASECHAR] = glyph_halobold14_Y_bits,
+   ['Z' - BASECHAR] = glyph_halobold14_Z_bits,
+   ['0' - BASECHAR] = glyph_halobold14_0_bits,
+   ['1' - BASECHAR] = glyph_halobold14_1_bits,
+   ['2' - BASECHAR] = glyph_halobold14_2_bits,
+   ['3' - BASECHAR] = glyph_halobold14_3_bits,
+   ['4' - BASECHAR] = glyph_halobold14_4_bits,
+   ['5' - BASECHAR] = glyph_halobold14_5_bits,
+   ['6' - BASECHAR] = glyph_halobold14_6_bits,
+   ['7' - BASECHAR] = glyph_halobold14_7_bits,
+   ['8' - BASECHAR] = glyph_halobold14_8_bits,
+   ['9' - BASECHAR] = glyph_halobold14_9_bits,
+};
+const font_t font_halobold14 = {
+	.spacing = 2,
+	.height = 8,
+	.glyphs = halobold14_glyphs,
+	.basechar = BASECHAR,
+};

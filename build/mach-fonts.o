@@ -1,0 +1,44 @@
+XH2
+H 3 areas 11 global symbols 2 banks 1 modes
+M mach_fonts.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _font_tinynum Ref0000
+S _font_dmgraphs Ref0000
+S _font_symbol Ref0000
+S _font_halobold12 Ref0000
+S .__.ABS. Def0000
+S _font_halobold14 Ref0000
+S _font_lucida9 Ref0000
+S _font_mono5 Ref0000
+S _font_term6 Ref0000
+S _font_fixed10 Ref0000
+S _font_mono9 Ref0000
+S _font_bitmap8 Ref0000
+S _font_halobold22num Ref0000
+S _font_var5 Ref0000
+S _font_bitcube10 Ref0000
+S _font_fixed6 Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 1E flags D00
+S _font_table Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 00 00 00 00
+R 00 00 00 02 81 02 00 0A 81 04 00 00
+T 00 04 00 00 00 00
+R 00 00 00 02 81 02 00 0D 81 04 00 0F
+T 00 08 00 00 00 00
+R 00 00 00 02 81 02 00 09 81 04 00 08
+T 00 0C 00 00 00 00
+R 00 00 00 02 81 02 00 02 81 04 00 0B
+T 00 10 00 00 00 00
+R 00 00 00 02 81 02 00 07 81 04 00 06
+T 00 14 00 00 00 00
+R 00 00 00 02 81 02 00 0E 81 04 00 03
+T 00 18 00 00 00 00
+R 00 00 00 02 81 02 00 05 81 04 00 01
+T 00 1C 00 00
+R 00 00 00 02 81 02 00 0C

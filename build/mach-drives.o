@@ -1,0 +1,32 @@
+XH2
+H 3 areas 3 global symbols 2 banks 1 modes
+M mach_drives.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 60 flags D00
+S _sol_time_table Def0000
+S _sol_duty_table Def0030
+T 00 00
+R 00 00 00 02
+T 00 00 80 80 80 60 40 40 10 40 40 40 40 40 40
+R 00 00 00 02
+T 00 0D 20 40 40 18 40 40 40 18 18 18 18 40 18
+R 00 00 00 02
+T 00 1A 18 18 00 00 00 00 40 40 40 40 40 40 20
+R 00 00 00 02
+T 00 27 60 18 18 18 18 18 18 18 18
+R 00 00 00 02
+T 00 30
+R 00 00 00 02
+T 00 30 FF FF FF FF 77 FF FF FF FF FF FF FF FF
+R 00 00 00 02
+T 00 3D 92 FF FF FF FF FF FF FF FF FF FF FF FF
+R 00 00 00 02
+T 00 4A FF FF 00 00 00 00 FF FF FF FF B5 FF FF
+R 00 00 00 02
+T 00 57 FF FF FF FF FF FF FF FF FF
+R 00 00 00 02

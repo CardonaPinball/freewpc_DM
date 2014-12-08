@@ -1,0 +1,90 @@
+XH2
+H 4 areas 14 global symbols 2 banks 1 modes
+M effect_update.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _task_set_duration Ref0000
+S _sys_init_complete Ref0000
+S _task_sleep Ref0000
+S _task_recreate_gid Ref0000
+S _in_tilt Ref0000
+S _in_test Ref0000
+S _deff_update Ref0000
+S .__.ABS. Def0000
+S _music_update Ref0000
+S _task_exit Ref0000
+S __far_call_handler Ref0000
+S _in_game Ref0000
+S _callset_lamp_update Ref0000
+S _lamp_start_update Ref0000
+S _callset_device_update Ref0000
+S _ball_search_timed_out Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page57 size 70 flags D00
+S _effect_update_init Def0004
+S _effect_update_idle_every_100ms Def000A
+S _effect_update_request Def0000
+A ram size 1 flags C00
+S _effect_update_counter Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 7F 00 00 39
+R 00 00 00 02 01 03 00 03
+T 00 04
+R 00 00 00 02
+T 00 04 C6 05 F7 00 00 39
+R 00 00 00 02 01 05 00 03
+T 00 0A
+R 00 00 00 02
+T 00 0A 7D 00 00 27 12 7D 00 00 26 0D 0D
+R 00 00 00 02 81 03 00 01 81 08 00 05
+T 00 15 00 00 26 0A
+R 00 00 00 02 A0 02 00 0B
+T 00 18
+R 00 00 00 02
+T 00 18 F6 00 00 27 16 5A F7 00 00
+R 00 00 00 02 01 03 00 03 01 09 00 03
+T 00 21
+R 00 00 00 02
+T 00 21 39
+R 00 00 00 02
+T 00 22
+R 00 00 00 02
+T 00 22 BD 00 00 00 00 38 5D 26 ED BD
+R 00 00 00 02 81 03 00 0A 81 05 00 0F
+T 00 2C 00 00 00 00 3B 20 E5
+R 00 00 00 02 81 02 00 0A 81 04 00 0E
+T 00 33
+R 00 00 00 02
+T 00 33 8E 00 45 C6 20 BD 00 00 5F BD
+R 00 00 00 02 01 03 00 02 81 08 00 03
+T 00 3D 00 00 C6 05 F7 00 00 39
+R 00 00 00 02 81 02 00 00 01 07 00 03
+T 00 45
+R 00 00 00 02
+T 00 45 BD 00 00 BD 00 00 0D
+R 00 00 00 02 81 03 00 06 81 06 00 08
+T 00 4C 00 00 27 04 0D 00 00 27 10
+R 00 00 00 02 A0 02 00 0B A0 07 00 04
+T 00 53
+R 00 00 00 02
+T 00 53 7D 00 00 27 03
+R 00 00 00 02 81 03 00 05
+T 00 58
+R 00 00 00 02
+T 00 58 7E 00 00
+R 00 00 00 02 81 03 00 09
+T 00 5B
+R 00 00 00 02
+T 00 5B BD 00 00 00 00 38 20 F5
+R 00 00 00 02 81 03 00 0A 81 05 00 0D
+T 00 63
+R 00 00 00 02
+T 00 63 C6 02 BD 00 00 BD 00 00
+R 00 00 00 02 81 05 00 02 81 08 00 0A
+T 00 6B 00 00 3B 20 E3
+R 00 00 00 02 81 02 00 0C
+T 00 00
+R 00 00 00 03

@@ -1,0 +1,192 @@
+XH2
+H 3 areas 4F global symbols 2 banks 1 modes
+M mach_switches.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _callset_sw_standup_3 Ref0000
+S _callset_sw_standup_4 Ref0000
+S _callset_sw__not_used_4 Ref0000
+S _callset_sw_left_ramp_exit Ref0000
+S _callset_sw_standup_5 Ref0000
+S _callset_sw_center_rollover Ref0000
+S _callset_sw_coin_door_closed Ref0000
+S _callset_sw_right_button Ref0000
+S _callset_sw_elevator_index Ref0000
+S _callset_sw_sling Ref0000
+S _callset_sw_enter Ref0000
+S _callset_sw_fourth_coin Ref0000
+S _callset_sw_buyin_button Ref0000
+S _callset_sw_upper_right_button Ref0000
+S _callset_sw_up Ref0000
+S _callset_sw_left_button Ref0000
+S _callset_sw_right_coin Ref0000
+S _callset_sw_elevator_hold Ref0000
+S _callset_sw_chase_car_1 Ref0000
+S _callset_sw_trough_1 Ref0000
+S _callset_sw_start_button Ref0000
+S _callset_sw_chase_car_2 Ref0000
+S _callset_sw_right_ramp_enter Ref0000
+S _callset_sw_trough_2 Ref0000
+S _callset_sw_always_closed Ref0000
+S _callset_sw_trough_3 Ref0000
+S _callset_sw_trough_4 Ref0000
+S _callset_sw_trough_5 Ref0000
+S _callset_sw_l_l_flipper_eos Ref0000
+S .__.ABS. Def0000
+S _callset_sw_right_freeway Ref0000
+S _callset_sw_trough_jam Ref0000
+S _callset_sw_upper_left_button Ref0000
+S _callset_sw_side_ramp_enter Ref0000
+S _callset_sw_not_used_1 Ref0000
+S _callset_sw_left_handle_button Ref0000
+S _callset_sw_escape Ref0000
+S _callset_sw_right_rollover Ref0000
+S _callset_sw_not_used_2 Ref0000
+S _callset_sw_not_used_3 Ref0000
+S _callset_sw_left_coin Ref0000
+S _callset_sw_l_r_flipper_eos Ref0000
+S _callset_sw_right_inlane Ref0000
+S _callset_sw_right_outlane Ref0000
+S _callset_sw_launch_button Ref0000
+S _callset_sw_u_l_flipper_eos Ref0000
+S _callset_sw_lower_rebound Ref0000
+S _callset_sw_car_chase_standup Ref0000
+S _callset_sw_left_ramp_enter Ref0000
+S _callset_sw_down Ref0000
+S _callset_sw_upper_rebound Ref0000
+S _callset_sw_eyeball_standup Ref0000
+S _callset_sw_u_r_flipper_eos Ref0000
+S _callset_sw_tilt Ref0000
+S _callset_sw_claw_acmag Ref0000
+S _callset_sw_claw_capture_simon Ref0000
+S _callset_sw_left_rollover Ref0000
+S _callset_sw_left_inlane Ref0000
+S _callset_sw_left_outlane Ref0000
+S _callset_sw_jet Ref0000
+S _callset_sw_left_loop Ref0000
+S _callset_sw_shooter Ref0000
+S _callset_sw_claw_prison_break Ref0000
+S _callset_sw_right_ramp_exit Ref0000
+S _callset_sw_upper_left_flipper_gate Ref0000
+S _callset_sw_claw_freeze Ref0000
+S _callset_sw_top_popper Ref0000
+S _callset_sw_slam_tilt Ref0000
+S _callset_sw_center_coin Ref0000
+S _callset_sw_claw_super_jets Ref0000
+S _callset_sw_bottom_popper Ref0000
+S _callset_sw_eject Ref0000
+S _callset_sw_claw_position_1 Ref0000
+S _callset_sw_claw_position_2 Ref0000
+S _callset_sw_side_ramp_exit Ref0000
+S _callset_sw_standup_1 Ref0000
+S _callset_sw_standup_2 Ref0000
+S _callset_sw_center_ramp Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 280 flags D00
+S _switch_table Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 02 81 02 00 28 81 0A 00 44
+T 00 0C 00 00 00 00 00 00 00 00 00 00 00 00
+R 00 00 00 02 81 06 00 10
+T 00 18 00 00 00 00 00 00 00 00 00 00 40 00 00
+R 00 00 00 02 81 02 00 0B 81 0A 00 24
+T 00 25 00 00 00 00 00 40 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 31 81 0D 00 0E
+T 00 32 40 00 00 00 00 00 00 00 40 00 00 00 00
+R 00 00 00 02 81 08 00 0A
+T 00 3F 00 00 00 20 00 00 00 00 00 00 00 20
+R 00 00 00 02 81 03 00 2C 81 0B 00 23
+T 00 4B 00 00 00 00 00 00 00 60 00 00 00 06 00
+R 00 00 00 02 81 07 00 14
+T 00 58 00 00 28 00 01 FB 00 00 00 00 18 00 00
+R 00 00 00 02 81 02 00 35 81 0A 00 3A
+T 00 65 00 00 00 00 00 18 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 39 81 0D 00 2A
+T 00 72 18 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 2B
+T 00 7F 00 00 00 28 00 01 FB 00 00 00 00 62
+R 00 00 00 02 81 03 00 43 81 0B 00 06
+T 00 8B 00 00 00 00 00 00 00 20 00 00 00 00 00
+R 00 00 00 02 81 07 00 0C
+T 00 98 00 00 30 00 00 00 00 00 00 00 61 00 00
+R 00 00 00 02 81 02 00 18 81 0A 00 48
+T 00 A5 00 00 00 00 00 61 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 49 81 0D 00 3D
+T 00 B2 62 00 00 00 00 00 00 00 30 00 00 00 00
+R 00 00 00 02 81 08 00 22
+T 00 BF 00 00 00 63 00 00 00 00 03 00 00 63
+R 00 00 00 02 81 03 00 13 81 0B 00 17
+T 00 CB 00 00 00 00 03 00 00 63 00 00 00 00 03
+R 00 00 00 02 81 07 00 19
+T 00 D8 00 00 63 00 00 00 00 03 00 00 63 00 00
+R 00 00 00 02 81 02 00 1A 81 0A 00 1B
+T 00 E5 00 00 03 00 00 61 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 1F 81 0D 00 26
+T 00 F2 30 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 04
+T 00 FF 00 00 00 18 00 00 00 00 00 00 00 18
+R 00 00 00 02 81 03 00 09 81 0B 00 09
+T 01 0B 00 00 00 00 00 00 00 18 00 00 00 00 00
+R 00 00 00 02 81 07 00 3B
+T 01 18 00 00 18 00 00 00 00 00 00 00 18 00 00
+R 00 00 00 02 81 02 00 3B 81 0A 00 3B
+T 01 25 00 00 00 00 00 18 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 16 81 0D 00 3F
+T 01 32 18 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 1E
+T 01 3F 00 00 00 18 00 00 00 00 00 00 00 18
+R 00 00 00 02 81 03 00 30 81 0B 00 03
+T 01 4B 00 00 00 00 00 00 00 18 00 00 00 00 00
+R 00 00 00 02 81 07 00 4D
+T 01 58 00 00 38 00 00 00 00 00 00 00 18 00 00
+R 00 00 00 02 81 02 00 32 81 0A 00 3C
+T 01 65 00 00 00 00 00 18 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 4C 81 0D 00 00
+T 01 72 18 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 01
+T 01 7F 00 00 00 18 00 00 00 00 00 00 00 18
+R 00 00 00 02 81 03 00 21 81 0B 00 4A
+T 01 8B 00 00 00 00 00 00 00 18 00 00 00 00 00
+R 00 00 00 02 81 07 00 38
+T 01 98 00 00 18 00 00 00 00 00 00 00 18 00 00
+R 00 00 00 02 81 02 00 05 81 0A 00 25
+T 01 A5 00 00 00 00 00 1A 00 00 00 00 04 00 00
+R 00 00 00 02 81 05 00 47 81 0D 00 08
+T 01 B2 61 00 00 00 00 00 00 00 30 00 00 00 00
+R 00 00 00 02 81 08 00 27
+T 01 BF 00 00 00 31 00 00 00 00 00 00 00 31
+R 00 00 00 02 81 03 00 12 81 0B 00 15
+T 01 CB 00 00 00 00 00 00 00 33 00 00 00 0C 01
+R 00 00 00 02 81 07 00 42
+T 01 D8 00 00 61 00 00 00 00 00 00 00 30 00 00
+R 00 00 00 02 81 02 00 11 81 0A 00 02
+T 01 E5 00 00 00 00 00 33 00 00 00 0C 02 00 00
+R 00 00 00 02 81 05 00 46 81 0D 00 33
+T 01 F2 18 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 4B
+T 01 FF 00 00 00 18 00 00 00 00 00 00 00 18
+R 00 00 00 02 81 03 00 37 81 0B 00 45
+T 02 0B 00 00 00 00 00 00 00 18 00 00 00 00 00
+R 00 00 00 02 81 07 00 3E
+T 02 18 00 00 18 00 00 00 00 00 00 00 18 00 00
+R 00 00 00 02 81 02 00 41 81 0A 00 36
+T 02 25 00 00 00 00 00 18 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 40 81 0D 00 2F
+T 02 32 18 00 00 00 00 00 00 00 18 00 00 00 00
+R 00 00 00 02 81 08 00 2E
+T 02 3F 00 00 00 01 00 00 00 00 00 00 00 41
+R 00 00 00 02 81 03 00 29 81 0B 00 07
+T 02 4B 00 00 00 00 00 00 00 01 00 00 00 00 00
+R 00 00 00 02 81 07 00 1C
+T 02 58 00 00 41 00 00 00 00 00 00 00 01 00 00
+R 00 00 00 02 81 02 00 0F 81 0A 00 34
+T 02 65 00 00 00 00 00 01 00 00 00 00 00 00 00
+R 00 00 00 02 81 05 00 0D 81 0D 00 2D
+T 02 72 01 00 00 00 00 00 00 00 01 00 00 00 00
+R 00 00 00 02 81 08 00 20
+T 02 7F 00
+R 00 00 00 02

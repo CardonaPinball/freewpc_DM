@@ -1,0 +1,50 @@
+XH2
+H 3 areas 5 global symbols 2 banks 1 modes
+M bcd_string
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S m0 Ref0000
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 49 flags D00
+S _bcd_string_add Def0000
+S _bcd_string_increment Def0013
+S _bcd_string_sub Def0022
+T 00 00
+R 00 00 00 02
+T 00 00 34 40 EE 64 5A 1C FE
+R 00 00 00 02
+T 00 07
+R 00 00 00 02
+T 00 07 A6 C5 A9 85 19 A7 85 5A 2C F6 35 C0
+R 00 00 00 02
+T 00 13
+R 00 00 00 02
+T 00 13 5A 1C FE
+R 00 00 00 02
+T 00 16
+R 00 00 00 02
+T 00 16 A6 85 4C 19 A7 85 24 03 5A 2C F5
+R 00 00 00 02
+T 00 21
+R 00 00 00 02
+T 00 21 39
+R 00 00 00 02
+T 00 22
+R 00 00 00 02
+T 00 22 34 40 EE 64 5A D7 00 00
+R 00 00 00 02 A0 08 00 00
+T 00 29
+R 00 00 00 02
+T 00 29 86 99 A0 C5 A7 E2 5A 2C F7 D6 00 00 6C
+R 00 00 00 02 A0 0C 00 00
+T 00 35 85 1C FE
+R 00 00 00 02
+T 00 38
+R 00 00 00 02
+T 00 38 A6 E5 A9 85 19 A7 85 5A 2C F6 D6 00 00
+R 00 00 00 02 A0 0D 00 00
+T 00 44 5C 32 E5 35 C0
+R 00 00 00 02

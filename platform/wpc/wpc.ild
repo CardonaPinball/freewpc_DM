@@ -1,0 +1,1333 @@
+##################################################################################
+##################################################################################
+#### ATTRACT MODE
+##################################################################################
+##################################################################################
+IMG_FREEWPC_SMALL: images/freewpc_logo_6.pgm
+images/freewpc_logo_5.pgm
+images/freewpc_logo_4.pgm
+images/freewpc_logo_3.pgm
+images/freewpc_logo_2.pgm
+images/freewpc_logo_1.pgm
+IMG_FREEWPC: images/freewpc_logo.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### STANDUPS
+##################################################################################
+##################################################################################
+IMG_STANDUPS_0: images/DM_MK_02_28/14_Standup000000.pgm
+IMG_STANDUPS_1: images/DM_MK_02_28/14_Standup000001.pgm
+IMG_STANDUPS_2: images/DM_MK_02_28/14_Standup000002.pgm
+IMG_STANDUPS_3: images/DM_MK_02_28/14_Standup000003.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### SKILL SHOT
+##################################################################################
+##################################################################################
+IMG_FLYKICK_A_START: images/wasteland/fly_kick_385.pgm
+images/wasteland/fly_kick_386.pgm
+images/wasteland/fly_kick_387.pgm
+images/wasteland/fly_kick_389.pgm
+images/wasteland/fly_kick_390.pgm
+images/wasteland/fly_kick_391.pgm
+images/wasteland/fly_kick_393.pgm
+images/wasteland/fly_kick_394.pgm
+images/wasteland/fly_kick_395.pgm
+images/wasteland/fly_kick_397.pgm
+IMG_FLYKICK_A_END: images/wasteland/fly_kick_398.pgm
+
+
+
+IMG_SKILL_SHOT_START: images/DM_MK_02_28/07_skillshot000000.pgm
+images/DM_MK_02_28/07_skillshot000001.pgm
+images/DM_MK_02_28/07_skillshot000002.pgm
+images/DM_MK_02_28/07_skillshot000003.pgm
+images/DM_MK_02_28/07_skillshot000004.pgm
+images/DM_MK_02_28/07_skillshot000005.pgm
+IMG_SKILL_SHOT_END: images/DM_MK_02_28/07_skillshot000006.pgm
+
+
+##################################################################################
+##################################################################################
+#### ROLLOVERS
+##################################################################################
+##################################################################################
+IMG_MTL_COMPLETE_START: images/DM_MK_02_28/09_mtl_complete000000.pgm
+images/DM_MK_02_28/09_mtl_complete000001.pgm
+images/DM_MK_02_28/09_mtl_complete000002.pgm
+images/DM_MK_02_28/09_mtl_complete000003.pgm
+images/DM_MK_02_28/09_mtl_complete000004.pgm
+images/DM_MK_02_28/09_mtl_complete000005.pgm
+IMG_MTL_COMPLETE_END: images/DM_MK_02_28/09_mtl_complete000006.pgm
+
+
+IMG_MTL_START: images/DM_MK_02_28/08_mtl_rollover000000.pgm
+images/DM_MK_02_28/08_mtl_rollover000001.pgm
+images/DM_MK_02_28/08_mtl_rollover000002.pgm
+images/DM_MK_02_28/08_mtl_rollover000003.pgm
+images/DM_MK_02_28/08_mtl_rollover000004.pgm
+images/DM_MK_02_28/08_mtl_rollover000005.pgm
+IMG_MTL_END: images/DM_MK_02_28/08_mtl_rollover000006.pgm
+
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### BALLSAVE
+##################################################################################
+##################################################################################
+IMG_BALL_SAVE_START: images/DM_MK_02_28/02_ballsave000000.pgm
+images/DM_MK_02_28/02_ballsave000001.pgm
+images/DM_MK_02_28/02_ballsave000002.pgm
+images/DM_MK_02_28/02_ballsave000003.pgm
+images/DM_MK_02_28/02_ballsave000004.pgm
+images/DM_MK_02_28/02_ballsave000005.pgm
+images/DM_MK_02_28/02_ballsave000006.pgm
+images/DM_MK_02_28/02_ballsave000007.pgm
+images/DM_MK_02_28/02_ballsave000008.pgm
+IMG_BALL_SAVE_END: images/DM_MK_02_28/02_ballsave000009.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### SHOOT AGAIN
+##################################################################################
+##################################################################################
+IMG_SHOOT_AGAIN_START: images/DM_MK_02_28/03_shoot_again000000.pgm
+images/DM_MK_02_28/03_shoot_again000001.pgm
+images/DM_MK_02_28/03_shoot_again000002.pgm
+images/DM_MK_02_28/03_shoot_again000003.pgm
+images/DM_MK_02_28/03_shoot_again000004.pgm
+images/DM_MK_02_28/03_shoot_again000005.pgm
+IMG_SHOOT_AGAIN_END: images/DM_MK_02_28/03_shoot_again000006.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### PLUNGE BALL
+##################################################################################
+##################################################################################
+IMG_PLUNGE_BALL_START: images/DM_MK_02_28/01_plungeBall_long000000.pgm
+images/DM_MK_02_28/01_plungeBall_long000001.pgm
+images/DM_MK_02_28/01_plungeBall_long000002.pgm
+images/DM_MK_02_28/01_plungeBall_long000003.pgm
+images/DM_MK_02_28/01_plungeBall_long000004.pgm
+images/DM_MK_02_28/01_plungeBall_long000005.pgm
+images/DM_MK_02_28/01_plungeBall_long000006.pgm
+images/DM_MK_02_28/01_plungeBall_long000007.pgm
+images/DM_MK_02_28/01_plungeBall_long000008.pgm
+IMG_PLUNGE_BALL_FIRE: images/DM_MK_02_28/01_plungeBall_long000009.pgm
+images/DM_MK_02_28/01_plungeBall_long000010.pgm
+images/DM_MK_02_28/01_plungeBall_long000011.pgm
+images/DM_MK_02_28/01_plungeBall_long000012.pgm
+IMG_PLUNGE_BALL_END2: images/DM_MK_02_28/01_plungeBall_long000013.pgm
+IMG_PLUNGE_BALL_END: images/DM_MK_02_28/01_plungeBall_long000014.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### UNDERGROUND / SUBWAY
+##################################################################################
+##################################################################################
+IMG_PHOENIX_A2_START: images/demo_time/phoenix_a_662.pgm
+images/demo_time/phoenix_a_665.pgm
+images/demo_time/phoenix_a_668.pgm
+images/demo_time/phoenix_a_670.pgm
+images/demo_time/phoenix_a_672.pgm
+images/demo_time/phoenix_a_675.pgm
+images/demo_time/phoenix_a_678.pgm
+images/demo_time/phoenix_a_680.pgm
+IMG_PHOENIX_A2_END: images/demo_time/phoenix_a_682.pgm
+
+
+IMG_JOHN_SPARTAN_A_START: images/cryoprison/john_s_1_107.pgm
+images/cryoprison/john_s_1_108.pgm
+images/cryoprison/john_s_1_111.pgm
+images/cryoprison/john_s_1_113.pgm
+images/cryoprison/john_s_1_115.pgm
+images/cryoprison/john_s_1_143.pgm
+images/cryoprison/john_s_1_147.pgm
+images/cryoprison/john_s_1_149.pgm
+images/cryoprison/john_s_1_151.pgm
+images/cryoprison/john_s_1_153.pgm
+images/cryoprison/john_s_1_155.pgm
+images/cryoprison/john_s_1_157.pgm
+images/cryoprison/john_s_1_161.pgm
+images/cryoprison/john_s_1_163.pgm
+IMG_JOHN_SPARTAN_A_END: images/cryoprison/john_s_1_165.pgm
+
+
+IMG_SIMON_FIRE1_START: images/wasteland/simon_fortress_1_12.pgm
+images/wasteland/simon_fortress_1_14.pgm
+images/wasteland/simon_fortress_1_16.pgm
+images/wasteland/simon_fortress_1_18.pgm
+images/wasteland/simon_fortress_1_20.pgm
+images/wasteland/simon_fortress_1_22.pgm
+images/wasteland/simon_fortress_1_24.pgm
+images/wasteland/simon_fortress_1_27.pgm
+IMG_SIMON_FIRE1_END: images/wasteland/simon_fortress_1_28.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### OPENING SEQUENCE
+##################################################################################
+##################################################################################
+IMG_JAIL_A_START: images/capture_simon/jail_1_150.pgm
+images/capture_simon/jail_1_154.pgm
+images/capture_simon/jail_1_158.pgm
+images/capture_simon/jail_1_162.pgm
+images/capture_simon/jail_1_166.pgm
+images/capture_simon/jail_1_170.pgm
+images/capture_simon/jail_1_174.pgm
+images/capture_simon/jail_1_178.pgm
+images/capture_simon/jail_1_182.pgm
+images/capture_simon/jail_1_186.pgm
+images/capture_simon/jail_1_190.pgm
+images/capture_simon/jail_1_194.pgm
+images/capture_simon/jail_1_198.pgm
+images/capture_simon/jail_1_202.pgm
+images/capture_simon/jail_1_206.pgm
+images/capture_simon/jail_1_210.pgm
+images/capture_simon/jail_1_214.pgm
+images/capture_simon/jail_1_218.pgm
+images/capture_simon/jail_1_222.pgm
+images/capture_simon/jail_1_226.pgm
+images/capture_simon/jail_1_230.pgm
+images/capture_simon/jail_1_234.pgm
+images/capture_simon/jail_1_238.pgm
+images/capture_simon/jail_1_242.pgm
+images/capture_simon/jail_1_246.pgm
+images/capture_simon/jail_1_250.pgm
+images/capture_simon/jail_1_254.pgm
+images/capture_simon/jail_1_258.pgm
+images/capture_simon/jail_1_262.pgm
+images/capture_simon/jail_1_266.pgm
+images/capture_simon/jail_1_270.pgm
+images/capture_simon/jail_1_274.pgm
+images/capture_simon/jail_1_278.pgm
+images/capture_simon/jail_1_282.pgm
+images/capture_simon/jail_1_286.pgm
+images/capture_simon/jail_1_290.pgm
+images/capture_simon/jail_1_294.pgm
+images/capture_simon/jail_1_298.pgm
+images/capture_simon/jail_1_302.pgm
+images/capture_simon/jail_1_306.pgm
+images/capture_simon/jail_1_310.pgm
+images/capture_simon/jail_1_314.pgm
+images/capture_simon/jail_1_318.pgm
+images/capture_simon/jail_1_322.pgm
+images/capture_simon/jail_1_326.pgm
+images/capture_simon/jail_1_330.pgm
+images/capture_simon/jail_1_334.pgm
+images/capture_simon/jail_1_338.pgm
+images/capture_simon/jail_1_342.pgm
+images/capture_simon/jail_1_346.pgm
+images/capture_simon/jail_1_350.pgm
+images/capture_simon/jail_1_354.pgm
+images/capture_simon/jail_1_358.pgm
+images/capture_simon/jail_1_362.pgm
+images/capture_simon/jail_1_366.pgm
+images/capture_simon/jail_1_370.pgm
+images/capture_simon/jail_1_374.pgm
+images/capture_simon/jail_1_378.pgm
+images/capture_simon/jail_1_382.pgm
+images/capture_simon/jail_1_386.pgm
+images/capture_simon/jail_1_390.pgm
+images/capture_simon/jail_1_394.pgm
+images/capture_simon/jail_1_437.pgm
+images/capture_simon/jail_1_441.pgm
+images/capture_simon/jail_1_445.pgm
+images/capture_simon/jail_1_449.pgm
+IMG_JAIL_A_END: images/capture_simon/jail_1_452.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### LOCK FREEZE / INLANES QUICK FREEZE
+##################################################################################
+##################################################################################
+IMG_QUICK_FREEZE_START: images/DM_MK_03_18/05_quickfreezeC000000.pgm
+images/DM_MK_03_18/05_quickfreezeC000001.pgm
+images/DM_MK_03_18/05_quickfreezeC000002.pgm
+images/DM_MK_03_18/05_quickfreezeC000003.pgm
+images/DM_MK_03_18/05_quickfreezeC000004.pgm
+images/DM_MK_03_18/05_quickfreezeC000005.pgm
+images/DM_MK_03_18/05_quickfreezeC000006.pgm
+images/DM_MK_03_18/05_quickfreezeC000007.pgm
+images/DM_MK_03_18/05_quickfreezeC000008.pgm
+images/DM_MK_03_18/05_quickfreezeC000009.pgm
+images/DM_MK_03_18/05_quickfreezeC000010.pgm
+images/DM_MK_03_18/05_quickfreezeC000011.pgm
+images/DM_MK_03_18/05_quickfreezeC000012.pgm
+IMG_QUICK_FREEZE_END: images/DM_MK_03_18/05_quickfreezeC000013.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### CAR CRASH
+##################################################################################
+##################################################################################
+IMG_CAR_CRASH_MARIO_START: images/mario/carcrash000000000000.pgm
+images/mario/carcrash000000000002.pgm
+images/mario/carcrash000000000004.pgm
+images/mario/carcrash000000000006.pgm
+images/mario/carcrash000000000008.pgm
+images/mario/carcrash000000000010.pgm
+images/mario/carcrash000000000012.pgm
+images/mario/carcrash000000000014.pgm
+IMG_CAR_CRASH_MARIO_END: images/mario/carcrash000000000016.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### END GAME
+##################################################################################
+##################################################################################
+IMG_CAR_CRASH_START: images/car_chase/carchase_5531.pgm
+images/car_chase/carchase_5534.pgm
+images/car_chase/carchase_5537.pgm
+images/car_chase/carchase_5539.pgm
+images/car_chase/carchase_5541.pgm
+images/car_chase/carchase_5544.pgm
+images/car_chase/carchase_5547.pgm
+images/car_chase/carchase_5549.pgm
+images/car_chase/carchase_5551.pgm
+images/car_chase/carchase_5554.pgm
+images/car_chase/carchase_5557.pgm
+images/car_chase/carchase_5559.pgm
+images/car_chase/carchase_5561.pgm
+images/car_chase/carchase_5564.pgm
+images/car_chase/carchase_5565.pgm
+images/car_chase/carchase_5567.pgm
+IMG_CAR_CRASH_END: images/car_chase/carchase_5569.pgm
+
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### TOP POPPER
+##################################################################################
+##################################################################################
+IMG_SIMON_E_START: images/wasteland/simon_laugh_429.pgm
+images/wasteland/simon_laugh_431.pgm
+images/wasteland/simon_laugh_433.pgm
+images/wasteland/simon_laugh_435.pgm
+images/wasteland/simon_laugh_437.pgm
+images/wasteland/simon_laugh_439.pgm
+IMG_SIMON_E_END: images/wasteland/simon_laugh_441.pgm
+
+
+IMG_CLAW_A_START: images/cryoprison/claw_1_170.pgm
+images/cryoprison/claw_1_174.pgm
+images/cryoprison/claw_1_178.pgm
+images/cryoprison/claw_1_180.pgm
+images/cryoprison/claw_1_182.pgm
+images/cryoprison/claw_1_186.pgm
+images/cryoprison/claw_1_188.pgm
+images/cryoprison/claw_1_190.pgm
+images/cryoprison/claw_1_194.pgm
+images/cryoprison/claw_1_196.pgm
+images/cryoprison/claw_1_198.pgm
+images/cryoprison/claw_1_202.pgm
+images/cryoprison/claw_1_204.pgm
+images/cryoprison/claw_1_206.pgm
+images/cryoprison/claw_1_210.pgm
+images/cryoprison/claw_1_212.pgm
+images/cryoprison/claw_1_214.pgm
+images/cryoprison/claw_1_218.pgm
+IMG_CLAW_A_END: images/cryoprison/claw_1_220.pgm
+
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### MB JACKPOT / SUPER JACKPOT
+##################################################################################
+##################################################################################
+IMG_JACKPOT_START: images/mario/Jackpot000000.pgm
+images/mario/Jackpot000001.pgm
+images/mario/Jackpot000002.pgm
+images/mario/Jackpot000003.pgm
+images/mario/Jackpot000004.pgm
+IMG_JACKPOT_END: images/mario/Jackpot000005.pgm
+
+
+IMG_SUPER_JACKPOT_START: images/mario/SJackpot000000.pgm
+images/mario/SJackpot000001.pgm
+images/mario/SJackpot000002.pgm
+images/mario/SJackpot000003.pgm
+images/mario/SJackpot000004.pgm
+IMG_SUPER_JACKPOT_END: images/mario/SJackpot000005.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### EJECT -- RETINA SCAN
+##################################################################################
+##################################################################################
+IMG_EYE_START: images/eyeball/eye_2713.pgm
+images/eyeball/eye_2714.pgm
+images/eyeball/eye_2715.pgm
+images/eyeball/eye_2716.pgm
+images/eyeball/eye_2717.pgm
+images/eyeball/eye_2718.pgm
+images/eyeball/eye_2719.pgm
+images/eyeball/eye_2736.pgm
+images/eyeball/eye_2740.pgm
+images/eyeball/eye_2744.pgm
+images/eyeball/eye_2746.pgm
+images/eyeball/eye_2747.pgm
+images/eyeball/eye_2749.pgm
+images/eyeball/eye_2751.pgm
+images/eyeball/eye_2759.pgm
+images/eyeball/eye_2771.pgm
+images/eyeball/eye_2773.pgm
+images/eyeball/eye_2776.pgm
+images/eyeball/eye_2777.pgm
+images/eyeball/eye_2778.pgm
+images/eyeball/eye_2779.pgm
+images/eyeball/eye_2780.pgm
+images/eyeball/eye_2781.pgm
+images/eyeball/eye_2782.pgm
+images/eyeball/eye_2783.pgm
+images/eyeball/eye_2784.pgm
+IMG_EYE_27: images/eyeball/eye_2785.pgm
+IMG_EYE_28: images/eyeball/eye_2786.pgm
+IMG_EYE_END: images/eyeball/eye_2787.pgm
+
+
+IMG_EYE_B_START: images/eyeball/eye_2909.pgm
+IMG_EYE_B_2: images/eyeball/eye_2914.pgm
+images/eyeball/eye_2921.pgm
+images/eyeball/eye_2926.pgm
+images/eyeball/eye_2933.pgm
+images/eyeball/eye_2938.pgm
+images/eyeball/eye_2945.pgm
+images/eyeball/eye_2950.pgm
+images/eyeball/eye_2957.pgm
+images/eyeball/eye_2962.pgm
+images/eyeball/eye_2969.pgm
+images/eyeball/eye_2974.pgm
+images/eyeball/eye_2981.pgm
+images/eyeball/eye_2986.pgm
+images/eyeball/eye_2993.pgm
+IMG_EYE_B_END: images/eyeball/eye_2998.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### CRYOCLAW  / INLANES - CLAW READY
+##################################################################################
+##################################################################################
+IMG_CRYOCLAW_MARIO_START: images/mario/Claw000000.pgm
+images/mario/Claw000001.pgm
+images/mario/Claw000002.pgm
+images/mario/Claw000003.pgm
+images/mario/Claw000004.pgm
+images/mario/Claw000005.pgm
+images/mario/Claw000006.pgm
+images/mario/Claw000007.pgm
+images/mario/Claw000008.pgm
+images/mario/Claw000009.pgm
+images/mario/Claw000010.pgm
+images/mario/Claw000011.pgm
+images/mario/Claw000012.pgm
+images/mario/Claw000014.pgm
+IMG_CRYOCLAW_MARIO_END: images/mario/Claw000013.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### EXPLODE MODE
+##################################################################################
+##################################################################################
+IMG_MARIO_EXPLODE_START: images/DM_MK_03_18/15_explode_hit000000.pgm
+IMG_MARIO_EXPLODE_END: images/DM_MK_03_18/15_explode_hit000007.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### CAPTURE SIMON MODE
+##################################################################################
+##################################################################################
+IMG_SIMON_C_START: images/wasteland/simon_3_233.pgm
+images/wasteland/simon_3_237.pgm
+images/wasteland/simon_3_241.pgm
+images/wasteland/simon_3_245.pgm
+images/wasteland/simon_3_249.pgm
+images/wasteland/simon_3_253.pgm
+images/wasteland/simon_3_256.pgm
+images/wasteland/simon_3_260.pgm
+images/wasteland/simon_3_264.pgm
+images/wasteland/simon_3_268.pgm
+images/wasteland/simon_3_271.pgm
+images/wasteland/simon_3_273.pgm
+IMG_SIMON_C_END: images/wasteland/simon_3_276.pgm
+
+
+IMG_CAPSIMON_A_START: images/capture_simon/cap_simon_353.pgm
+images/capture_simon/cap_simon_365.pgm
+images/capture_simon/cap_simon_377.pgm
+images/capture_simon/cap_simon_389.pgm
+images/capture_simon/cap_simon_401.pgm
+images/capture_simon/cap_simon_413.pgm
+images/capture_simon/cap_simon_425.pgm
+images/capture_simon/cap_simon_437.pgm
+images/capture_simon/cap_simon_442.pgm
+IMG_CAPSIMON_A_END: images/capture_simon/cap_simon_449.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### PRISON BREAK MODE
+##################################################################################
+##################################################################################
+IMG_JAIL_BREAK_START: images/capture_simon/jail_1467.pgm
+images/capture_simon/jail_1472.pgm
+images/capture_simon/jail_1477.pgm
+images/capture_simon/jail_1479.pgm
+images/capture_simon/jail_1482.pgm
+images/capture_simon/jail_1484.pgm
+images/capture_simon/jail_1487.pgm
+images/capture_simon/jail_1489.pgm
+images/capture_simon/jail_1492.pgm
+images/capture_simon/jail_1494.pgm
+IMG_JAIL_BREAK_END: images/capture_simon/jail_1497.pgm
+
+
+IMG_ASSOC_BOB_START: images/demo_time/assoc_bob_01.pgm
+images/demo_time/assoc_bob_06.pgm
+images/demo_time/assoc_bob_08.pgm
+images/demo_time/assoc_bob_11.pgm
+images/demo_time/assoc_bob_16.pgm
+images/demo_time/assoc_bob_18.pgm
+images/demo_time/assoc_bob_21.pgm
+images/demo_time/assoc_bob_26.pgm
+images/demo_time/assoc_bob_28.pgm
+IMG_ASSOC_BOB_END: images/demo_time/assoc_bob_31.pgm
+
+
+IMG_CHIEF_EARLE2_START: images/side_chars/chief_earle_2_698.pgm
+images/side_chars/chief_earle_2_703.pgm
+images/side_chars/chief_earle_2_706.pgm
+images/side_chars/chief_earle_2_711.pgm
+IMG_CHIEF_EARLE2_END: images/side_chars/chief_earle_2_718.pgm
+
+
+IMG_PRISON_BREAKOUT_B_START: images/cryoprison/prison_break_2_002.pgm
+images/cryoprison/prison_break_2_004.pgm
+images/cryoprison/prison_break_2_008.pgm
+images/cryoprison/prison_break_2_009.pgm
+images/cryoprison/prison_break_2_010.pgm
+images/cryoprison/prison_break_2_012.pgm
+images/cryoprison/prison_break_2_014.pgm
+images/cryoprison/prison_break_2_016.pgm
+images/cryoprison/prison_break_2_018.pgm
+images/cryoprison/prison_break_2_020.pgm
+images/cryoprison/prison_break_2_022.pgm
+images/cryoprison/prison_break_2_024.pgm
+images/cryoprison/prison_break_2_026.pgm
+images/cryoprison/prison_break_2_028.pgm
+images/cryoprison/prison_break_2_029.pgm
+IMG_PRISON_BREAKOUT_B_MID: images/cryoprison/prison_break_2_031.pgm
+
+
+images/cryoprison/prison_break_2_051.pgm
+images/cryoprison/prison_break_2_058.pgm
+images/cryoprison/prison_break_2_059.pgm
+images/cryoprison/prison_break_2_060.pgm
+images/cryoprison/prison_break_2_062.pgm
+images/cryoprison/prison_break_2_063.pgm
+images/cryoprison/prison_break_2_065.pgm
+images/cryoprison/prison_break_2_066.pgm
+IMG_PRISON_BREAKOUT_B_END: images/cryoprison/prison_break_2_067.pgm
+
+
+IMG_PRISON_BREAK_D1_START: images/cryoprison/prison_break_5_265.pgm
+images/cryoprison/prison_break_5_266.pgm
+images/cryoprison/prison_break_5_267.pgm
+images/cryoprison/prison_break_5_268.pgm
+images/cryoprison/prison_break_5_269.pgm
+images/cryoprison/prison_break_5_271.pgm
+images/cryoprison/prison_break_5_273.pgm
+images/cryoprison/prison_break_5_274.pgm
+images/cryoprison/prison_break_5_275.pgm
+images/cryoprison/prison_break_5_277.pgm
+images/cryoprison/prison_break_5_278.pgm
+IMG_PRISON_BREAK_D1_END: images/cryoprison/prison_break_5_279.pgm
+
+
+IMG_PRISON_BREAK_D2_START: images/cryoprison/prison_break_5_289.pgm
+images/cryoprison/prison_break_5_290.pgm
+images/cryoprison/prison_break_5_291.pgm
+images/cryoprison/prison_break_5_293.pgm
+images/cryoprison/prison_break_5_294.pgm
+images/cryoprison/prison_break_5_295.pgm
+images/cryoprison/prison_break_5_297.pgm
+images/cryoprison/prison_break_5_298.pgm
+images/cryoprison/prison_break_5_299.pgm
+images/cryoprison/prison_break_5_301.pgm
+IMG_PRISON_BREAK_D2_END: images/cryoprison/prison_break_5_302.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### CAR CHASE MODE
+##################################################################################
+##################################################################################
+IMG_CARCHASE_A_START: images/car_chase/carchase_626.pgm
+images/car_chase/carchase_629.pgm
+images/car_chase/carchase_632.pgm
+images/car_chase/carchase_634.pgm
+images/car_chase/carchase_637.pgm
+images/car_chase/carchase_639.pgm
+images/car_chase/carchase_642.pgm
+images/car_chase/carchase_644.pgm
+images/car_chase/carchase_647.pgm
+IMG_CARCHASE_A_END: images/car_chase/carchase_649.pgm
+
+
+IMG_CARCHASE_B_START: images/car_chase/carchase_969.pgm
+images/car_chase/carchase_972.pgm
+images/car_chase/carchase_974.pgm
+images/car_chase/carchase_977.pgm
+images/car_chase/carchase_979.pgm
+images/car_chase/carchase_982.pgm
+images/car_chase/carchase_984.pgm
+images/car_chase/carchase_987.pgm
+images/car_chase/carchase_989.pgm
+images/car_chase/carchase_992.pgm
+IMG_CARCHASE_B_END: images/car_chase/carchase_994.pgm
+
+
+IMG_CARCHASE_C_START: images/car_chase/carchase_1001.pgm
+images/car_chase/carchase_1002.pgm
+images/car_chase/carchase_1004.pgm
+images/car_chase/carchase_1006.pgm
+images/car_chase/carchase_1007.pgm
+images/car_chase/carchase_1009.pgm
+images/car_chase/carchase_1011.pgm
+images/car_chase/carchase_1012.pgm
+images/car_chase/carchase_1014.pgm
+images/car_chase/carchase_1016.pgm
+images/car_chase/carchase_1019.pgm
+IMG_CARCHASE_C_END: images/car_chase/carchase_1021.pgm
+
+
+IMG_CARCHASE_D_START: images/car_chase/carchase_1158.pgm
+images/car_chase/carchase_1161.pgm
+images/car_chase/carchase_1163.pgm
+images/car_chase/carchase_1166.pgm
+images/car_chase/carchase_1168.pgm
+images/car_chase/carchase_1171.pgm
+images/car_chase/carchase_1173.pgm
+images/car_chase/carchase_1176.pgm
+images/car_chase/carchase_1178.pgm
+images/car_chase/carchase_1181.pgm
+images/car_chase/carchase_1183.pgm
+images/car_chase/carchase_1186.pgm
+images/car_chase/carchase_1188.pgm
+IMG_CARCHASE_D_END: images/car_chase/carchase_1191.pgm
+
+
+IMG_CARCHASE_E_START: images/car_chase/carchase_2310.pgm
+images/car_chase/carchase_2312.pgm
+images/car_chase/carchase_2315.pgm
+images/car_chase/carchase_2317.pgm
+images/car_chase/carchase_2320.pgm
+images/car_chase/carchase_2322.pgm
+images/car_chase/carchase_2325.pgm
+images/car_chase/carchase_2327.pgm
+images/car_chase/carchase_2330.pgm
+images/car_chase/carchase_2332.pgm
+images/car_chase/carchase_2499.pgm
+images/car_chase/carchase_2501.pgm
+images/car_chase/carchase_2504.pgm
+images/car_chase/carchase_2506.pgm
+images/car_chase/carchase_2509.pgm
+images/car_chase/carchase_2511.pgm
+images/car_chase/carchase_2514.pgm
+IMG_CARCHASE_E_END: images/car_chase/carchase_2516.pgm
+
+
+IMG_CARCHASE_F1_START: images/car_chase/carchase_3718.pgm
+images/car_chase/carchase_3720.pgm
+images/car_chase/carchase_3722.pgm
+images/car_chase/carchase_3725.pgm
+images/car_chase/carchase_3728.pgm
+images/car_chase/carchase_3730.pgm
+images/car_chase/carchase_3732.pgm
+images/car_chase/carchase_3735.pgm
+images/car_chase/carchase_3738.pgm
+images/car_chase/carchase_3740.pgm
+images/car_chase/carchase_3742.pgm
+images/car_chase/carchase_3745.pgm
+images/car_chase/carchase_3748.pgm
+images/car_chase/carchase_3750.pgm
+images/car_chase/carchase_3752.pgm
+IMG_CARCHASE_F1_END: images/car_chase/carchase_3755.pgm
+
+
+IMG_CARCHASE_F2_START: images/car_chase/carchase_3782.pgm
+images/car_chase/carchase_3784.pgm
+images/car_chase/carchase_3786.pgm
+images/car_chase/carchase_3789.pgm
+images/car_chase/carchase_3792.pgm
+images/car_chase/carchase_3794.pgm
+images/car_chase/carchase_3796.pgm
+images/car_chase/carchase_3799.pgm
+images/car_chase/carchase_3802.pgm
+images/car_chase/carchase_3804.pgm
+images/car_chase/carchase_3806.pgm
+images/car_chase/carchase_3809.pgm
+images/car_chase/carchase_3812.pgm
+images/car_chase/carchase_3814.pgm
+IMG_CARCHASE_F2_END: images/car_chase/carchase_3816.pgm
+
+
+IMG_CARCHASE_J_START: images/car_chase/carchase_a_03.pgm
+images/car_chase/carchase_a_05.pgm
+images/car_chase/carchase_a_07.pgm
+images/car_chase/carchase_a_10.pgm
+images/car_chase/carchase_a_13.pgm
+images/car_chase/carchase_a_15.pgm
+images/car_chase/carchase_a_17.pgm
+images/car_chase/carchase_a_20.pgm
+images/car_chase/carchase_a_23.pgm
+images/car_chase/carchase_a_25.pgm
+images/car_chase/carchase_a_27.pgm
+images/car_chase/carchase_a_30.pgm
+images/car_chase/carchase_a_33.pgm
+images/car_chase/carchase_a_35.pgm
+images/car_chase/carchase_a_37.pgm
+images/car_chase/carchase_a_40.pgm
+images/car_chase/carchase_a_43.pgm
+images/car_chase/carchase_a_45.pgm
+images/car_chase/carchase_a_47.pgm
+IMG_CARCHASE_J_END: images/car_chase/carchase_a_50.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### SUPERJETS
+##################################################################################
+##################################################################################
+IMG_SUPERJETS_1: images/superjets/rocket1.pgm
+IMG_SUPERJETS_2: images/superjets/rocket2.pgm
+IMG_SUPERJETS_3: images/superjets/rocket3.pgm
+
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### FORTRESS MULTIBALL
+##################################################################################
+##################################################################################
+IMG_FORT_START_MARIO_START: images/DM_MK_03_04/28_fortress_start_NoBalls000000.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000001.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000002.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000003.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000004.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000005.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000006.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000007.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000008.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000009.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000010.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000011.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000012.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000013.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000014.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000015.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000016.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000017.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000018.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000019.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000020.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000022.pgm
+images/DM_MK_03_04/28_fortress_start_NoBalls000023.pgm
+IMG_FORT_START_MARIO_END: images/DM_MK_03_04/28_fortress_start_NoBalls000024.pgm
+
+
+IMG_FORTRESS_D1_START: images/fortress/fortress759.pgm
+images/fortress/fortress763.pgm
+images/fortress/fortress765.pgm
+images/fortress/fortress769.pgm
+images/fortress/fortress771.pgm
+images/fortress/fortress775.pgm
+images/fortress/fortress777.pgm
+images/fortress/fortress781.pgm
+images/fortress/fortress783.pgm
+images/fortress/fortress787.pgm
+images/fortress/fortress789.pgm
+IMG_FORTRESS_D1_END: images/fortress/fortress793.pgm
+
+
+IMG_FORTRESS_D2_START: images/fortress/fortress_2_0203.pgm
+images/fortress/fortress_2_0207.pgm
+images/fortress/fortress_2_0211.pgm
+images/fortress/fortress_2_0215.pgm
+images/fortress/fortress_2_0219.pgm
+images/fortress/fortress_2_590.pgm
+images/fortress/fortress_2_594.pgm
+IMG_FORTRESS_D2_END: images/fortress/fortress_2_598.pgm
+
+
+IMG_FORTRESS_D3_START: images/fortress/fortress_2_770.pgm
+images/fortress/fortress_2_774.pgm
+images/fortress/fortress_2_778.pgm
+images/fortress/fortress_2_782.pgm
+images/fortress/fortress_2_834.pgm
+IMG_FORTRESS_D3_END: images/fortress/fortress_2_838.pgm
+
+IMG_FORTRESS_D4_START: images/fortress/fortress_2_842.pgm
+images/fortress/fortress_2_846.pgm
+images/fortress/fortress_2_850.pgm
+IMG_FORTRESS_D4_END: images/fortress/fortress_2_854.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### MUSEUM MULTIBALL
+##################################################################################
+##################################################################################
+IMG_SIMON_FIRE2_START: images/wasteland/simon_fortress_2_88.pgm
+images/wasteland/simon_fortress_2_90.pgm
+images/wasteland/simon_fortress_2_92.pgm
+images/wasteland/simon_fortress_2_95.pgm
+images/wasteland/simon_fortress_2_97.pgm
+images/wasteland/simon_fortress_2_99.pgm
+images/wasteland/simon_fortress_2_101.pgm
+images/wasteland/simon_fortress_2_136.pgm
+images/wasteland/simon_fortress_2_139.pgm
+images/wasteland/simon_fortress_2_140.pgm
+images/wasteland/simon_fortress_2_143.pgm
+images/wasteland/simon_fortress_2_147.pgm
+images/wasteland/simon_fortress_2_149.pgm
+images/wasteland/simon_fortress_2_151.pgm
+IMG_SIMON_FIRE2_END: images/wasteland/simon_fortress_2_152.pgm
+
+
+
+IMG_MUSEUM_C2_START: images/museum/museum_7960.pgm
+images/museum/museum_7963.pgm
+images/museum/museum_7965.pgm
+images/museum/museum_7968.pgm
+images/museum/museum_7970.pgm
+images/museum/museum_7975.pgm
+images/museum/museum_7978.pgm
+images/museum/museum_7981.pgm
+images/museum/museum_7984.pgm
+images/museum/museum_8005.pgm
+IMG_MUSEUM_C2_END: images/museum/museum_8008.pgm
+
+
+IMG_MUSEUM_D1_START: images/museum/museum_0289.pgm
+images/museum/museum_0295.pgm
+images/museum/museum_0301.pgm
+images/museum/museum_0307.pgm
+images/museum/museum_0319.pgm
+IMG_MUSEUM_D1_END: images/museum/museum_0325.pgm
+
+
+IMG_MUSEUM_D2_START: images/museum/museum_4672.pgm
+images/museum/museum_4679.pgm
+images/museum/museum_4684.pgm
+images/museum/museum_4691.pgm
+images/museum/museum_4696.pgm
+IMG_MUSEUM_D2_END: images/museum/museum_4703.pgm
+
+
+IMG_FIGHT_A_START: images/wasteland/fight_1_682.pgm
+images/wasteland/fight_1_683.pgm
+images/wasteland/fight_1_684.pgm
+images/wasteland/fight_1_686.pgm
+images/wasteland/fight_1_687.pgm
+images/wasteland/fight_1_688.pgm
+images/wasteland/fight_1_690.pgm
+images/wasteland/fight_1_692.pgm
+images/wasteland/fight_1_694.pgm
+images/wasteland/fight_1_695.pgm
+images/wasteland/fight_1_696.pgm
+images/wasteland/fight_1_698.pgm
+IMG_FIGHT_A_END: images/wasteland/fight_1_700.pgm
+
+
+IMG_SIMON_D_START: images/wasteland/simon_4_165.pgm
+images/wasteland/simon_4_169.pgm
+images/wasteland/simon_4_177.pgm
+images/wasteland/simon_4_185.pgm
+images/wasteland/simon_4_197.pgm
+images/wasteland/simon_4_205.pgm
+IMG_SIMON_D_END: images/wasteland/simon_4_209.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### WASTELAND MULTIBALL
+##################################################################################
+##################################################################################
+IMG_WASTELAND_A1_START: images/wasteland/museum_7748.pgm
+images/wasteland/museum_7752.pgm
+images/wasteland/museum_7756.pgm
+images/wasteland/museum_7780.pgm
+images/wasteland/museum_7784.pgm
+images/wasteland/museum_7788.pgm
+images/wasteland/museum_7987.pgm
+images/wasteland/museum_7990.pgm
+images/wasteland/museum_7993.pgm
+images/wasteland/museum_7996.pgm
+IMG_WASTELAND_A1_END: images/wasteland/museum_7999.pgm
+
+
+IMG_WASTELAND_A2_START: images/wasteland/museum_8011.pgm
+images/wasteland/museum_8014.pgm
+images/wasteland/museum_8017.pgm
+images/wasteland/museum_8020.pgm
+images/wasteland/museum_8023.pgm
+images/wasteland/museum_8026.pgm
+images/wasteland/museum_8029.pgm
+images/wasteland/museum_8032.pgm
+images/wasteland/museum_8035.pgm
+IMG_WASTELAND_A2_END: images/wasteland/museum_8038.pgm
+
+
+IMG_WASTELAND_A3_START: images/wasteland/museum_8050.pgm
+images/wasteland/museum_8053.pgm
+images/wasteland/museum_8056.pgm
+images/wasteland/museum_8059.pgm
+images/wasteland/museum_8062.pgm
+IMG_WASTELAND_A3_END: images/wasteland/museum_8065.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### CRYOPRISON MULTIBALL
+##################################################################################
+##################################################################################
+IMG_CAPSIMON_C_START: images/capture_simon/cap_simon_2504.pgm
+images/capture_simon/cap_simon_2516.pgm
+images/capture_simon/cap_simon_2540.pgm
+images/capture_simon/cap_simon_2552.pgm
+images/capture_simon/cap_simon_2564.pgm
+images/capture_simon/cap_simon_2588.pgm
+images/capture_simon/cap_simon_2600.pgm
+images/capture_simon/cap_simon_2612.pgm
+images/capture_simon/cap_simon_2636.pgm
+images/capture_simon/cap_simon_2660.pgm
+images/capture_simon/cap_simon_2672.pgm
+images/capture_simon/cap_simon_2684.pgm
+images/capture_simon/cap_simon_2696.pgm
+IMG_CAPSIMON_C_END: images/capture_simon/cap_simon_2708.pgm
+
+
+IMG_CRYOPRISON_E1_START: images/fortress/museum_004.pgm
+images/fortress/museum_006.pgm
+images/fortress/museum_008.pgm
+images/fortress/museum_009.pgm
+images/fortress/museum_010.pgm
+images/fortress/museum_012.pgm
+images/fortress/museum_013.pgm
+images/fortress/museum_015.pgm
+images/fortress/museum_016.pgm
+images/fortress/museum_017.pgm
+IMG_CRYOPRISON_E1_END: images/fortress/museum_018.pgm
+
+
+IMG_CRYOPRISON_E2_START: images/fortress/museum_019.pgm
+images/fortress/museum_020.pgm
+images/fortress/museum_024.pgm
+images/fortress/museum_025.pgm
+images/fortress/museum_029.pgm
+images/fortress/museum_030.pgm
+images/fortress/museum_031.pgm
+images/fortress/museum_033.pgm
+IMG_CRYOPRISON_E2_END: images/fortress/museum_035.pgm
+
+
+IMG_DR_COCTEAU_B_START: images/side_chars/dr_cocteau_4_736.pgm
+images/side_chars/dr_cocteau_4_740.pgm
+images/side_chars/dr_cocteau_4_748.pgm
+images/side_chars/dr_cocteau_4_756.pgm
+images/side_chars/dr_cocteau_4_760.pgm
+IMG_DR_COCTEAU_B_END: images/side_chars/dr_cocteau_4_774.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### HUXLEY - WIZARD MODE
+##################################################################################
+##################################################################################
+IMG_HUXLEY_E_START: images/huxley/huxley_6_635.pgm
+images/huxley/huxley_6_893.pgm
+images/huxley/huxley_6_901.pgm
+images/huxley/huxley_6_905.pgm
+images/huxley/huxley_6_913.pgm
+images/huxley/huxley_6_917.pgm
+images/huxley/huxley_6_925.pgm
+images/huxley/huxley_6_933.pgm
+images/huxley/huxley_6_937.pgm
+images/huxley/huxley_6_941.pgm
+images/huxley/huxley_6_945.pgm
+images/huxley/huxley_6_949.pgm
+images/huxley/huxley_6_957.pgm
+images/huxley/huxley_6_961.pgm
+images/huxley/huxley_6_965.pgm
+images/huxley/huxley_6_969.pgm
+images/huxley/huxley_6_973.pgm
+images/huxley/huxley_6_977.pgm
+images/huxley/huxley_6_981.pgm
+images/huxley/huxley_6_985.pgm
+images/huxley/huxley_6_993.pgm
+IMG_HUXLEY_E_END: images/huxley/huxley_6_1001.pgm
+
+
+IMG_HUXLEY_A_START: images/huxley/huxley_1_77.pgm
+images/huxley/huxley_1_81.pgm
+images/huxley/huxley_1_85.pgm
+images/huxley/huxley_1_89.pgm
+images/huxley/huxley_1_93.pgm
+images/huxley/huxley_1_97.pgm
+images/huxley/huxley_1_101.pgm
+images/huxley/huxley_1_105.pgm
+images/huxley/huxley_1_109.pgm
+images/huxley/huxley_1_113.pgm
+images/huxley/huxley_1_117.pgm
+images/huxley/huxley_1_191.pgm
+IMG_HUXLEY_A_END: images/huxley/huxley_1_195.pgm
+
+
+IMG_HUXLEY_B1_START: images/huxley/huxley_2_411.pgm
+images/huxley/huxley_2_413.pgm
+images/huxley/huxley_2_415.pgm
+images/huxley/huxley_2_417.pgm
+images/huxley/huxley_2_419.pgm
+images/huxley/huxley_2_421.pgm
+images/huxley/huxley_2_423.pgm
+images/huxley/huxley_2_425.pgm
+IMG_HUXLEY_B1_END: images/huxley/huxley_2_427.pgm
+
+
+IMG_HUXLEY_B2_START: images/huxley/huxley_2_594.pgm
+images/huxley/huxley_2_598.pgm
+images/huxley/huxley_2_602.pgm
+images/huxley/huxley_2_606.pgm
+images/huxley/huxley_2_610.pgm
+images/huxley/huxley_2_614.pgm
+images/huxley/huxley_2_618.pgm
+images/huxley/huxley_2_622.pgm
+images/huxley/huxley_2_626.pgm
+images/huxley/huxley_2_630.pgm
+images/huxley/huxley_2_634.pgm
+images/huxley/huxley_2_638.pgm
+images/huxley/huxley_2_642.pgm
+IMG_HUXLEY_B2_END: images/huxley/huxley_2_646.pgm
+
+
+IMG_HUXLEY_D_START: images/huxley/huxley_7_715.pgm
+images/huxley/huxley_7_723.pgm
+images/huxley/huxley_7_731.pgm
+images/huxley/huxley_7_735.pgm
+images/huxley/huxley_7_747.pgm
+images/huxley/huxley_7_751.pgm
+images/huxley/huxley_7_755.pgm
+images/huxley/huxley_7_783.pgm
+images/huxley/huxley_7_795.pgm
+images/huxley/huxley_7_799.pgm
+images/huxley/huxley_7_807.pgm
+images/huxley/huxley_7_815.pgm
+IMG_HUXLEY_D_END: images/huxley/huxley_7_827.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### BACK IN THE FRIDGE - WIZARD MODE
+##################################################################################
+##################################################################################
+IMG_FREEZER1_START: images/demo_time/freezer_a_740.pgm
+images/demo_time/freezer_a_743.pgm
+images/demo_time/freezer_a_791.pgm
+images/demo_time/freezer_a_794.pgm
+images/demo_time/freezer_a_797.pgm
+images/demo_time/freezer_a_799.pgm
+images/demo_time/freezer_a_801.pgm
+images/demo_time/freezer_a_804.pgm
+images/demo_time/freezer_a_807.pgm
+images/demo_time/freezer_a_809.pgm
+images/demo_time/freezer_a_811.pgm
+images/demo_time/freezer_a_814.pgm
+images/demo_time/freezer_a_817.pgm
+images/demo_time/freezer_a_819.pgm
+images/demo_time/freezer_a_821.pgm
+images/demo_time/freezer_a_824.pgm
+IMG_FREEZER1_END: images/demo_time/freezer_a_827.pgm
+
+
+IMG_FREEZER2_START: images/demo_time/freezer_a_854.pgm
+images/demo_time/freezer_a_856.pgm
+images/demo_time/freezer_a_859.pgm
+images/demo_time/freezer_a_862.pgm
+images/demo_time/freezer_a_864.pgm
+images/demo_time/freezer_a_866.pgm
+images/demo_time/freezer_a_869.pgm
+images/demo_time/freezer_a_872.pgm
+images/demo_time/freezer_a_874.pgm
+images/demo_time/freezer_a_876.pgm
+images/demo_time/freezer_a_879.pgm
+images/demo_time/freezer_a_882.pgm
+images/demo_time/freezer_a_884.pgm
+images/demo_time/freezer_a_886.pgm
+images/demo_time/freezer_a_889.pgm
+images/demo_time/freezer_a_892.pgm
+images/demo_time/freezer_a_894.pgm
+IMG_FREEZER2_END: images/demo_time/freezer_a_896.pgm
+
+
+IMG_FREEZER3_START: images/demo_time/freezer_a_931.pgm
+images/demo_time/freezer_a_933.pgm
+images/demo_time/freezer_a_936.pgm
+images/demo_time/freezer_a_939.pgm
+images/demo_time/freezer_a_941.pgm
+images/demo_time/freezer_a_943.pgm
+images/demo_time/freezer_a_946.pgm
+images/demo_time/freezer_a_949.pgm
+images/demo_time/freezer_a_951.pgm
+images/demo_time/freezer_a_953.pgm
+images/demo_time/freezer_a_956.pgm
+images/demo_time/freezer_a_959.pgm
+images/demo_time/freezer_a_961.pgm
+images/demo_time/freezer_a_963.pgm
+IMG_FREEZER3_END: images/demo_time/freezer_a_966.pgm
+
+
+IMG_FREEZE_A_START: images/freeze/freeze_606.pgm
+images/freeze/freeze_608.pgm
+images/freeze/freeze_610.pgm
+images/freeze/freeze_611.pgm
+images/freeze/freeze_613.pgm
+images/freeze/freeze_615.pgm
+images/freeze/freeze_616.pgm
+IMG_FREEZE_A_MID: images/freeze/freeze_618.pgm
+images/freeze/freeze_620.pgm
+images/freeze/freeze_621.pgm
+images/freeze/freeze_623.pgm
+images/freeze/freeze_625.pgm
+images/freeze/freeze_628.pgm
+images/freeze/freeze_630.pgm
+images/freeze/freeze_631.pgm
+images/freeze/freeze_633.pgm
+images/freeze/freeze_635.pgm
+IMG_FREEZE_A_END: images/freeze/freeze_636.pgm
+
+
+
+##################################################################################
+##################################################################################
+#### COMBOS
+##################################################################################
+##################################################################################
+IMG_COMBO_MARIO_START: images/DM_MK_03_04/06_combos_notext000000.pgm
+images/DM_MK_03_04/06_combos_notext000001.pgm
+images/DM_MK_03_04/06_combos_notext000002.pgm
+images/DM_MK_03_04/06_combos_notext000003.pgm
+images/DM_MK_03_04/06_combos_notext000004.pgm
+IMG_COMBO_MARIO_END: images/DM_MK_03_04/06_combos_notext000005.pgm
+
+
+IMG_COMBO2_MARIO_START: images/DM_MK_02_28/06_combos000000.pgm
+images/DM_MK_02_28/06_combos000001.pgm
+images/DM_MK_02_28/06_combos000002.pgm
+images/DM_MK_02_28/06_combos000003.pgm
+images/DM_MK_02_28/06_combos000004.pgm
+images/DM_MK_02_28/06_combos000005.pgm
+IMG_COMBO2_MARIO_END: images/DM_MK_02_28/06_combos000006.pgm
+
+
+IMG_COMBO3_MARIO_START: images/DM_MK_03_18/06_combos_C000000.pgm
+images/DM_MK_03_18/06_combos_C000001.pgm
+images/DM_MK_03_18/06_combos_C000002.pgm
+images/DM_MK_03_18/06_combos_C000003.pgm
+images/DM_MK_03_18/06_combos_C000004.pgm
+images/DM_MK_03_18/06_combos_C000005.pgm
+images/DM_MK_03_18/06_combos_C000006.pgm
+images/DM_MK_03_18/06_combos_C000007.pgm
+images/DM_MK_03_18/06_combos_C000008.pgm
+images/DM_MK_03_18/06_combos_C000009.pgm
+images/DM_MK_03_18/06_combos_C000010.pgm
+images/DM_MK_03_18/06_combos_C000011.pgm
+images/DM_MK_03_18/06_combos_C000012.pgm
+images/DM_MK_03_18/06_combos_C000013.pgm
+IMG_COMBO3_MARIO_END: images/DM_MK_03_18/06_combos_C000014.pgm
+
+
+IMG_COMBO4_MARIO_START: images/DM_MK_03_18/Silverball_MoBlur000000.pgm
+images/DM_MK_03_18/Silverball_MoBlur000001.pgm
+images/DM_MK_03_18/Silverball_MoBlur000002.pgm
+images/DM_MK_03_18/Silverball_MoBlur000003.pgm
+images/DM_MK_03_18/Silverball_MoBlur000004.pgm
+images/DM_MK_03_18/Silverball_MoBlur000005.pgm
+images/DM_MK_03_18/Silverball_MoBlur000006.pgm
+IMG_COMBO4_MARIO_END: images/DM_MK_03_18/Silverball_MoBlur000007.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### SIMON SAYS VM
+##################################################################################
+##################################################################################
+IMG_SIMON_SAYS: images/originals/simon_says_gun_handles_bu.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### SHOOTER VM
+##################################################################################
+##################################################################################
+IMG_SHOOTER_LEFT: images/shooter_left.pgm
+IMG_SHOOTER_CENTER: images/shooter_center.pgm
+IMG_SHOOTER_RIGHT: images/shooter_right.pgm
+
+
+IMG_MUSEUM_D3_START: images/museum/museum_4862.pgm
+images/museum/museum_4863.pgm
+images/museum/museum_4864.pgm
+images/museum/museum_4865.pgm
+IMG_MUSEUM_D3_END: images/museum/museum_4866.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### LASER SHOT
+##################################################################################
+##################################################################################
+IMG_LASER_SHOT1: images/laser_shot1.pgm
+IMG_LASER_SHOT2: images/laser_shot2.pgm
+IMG_LASER_SHOT3: images/laser_shot3.pgm
+IMG_LASER_SHOT4: images/laser_shot4.pgm
+IMG_LASER_SHOT5: images/laser_shot5.pgm
+IMG_LASER_SHOT6: images/laser_shot6.pgm
+
+
+
+
+
+##################################################################################
+##################################################################################
+#### STANDUP FRENZY
+##################################################################################
+##################################################################################
+IMG_SF_MARIO_START: images/DM_MK_02_28/13_StandupFrenzy000000.pgm
+IMG_SF_MARIO_END: images/DM_MK_02_28/13_StandupFrenzy000001.pgm
+
+
+IMG_SF_START_MARIO_START: images/DM_MK_02_28/12_StandupFrenzy_start000000.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000001.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000002.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000003.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000004.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000005.pgm
+images/DM_MK_02_28/12_StandupFrenzy_start000006.pgm
+IMG_SF_START_MARIO_END: images/DM_MK_02_28/12_StandupFrenzy_start000007.pgm
+
+
+
+
+##################################################################################
+##################################################################################
+#### JETS
+##################################################################################
+##################################################################################
+IMG_JETS_COMP_MARIO_START: images/DM_MK_02_28/11_Jets_complete000000.pgm
+images/DM_MK_02_28/11_Jets_complete000001.pgm
+images/DM_MK_02_28/11_Jets_complete000002.pgm
+images/DM_MK_02_28/11_Jets_complete000003.pgm
+images/DM_MK_02_28/11_Jets_complete000004.pgm
+IMG_JETS_COMP_MARIO_END: images/DM_MK_02_28/11_Jets_complete000005.pgm
+
+
+IMG_JETS_MARIO_0: images/DM_MK_02_28/10_jets000000.pgm
+IMG_JETS_MARIO_1: images/DM_MK_02_28/10_jets000001.pgm
+
+
+
+
+
+
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+
+
+
+

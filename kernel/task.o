@@ -1,0 +1,31 @@
+XH2
+H 3 areas 6 global symbols 2 banks 1 modes
+M task.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+S _task_find_gid Ref0000
+S _task_kill_gid Ref0000
+S _task_create_gid Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 2C flags D00
+S _task_recreate_gid Def0000
+S _task_create_gid1 Def0012
+T 00 00
+R 00 00 00 02
+T 00 00 32 7D E7 62 AF E4 BD 00 00 AE E4 E6 62
+R 00 00 00 02 81 09 00 02
+T 00 0D 32 63 7E 00 00
+R 00 00 00 02 81 05 00 03
+T 00 12
+R 00 00 00 02
+T 00 12 32 7D E7 62 AF E4 BD 00 00 8C 00 00 27
+R 00 00 00 02 81 09 00 01
+T 00 1F 03 32 63 39
+R 00 00 00 02
+T 00 23
+R 00 00 00 02
+T 00 23 AE E4 E6 62 32 63 7E 00 00
+R 00 00 00 02 81 09 00 03

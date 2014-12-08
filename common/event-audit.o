@@ -1,0 +1,71 @@
+XH2
+H 3 areas A global symbols 2 banks 1 modes
+M event_audit.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _in_tilt Ref0000
+S _audit_increment Ref0000
+S .__.ABS. Def0000
+S _system_audits Ref0000
+S _in_game Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page60 size 42 flags D00
+S _audit_sw_left_button Def0015
+S _audit_sw_right_outlane Def0024
+S _audit_sw_left_outlane Def0033
+S _audit_minute_elapsed Def0000
+S _audit_sw_right_button Def0006
+T 00 00
+R 00 00 00 02
+T 00 00 8E 00 20 7E 00 00
+R 00 00 00 02 81 03 00 03 81 06 00 01
+T 00 06
+R 00 00 00 02
+T 00 06 0D 00 00 27 04 0D 00 00 27 01
+R 00 00 00 02 A0 03 00 04 A0 08 00 00
+T 00 0E
+R 00 00 00 02
+T 00 0E 39
+R 00 00 00 02
+T 00 0F
+R 00 00 00 02
+T 00 0F 8E 00 38 7E 00 00
+R 00 00 00 02 81 03 00 03 81 06 00 01
+T 00 15
+R 00 00 00 02
+T 00 15 0D 00 00 27 04 0D 00 00 27 01
+R 00 00 00 02 A0 03 00 04 A0 08 00 00
+T 00 1D
+R 00 00 00 02
+T 00 1D 39
+R 00 00 00 02
+T 00 1E
+R 00 00 00 02
+T 00 1E 8E 00 36 7E 00 00
+R 00 00 00 02 81 03 00 03 81 06 00 01
+T 00 24
+R 00 00 00 02
+T 00 24 0D 00 00 27 04 0D 00 00 27 01
+R 00 00 00 02 A0 03 00 04 A0 08 00 00
+T 00 2C
+R 00 00 00 02
+T 00 2C 39
+R 00 00 00 02
+T 00 2D
+R 00 00 00 02
+T 00 2D 8E 00 28 7E 00 00
+R 00 00 00 02 81 03 00 03 81 06 00 01
+T 00 33
+R 00 00 00 02
+T 00 33 0D 00 00 27 04 0D 00 00 27 01
+R 00 00 00 02 A0 03 00 04 A0 08 00 00
+T 00 3B
+R 00 00 00 02
+T 00 3B 39
+R 00 00 00 02
+T 00 3C
+R 00 00 00 02
+T 00 3C 8E 00 26 7E 00 00
+R 00 00 00 02 81 03 00 03 81 06 00 01

@@ -1,0 +1,53 @@
+XH2
+H 3 areas E global symbols 2 banks 1 modes
+M start_button.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _initials_start_button_handler Ref0000
+S _valid_playfield Ref0000
+S _in_tilt Ref0000
+S _in_test Ref0000
+S .__.ABS. Def0000
+S _switch_stress_drain Ref0000
+S _test_mode_start_button_handler Ref0000
+S _deff_get_active Ref0000
+S __far_call_handler Ref0000
+S _in_game Ref0000
+S _initials_enter_timer Ref0000
+S _switch_stress_enable Ref0000
+S _game_start_button_handler Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size 38 flags D00
+S _start_button_sw_start_button Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 BD 00 00 C1 10 27 15 7D 00 00 26 11
+R 00 00 00 02 81 03 00 07 81 0A 00 0B
+T 00 0C
+R 00 00 00 02
+T 00 0C 7D 00 00 26 08 7D 00 00 26 1B 7E
+R 00 00 00 02 81 03 00 0A 81 08 00 03
+T 00 17 00 00
+R 00 00 00 02 81 02 00 0C
+T 00 19
+R 00 00 00 02
+T 00 19 BD 00 00
+R 00 00 00 02 81 03 00 00
+T 00 1C
+R 00 00 00 02
+T 00 1C 39
+R 00 00 00 02
+T 00 1D
+R 00 00 00 02
+T 00 1D 0D 00 00 27 EB 0D 00 00 26 E7 7D
+R 00 00 00 02 A0 03 00 09 A0 08 00 02
+T 00 26 00 00 27 E2 BD 00 00
+R 00 00 00 02 81 02 00 01 81 07 00 08
+T 00 2D 00 00 3C 39
+R 00 00 00 02 81 02 00 05
+T 00 31
+R 00 00 00 02
+T 00 31 BD 00 00 00 00 3A 39
+R 00 00 00 02 81 03 00 08 81 05 00 06

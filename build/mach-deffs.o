@@ -1,0 +1,236 @@
+XH2
+H 3 areas 71 global symbols 2 banks 1 modes
+M mach_deffs.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _demotime_start_effect_deff Ref0000
+S _player_tournament_ready_deff Ref0000
+S _credits_deff Ref0000
+S _cryoprison_jackpot_effect_deff Ref0000
+S _prison_break_hit_effect_deff Ref0000
+S _kaboom_abort_deff Ref0000
+S _cryoclaw_effect_deff Ref0000
+S _bitf_effect_deff Ref0000
+S _cryoprison_super_jackpot_deff Ref0000
+S _cryoprison_start_effect_deff Ref0000
+S _superjets_effect_deff Ref0000
+S _car_chase_start_effect_deff Ref0000
+S _museum_jackpot_effect_deff Ref0000
+S _laser_shot_deff Ref0000
+S _rollovers_effect_deff Ref0000
+S _museum_super_jackpot_deff Ref0000
+S _museum_start_effect_deff Ref0000
+S _huxley_info_effect_deff Ref0000
+S _standupfrenzy_start_effect_deff Ref0000
+S _huxley_start_effect_deff Ref0000
+S _simon_says_ready_deff Ref0000
+S _kaboom_deff Ref0000
+S _underground_effect_deff Ref0000
+S _deff_exit Ref0000
+S _simon_says_watch_deff Ref0000
+S _shooter_abort_deff Ref0000
+S _bitf_info_effect_deff Ref0000
+S _simon_says_abort_deff Ref0000
+S _explode_effect_deff Ref0000
+S _tilt_deff Ref0000
+S _bitf_start_effect_deff Ref0000
+S _simon_says_runner_deff Ref0000
+S _locating_balls_deff Ref0000
+S _jets_effect_deff Ref0000
+S _shooter_deff Ref0000
+S _kaboom_intro_deff Ref0000
+S _fortress_effect_deff Ref0000
+S _simon_says_deff Ref0000
+S _acmag_effect_deff Ref0000
+S _capture_simon_effect_deff Ref0000
+S _plunge_ball_deff Ref0000
+S _bitf_end_effect_deff Ref0000
+S _coin_door_power_deff Ref0000
+S _car_chase_hit_effect_deff Ref0000
+S _hscredits_deff Ref0000
+S _slam_tilt_deff Ref0000
+S _explode_start_effect_deff Ref0000
+S _system_amode_deff Ref0000
+S _prison_break_effect_deff Ref0000
+S _standup_effect_deff Ref0000
+S .__.ABS. Def0000
+S _all_rollovers_effect_deff Ref0000
+S _shoot_again_deff Ref0000
+S _scores_important_deff Ref0000
+S _freeze_effect_deff Ref0000
+S _hsentry_deff Ref0000
+S _huxley_hit_effect_deff Ref0000
+S _shooter_intro_deff Ref0000
+S _kaboom_end_deff Ref0000
+S _wasteland_effect_deff Ref0000
+S _fortress_jackpot_effect_deff Ref0000
+S _scores_deff Ref0000
+S _simon_says_intro_deff Ref0000
+S _simon_says_wrong_deff Ref0000
+S _fortress_super_jackpot_deff Ref0000
+S _fortress_start_effect_deff Ref0000
+S _ballsearch_deff Ref0000
+S _acmag_start_effect_deff Ref0000
+S _capture_simon_start_effect_deff Ref0000
+S _tilt_warning_deff Ref0000
+S _carcrash_effect_deff Ref0000
+S _top_popper_effect_deff Ref0000
+S _bitf_hit_effect_deff Ref0000
+S _eject_effect_deff Ref0000
+S _simon_says_indy_deff Ref0000
+S _prison_break_start_effect_deff Ref0000
+S _shooter_end_deff Ref0000
+S _wasteland_jackpot_effect_deff Ref0000
+S _enter_initials_deff Ref0000
+S _simon_says_end_deff Ref0000
+S _capture_simon_end_effect_deff Ref0000
+S _clw_inlanes_effect_deff Ref0000
+S _wasteland_super_jackpot_deff Ref0000
+S _wasteland_start_effect_deff Ref0000
+S _combo_effect_deff Ref0000
+S _nonfatal_error_deff Ref0000
+S _computer_award_deff Ref0000
+S _skillshot_deff Ref0000
+S _volume_change_deff Ref0000
+S _jets_completed_effect_deff Ref0000
+S _score_goal_deff Ref0000
+S _startup_effect_deff Ref0000
+S _status_report_deff Ref0000
+S _demotime_effect_deff Ref0000
+S _explode_hit_effect_deff Ref0000
+S _cryoprison_effect_deff Ref0000
+S _car_chase_effect_deff Ref0000
+S _dm_game_over_deff Ref0000
+S _bonus_deff Ref0000
+S _system_reset_deff Ref0000
+S _museum_effect_deff Ref0000
+S _acmag_hit_effect_deff Ref0000
+S _capture_simon_hit_effect_deff Ref0000
+S _standupfrenzy_effect_deff Ref0000
+S _ball_save_deff Ref0000
+S _eyeball_effect_deff Ref0000
+S _extra_ball_effect_deff Ref0000
+S _coin_door_buttons_deff Ref0000
+S _huxley_effect_deff Ref0000
+S _demotime_info_effect_deff Ref0000
+S _demotime_jackpot_effect_deff Ref0000
+S _qf_inlanes_effect_deff Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 22B flags D00
+S _deff_table Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 00 00 00 00 FF 01 02 00 00 38 01 07
+R 00 00 00 02 81 04 00 17 81 09 00 2F
+T 00 0C 00 00 39 20 3B 00 00 39 02 3A
+R 00 00 00 02 81 02 00 3D 81 07 00 35
+T 00 16 00 00 39 00 09 00 00 39 00 41
+R 00 00 00 02 81 02 00 5A 81 07 00 02
+T 00 20 00 00 39 01 49 00 00 39 08 40
+R 00 00 00 02 81 02 00 45 81 07 00 1D
+T 00 2A 00 00 39 01 4F 00 00 39 01 42
+R 00 00 00 02 81 02 00 58 81 07 00 2D
+T 00 34 00 00 38 00 50 00 00 39 01 4B
+R 00 00 00 02 81 02 00 5C 81 07 00 55
+T 00 3E 00 00 38 01 4B 00 00 38 00 3F
+R 00 00 00 02 81 02 00 37 81 07 00 2C
+T 00 48 00 00 39 00 42 00 00 39 00 51
+R 00 00 00 02 81 02 00 20 81 07 00 01
+T 00 52 00 00 38 00 2A 00 00 39 00 3A
+R 00 00 00 02 81 02 00 63 81 07 00 6B
+T 00 5C 00 00 39 00 2A 00 00 39 00 24
+R 00 00 00 02 81 02 00 28 81 07 00 2A
+T 00 66 00 00 39 01 3B 00 00 39 01 3B
+R 00 00 00 02 81 02 00 68 81 07 00 34
+T 00 70 00 00 39 00 24 00 00 38 00 4B
+R 00 00 00 02 81 02 00 61 81 07 00 42
+T 00 7A 00 00 38 03 0D 00 00 FF 03 0D
+R 00 00 00 02 81 02 00 4E 81 07 00 51
+T 00 84 00 00 FF 20 0B 00 00 FF 00 3E
+R 00 00 00 02 81 02 00 6F 81 07 00 54
+T 00 8E 00 00 FF 20 0E 00 00 3B 00 0F
+R 00 00 00 02 81 02 00 57 81 07 00 0E
+T 00 98 00 00 3B 20 0E 00 00 3B 01 0F
+R 00 00 00 02 81 02 00 33 81 07 00 21
+T 00 A2 00 00 3B 00 15 00 00 3B 01 14
+R 00 00 00 02 81 02 00 59 81 07 00 12
+T 00 AC 00 00 3B 00 0D 00 00 3B 00 15
+R 00 00 00 02 81 02 00 67 81 07 00 31
+T 00 B6 00 00 37 01 12 00 00 37 20 1B
+R 00 00 00 02 81 02 00 2E 81 07 00 1C
+T 00 C0 00 00 37 00 15 00 00 37 01 12
+R 00 00 00 02 81 02 00 5E 81 07 00 0B
+T 00 CA 00 00 37 20 1B 00 00 37 00 0F
+R 00 00 00 02 81 02 00 60 81 07 00 2B
+T 00 D4 00 00 37 00 0E 00 00 37 00 20
+R 00 00 00 02 81 02 00 46 81 07 00 16
+T 00 DE 00 00 37 01 16 00 00 37 01 43
+R 00 00 00 02 81 02 00 56 81 07 00 06
+T 00 E8 00 00 37 00 16 00 00 36 01 13
+R 00 00 00 02 81 02 00 62 81 07 00 44
+T 00 F2 00 00 36 20 17 00 00 36 01 16
+R 00 00 00 02 81 02 00 27 81 07 00 66
+T 00 FC 00 00 36 00 21 00 00 36 00 14
+R 00 00 00 02 81 02 00 50 81 07 00 36
+T 01 06 00 00 36 01 13 00 00 36 20 1B
+R 00 00 00 02 81 02 00 4B 81 07 00 30
+T 01 10 00 00 36 01 28 00 00 36 21 2A
+R 00 00 00 02 81 02 00 04 81 07 00 41
+T 01 1A 00 00 36 00 27 00 00 36 21 2B
+R 00 00 00 02 81 02 00 3C 81 07 00 24
+T 01 24 00 00 36 01 28 00 00 36 21 2A
+R 00 00 00 02 81 02 00 40 81 07 00 53
+T 01 2E 00 00 36 00 27 00 00 36 21 2B
+R 00 00 00 02 81 02 00 4D 81 07 00 3B
+T 01 38 00 00 36 00 16 00 00 36 01 13
+R 00 00 00 02 81 02 00 52 81 07 00 43
+T 01 42 00 00 36 20 1B 00 00 36 01 13
+R 00 00 00 02 81 02 00 26 81 07 00 65
+T 01 4C 00 00 36 01 12 00 00 36 01 1C
+R 00 00 00 02 81 02 00 0D 81 07 00 0A
+T 01 56 00 00 36 00 0E 00 00 35 21 45
+R 00 00 00 02 81 02 00 6A 81 07 00 49
+T 01 60 00 00 35 01 47 00 00 35 01 45
+R 00 00 00 02 81 02 00 15 81 07 00 05
+T 01 6A 00 00 35 01 45 00 00 35 21 45
+R 00 00 00 02 81 02 00 23 81 07 00 3A
+T 01 74 00 00 35 01 47 00 00 35 01 45
+R 00 00 00 02 81 02 00 22 81 07 00 19
+T 01 7E 00 00 35 01 45 00 00 35 21 45
+R 00 00 00 02 81 02 00 39 81 07 00 4C
+T 01 88 00 00 35 01 46 00 00 35 01 48
+R 00 00 00 02 81 02 00 25 81 07 00 3E
+T 01 92 00 00 35 01 47 00 00 35 01 47
+R 00 00 00 02 81 02 00 1F 81 07 00 14
+T 01 9C 00 00 35 01 47 00 00 35 01 47
+R 00 00 00 02 81 02 00 3F 81 07 00 1B
+T 01 A6 00 00 35 01 46 00 00 35 01 48
+R 00 00 00 02 81 02 00 18 81 07 00 4A
+T 01 B0 00 00 35 00 0E 00 00 35 01 0B
+R 00 00 00 02 81 02 00 4F 81 07 00 47
+T 01 BA 00 00 35 01 3C 00 00 35 01 28
+R 00 00 00 02 81 02 00 69 81 07 00 5B
+T 01 C4 00 00 34 21 2A 00 00 34 00 27
+R 00 00 00 02 81 02 00 10 81 07 00 0C
+T 01 CE 00 00 34 21 2B 00 00 34 01 28
+R 00 00 00 02 81 02 00 64 81 07 00 0F
+T 01 D8 00 00 34 21 2A 00 00 34 00 27
+R 00 00 00 02 81 02 00 09 81 07 00 03
+T 01 E2 00 00 34 21 2B 00 00 34 01 2D
+R 00 00 00 02 81 02 00 5F 81 07 00 08
+T 01 EC 00 00 34 20 30 00 00 34 01 0E
+R 00 00 00 02 81 02 00 00 81 07 00 6E
+T 01 F6 00 00 34 00 2C 00 00 34 21 0E
+R 00 00 00 02 81 02 00 6D 81 07 00 5D
+T 02 00 00 00 34 00 2D 00 00 34 01 2C
+R 00 00 00 02 81 02 00 11 81 07 00 13
+T 02 0A 00 00 34 20 30 00 00 34 01 2D
+R 00 00 00 02 81 02 00 6C 81 07 00 38
+T 02 14 00 00 34 20 30 00 00 34 01 0E
+R 00 00 00 02 81 02 00 1E 81 07 00 48
+T 02 1E 00 00 34 00 2C 00 00 34 01 2D
+R 00 00 00 02 81 02 00 1A 81 07 00 07
+T 02 28 00 00 34
+R 00 00 00 02 81 02 00 29

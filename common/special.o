@@ -1,0 +1,39 @@
+XH2
+H 3 areas A global symbols 2 banks 1 modes
+M special.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _knocker_fire Ref0000
+S _increment_extra_balls Ref0000
+S _system_config Ref0000
+S _audit_increment Ref0000
+S .__.ABS. Def0000
+S _add_credit Ref0000
+S _system_audits Ref0000
+S __far_call_handler Ref0000
+S _callset_special_award Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size 2A flags D00
+S _special_award Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 BD 00 00 00 00 3B F6
+R 00 00 00 02 81 03 00 07 81 05 00 08
+T 00 07 00 0F C1 01 27 18 C1 02 26 06 BD 00 00
+R 00 00 00 02 81 02 00 02 81 0D 00 07
+T 00 14 00 00 39
+R 00 00 00 02 81 02 00 01
+T 00 17
+R 00 00 00 02
+T 00 17 7D 00 36 26 03 BD 00 00
+R 00 00 00 02 81 03 00 02 81 08 00 00
+T 00 1F
+R 00 00 00 02
+T 00 1F 8E 00 14 7E 00 00
+R 00 00 00 02 81 03 00 06 81 06 00 03
+T 00 25
+R 00 00 00 02
+T 00 25 BD 00 00 20 ED
+R 00 00 00 02 81 03 00 05

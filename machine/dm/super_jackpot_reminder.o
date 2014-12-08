@@ -1,0 +1,70 @@
+XH2
+H 4 areas 12 global symbols 2 banks 1 modes
+M super_jackpot_reminder.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _lamp_on Ref0000
+S _sound_start1 Ref0000
+S _lamp_flash_off Ref0000
+S _task_sleep_sec1 Ref0000
+S _sound_start_duration Ref0000
+S .__.ABS. Def0000
+S _lamp_off Ref0000
+S _task_create_gid1 Ref0000
+S _sound_start_prio Ref0000
+S __far_call_handler Ref0000
+S _task_kill_gid Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page54 size 66 flags D00
+S _start_super_jackpot_reminder Def0028
+S _get_is_super_jackpot_lit Def0000
+S _super_jackpot_reminder_end_ball Def0004
+S _super_jackpot_reminder_task Def003F
+S _end_super_jackpot_reminder Def0016
+A ram size 2 flags C00
+S _super_jackpot_reminder_SoundCounter Def0000
+S _is_super_jackpot_lit Def0001
+T 00 00
+R 00 00 00 02
+T 00 00 F6 00 01 39
+R 00 00 00 02 01 03 00 03
+T 00 04
+R 00 00 00 02
+T 00 04 7F 00 01 C6 30 BD 00 00 C6 30 BD
+R 00 00 00 02 01 03 00 03 81 08 00 02
+T 00 0F 00 00 C6 68 7E 00 00
+R 00 00 00 02 81 02 00 06 81 07 00 0A
+T 00 16
+R 00 00 00 02
+T 00 16 7F 00 01 C6 30 BD 00 00 C6 30 BD
+R 00 00 00 02 01 03 00 03 81 08 00 02
+T 00 21 00 00 C6 68 7E 00 00
+R 00 00 00 02 81 02 00 06 81 07 00 0A
+T 00 28
+R 00 00 00 02
+T 00 28 C6 01 F7 00 01 C6 30 BD 00 00 C6 30 BD
+R 00 00 00 02 01 05 00 03 81 0A 00 02
+T 00 35 00 00 8E 00 3F C6 68 7E
+R 00 00 00 02 81 02 00 00 01 05 00 02
+T 00 3D 00 00
+R 00 00 00 02 81 02 00 07
+T 00 3F
+R 00 00 00 02
+T 00 3F 32 7F
+R 00 00 00 02
+T 00 41
+R 00 00 00 02
+T 00 41 F6 00 00 E7 E4 5C F7 00 00 C6 28 F7
+R 00 00 00 02 01 03 00 03 01 09 00 03
+T 00 4D 00 00 C6 1D F7 00 00 8E 02 D6 C6 02 BD
+R 00 00 00 02 81 02 00 04 81 07 00 08
+T 00 5A 00 00 00 00 39 C6 0F BD
+R 00 00 00 02 81 02 00 09 81 04 00 01
+T 00 62 00 00 20 DB
+R 00 00 00 02 81 02 00 03
+T 00 00
+R 00 00 00 03
+T 00 01
+R 00 00 00 03

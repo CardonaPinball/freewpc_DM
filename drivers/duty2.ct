@@ -1,0 +1,151 @@
+/*
+ * Copyright 2008, 2009, 2010, 2011 by Brian Dominy <brian@oddchange.com>
+ *
+ * This file is part of FreeWPC.
+ *
+ * FreeWPC is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * FreeWPC is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with FreeWPC; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+/*
+ * Generic duty cycle driver - version 2
+ */
+
+@@class duty
+
+/* The solenoid that is being controlled */
+@@parameter sol
+
+/* The length of time that the solenoid remains on when it is started.
+   The on-time can include two phases: a full power pulse, and a
+	duty-cycling period.  The timeout is given in the machine config
+	in 16ms units, i.e. one of the TIME_xxx defines.   Timeout may be
+	given as zero, in which case the solenoid will remain on indefinitely
+	once started. */
+@@parameter timeout
+
+/* The length of the full power pulse.  It is also given as a TIME_xxx
+   define and it cannot be zero. */
+@@parameter ontime
+
+/* A mask that specifies how to duty cycle the coil during the remainder
+   of the on-time.  Use one of the DUTY_MASK_xxx defines for this. */
+@@parameter duty_mask
+
+
+@@
+@@file @self.sched
+@@
+!@self_service 4 20c
+
+
+@@
+@@file @self.h
+@@
+
+#include <freewpc.h>
+
+extern __fastram__ U16 @self_timer;
+
+#undef DUTY_FREQ
+#define DUTY_FREQ 4
+#undef TIME_SCALE
+#define TIME_SCALE (16 / DUTY_FREQ)
+
+#define @self_START_TIME        (@timeout * TIME_SCALE)
+#define @self_DUTY_START_TIME   ((@timeout - @ontime) * TIME_SCALE)
+
+#define DUTY_MASK_50   0x1
+#define DUTY_MASK_25   0x3
+#define DUTY_MASK_12   0x7
+#define DUTY_MASK_6    0xF
+
+void @self_start (void);
+void @self_stop (void);
+
+
+/**
+ * Realtime update of a duty-cycled device.
+ */
+/* RTT(name=@self_service freq=4) */
+extern inline void @self_service (void)
+{
+	if (unlikely (@self_timer > 0))
+	{
+		@self_timer--;
+		if (@timeout > 0 && @self_timer == 0)
+		{
+			sol_disable (@sol);
+		}
+		else if (@self_timer <= @self_DUTY_START_TIME)
+		{
+			if (unlikely (((U8)@self_timer & @duty_mask) == 0))
+			{
+				sol_enable (@sol);
+			}
+			else
+			{
+				sol_disable (@sol);
+			}
+		}
+	}
+}
+
+@@
+@@file @self.c
+@@
+
+#include <freewpc.h>
+#include "@self.h"
+
+/** The number of cycles for which the solenoid is kept on. */
+__fastram__ U16 @self_timer;
+
+
+/**
+ * The user API to start a duty-cycled solenoid.
+ */
+void @self_start (void)
+{
+	disable_interrupts ();
+	@self_timer = @self_START_TIME;
+	sol_enable (@sol);
+	enable_interrupts ();
+}
+
+
+/**
+ * The user API to stop a duty-cycled solenoid.
+ */
+void @self_stop (void)
+{
+	disable_interrupts ();
+	@self_timer = 0;
+	sol_disable (@sol);
+	enable_interrupts ();
+}
+
+
+CALLSET_ENTRY (@self, init)
+{
+	@self_timer = 0;
+}
+
+
+CALLSET_ENTRY (@self, tilt, stop_game)
+{
+	@self_stop ();
+}
+
+/* vim: set filetype=c: */

@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# alphadiff - compare assembly output from two different compiler versions
+
+ver1=4.3.4
+ver2=4.4.1
+
+recompile ()
+{
+	make clean
+	mkdir -p asm-$1
+	rm -f asm-$1/*.s
+	make GCC_VERSION=$1 SAVE_ASM=y
+	mv *.s asm-$1
+}
+
+while [ "$1" != "" ]; do
+	arg=$1; shift
+	case $arg in
+		-c)
+			recompile $ver1
+			recompile $ver2
+			;;
+		*)
+			ver1=$arg
+			ver2=$1; shift
+			;;
+	esac
+done
+
+
+cd asm-$ver1 && ../tools/alphaglob *.s > tmp-$ver1
+cd ..
+cd asm-$ver2 && ../tools/alphaglob *.s > tmp-$ver2
+cd ..
+diff -w asm-$ver1/tmp-$ver1 asm-$ver2/tmp-$ver2 > DIFFS.$ver1-$ver2
+rm -f tmp-$ver1 tmp-$ver2

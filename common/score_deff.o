@@ -1,0 +1,119 @@
+XH2
+H 3 areas 1E global symbols 2 banks 1 modes
+M score_deff.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _callset_score_deff_start Ref0000
+S _valid_playfield Ref0000
+S _task_sleep Ref0000
+S _deff_exit Ref0000
+S _num_players Ref0000
+S _ll_score_strobe_valid Ref0000
+S _dmd_alloc_low_clean Ref0000
+S _ll_scores_draw_current Ref0000
+S _fontargs_render_string_right Ref0000
+S _ll_score_redraw Ref0000
+S .__.ABS. Def0000
+S _sprintf_score Ref0000
+S _score_update_needed Ref0000
+S _font_args Ref0000
+S _dmd_show_low Ref0000
+S _credits_render Ref0000
+S _ll_score_strobe_novalid Ref0000
+S _scores Ref0000
+S _in_game Ref0000
+S __far_call_handler Ref0000
+S _font_var5 Ref0000
+S _ll_score_draw_ball Ref0000
+S _ball_up Ref0000
+S _sprintf_buffer Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page57 size A4 flags D00
+S _scores_draw_credits Def0063
+S _scores_draw_status_bar Def0076
+S _scores_draw_current Def0020
+S _scores_important_deff Def0093
+S _scores_deff Def0000
+S _scores_draw Def007A
+T 00 00
+R 00 00 00 02
+T 00 00 BD 00 00 00 00 3B
+R 00 00 00 02 81 03 00 13 81 05 00 00
+T 00 06
+R 00 00 00 02
+T 00 06 7F 00 00 BD 00 00 20 08
+R 00 00 00 02 81 03 00 0C 81 06 00 09
+T 00 0E
+R 00 00 00 02
+T 00 0E BD 00 00
+R 00 00 00 02 81 03 00 05
+T 00 11
+R 00 00 00 02
+T 00 11 7D 00 00 26 F0
+R 00 00 00 02 81 03 00 0C
+T 00 16
+R 00 00 00 02
+T 00 16 7D 00 00 26 F3 BD 00 00 20 F1
+R 00 00 00 02 81 03 00 01 81 08 00 10
+T 00 20
+R 00 00 00 02
+T 00 20 34 40 32 7B E7 63 7D 00 00 27 34 6F 64
+R 00 00 00 02 81 09 00 04
+T 00 2D 20 25
+R 00 00 00 02
+T 00 2F
+R 00 00 00 02
+T 00 2F E6 64 5C E7 62 E1 63 27 15
+R 00 00 00 02
+T 00 38
+R 00 00 00 02
+T 00 38 E6 64 86 05 3D 1F 03 30 C9 00 00 BD
+R 00 00 00 02 81 0B 00 11
+T 00 44 00 00 E6 64 BD 00 00 E6 62
+R 00 00 00 02 81 02 00 0B 81 07 00 07
+T 00 4D
+R 00 00 00 02
+T 00 4D E7 64 F1 00 00 24 0B
+R 00 00 00 02 81 05 00 04
+T 00 54
+R 00 00 00 02
+T 00 54 6D 63 26 D7 E6 64 5C E7 62 20 D9
+R 00 00 00 02
+T 00 5F
+R 00 00 00 02
+T 00 5F 32 65 35 C0
+R 00 00 00 02
+T 00 63
+R 00 00 00 02
+T 00 63 BD 00 00 8E 00 00 9F
+R 00 00 00 02 81 03 00 0F 81 06 00 14
+T 00 6A 00 00 8E 80 1A 9F 00 02 8E
+R 00 00 00 02 A0 02 00 0D A0 08 00 0D
+T 00 71 00 00 7E 00 00
+R 00 00 00 02 81 02 00 17 81 05 00 08
+T 00 76
+R 00 00 00 02
+T 00 76 BD 00 00 39
+R 00 00 00 02 81 03 00 15
+T 00 7A
+R 00 00 00 02
+T 00 7A 0D 00 00 27 05 7D 00 00 26 08
+R 00 00 00 02 A0 03 00 12 81 08 00 16
+T 00 83
+R 00 00 00 02
+T 00 83 BD 00 63 5F BD 00 20 39
+R 00 00 00 02 01 03 00 02 01 07 00 02
+T 00 8B
+R 00 00 00 02
+T 00 8B BD 00 00 5F BD 00 20 39
+R 00 00 00 02 81 03 00 15 01 07 00 02
+T 00 93
+R 00 00 00 02
+T 00 93 BD 00 00 BD 00 7A BD
+R 00 00 00 02 81 03 00 06 01 06 00 02
+T 00 9A 00 00 C6 78 BD 00 00 7E
+R 00 00 00 02 81 02 00 0E 81 07 00 02
+T 00 A2 00 00
+R 00 00 00 02 81 02 00 03

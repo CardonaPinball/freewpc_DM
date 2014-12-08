@@ -1,0 +1,40 @@
+XH2
+H 5 areas 5 global symbols 2 banks 1 modes
+M init_wpc.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 46 flags D00
+S _platform_init Def0000
+S _wpc_machine_type Def0045
+A ram size 1 flags C00
+S _wpc_led_reg Def0000
+A direct size 1 flags D00
+S _wpc_rom_bank Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 34 20 7F 3F DD 7F 3F F3 C6 3F F7 00 00
+R 00 00 00 02
+T 00 0D 8E 00 01 E7 84 10 8E 3F FD C6 B4 E7 A4
+R 00 00 00 02
+T 00 1A 1F 10 F7 3F FE 6F A4 7F 00 00 C6 3B D7
+R 00 00 00 02 01 0A 00 03
+T 00 27 00 00 F7 3F FC 7F 3F E1 7F 3F E3 7F
+R 00 00 00 02 20 02 00 04
+T 00 32 3F E0 7F 3F E2 7F 3F E4 7F 3F E5 7F
+R 00 00 00 02
+T 00 3E 3F E6 7F 3F F8 35 A0
+R 00 00 00 02
+T 00 45
+R 00 00 00 02
+T 00 45 07
+R 00 00 00 02
+T 00 00
+R 00 00 00 03
+T 00 00
+R 00 00 00 04
+T 00 00 00
+R 00 00 00 04

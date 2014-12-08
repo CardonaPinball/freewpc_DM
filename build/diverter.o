@@ -1,0 +1,38 @@
+XH2
+H 4 areas 6 global symbols 2 banks 1 modes
+M diverter.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 26 flags D00
+S _diverter_start Def0000
+S _diverter_init Def0018
+S _diverter_tilt Def001B
+S _diverter_stop Def000D
+A direct size 1 flags D00
+S _diverter_timer Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 1A 10 1A 40 C6 02 D7 00 00 1C EF 1C BF
+R 00 00 00 02 20 09 00 03
+T 00 0C 39
+R 00 00 00 02
+T 00 0D
+R 00 00 00 02
+T 00 0D 1A 10 1A 40 0F 00 00 1C EF 1C BF 39
+R 00 00 00 02 20 07 00 03
+T 00 18
+R 00 00 00 02
+T 00 18 0F 00 00 39
+R 00 00 00 02 20 03 00 03
+T 00 1B
+R 00 00 00 02
+T 00 1B 1A 10 1A 40 0F 00 00 1C EF 1C BF 39
+R 00 00 00 02 20 07 00 03
+T 00 00
+R 00 00 00 03
+T 00 00 00
+R 00 00 00 03

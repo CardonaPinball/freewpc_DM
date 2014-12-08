@@ -1,0 +1,73 @@
+XH2
+H 4 areas 9 global symbols 2 banks 1 modes
+M freetimer.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+S _memset Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 65 flags D00
+S ___free_timer_start Def0032
+S _free_timer_init Def0056
+S ___free_timer_test Def004D
+S ___free_timer_restart Def0027
+S ___free_timer_stop Def0045
+S _free_timer_rtt Def0000
+A ram size 20 flags C00
+S _free_timers Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 8E 00 00
+R 00 00 00 02 01 03 00 03
+T 00 03
+R 00 00 00 02
+T 00 03 E6 84 27 03 5A E7 84
+R 00 00 00 02
+T 00 0A
+R 00 00 00 02
+T 00 0A E6 01 27 03 5A E7 01
+R 00 00 00 02
+T 00 11
+R 00 00 00 02
+T 00 11 E6 02 27 03 5A E7 02
+R 00 00 00 02
+T 00 18
+R 00 00 00 02
+T 00 18 E6 03 27 03 5A E7 03
+R 00 00 00 02
+T 00 1F
+R 00 00 00 02
+T 00 1F 30 04 8C 00 20 26 DD 39
+R 00 00 00 02 01 05 00 03
+T 00 27
+R 00 00 00 02
+T 00 27 4F 1F 01 E6 62 54 E7 89 00 00 39
+R 00 00 00 02 01 0A 00 03
+T 00 32
+R 00 00 00 02
+T 00 32 34 40 4F CE 00 00 30 CB 6D 84 26 05 E6
+R 00 00 00 02 01 06 00 03
+T 00 3F 64 54 E7 84
+R 00 00 00 02
+T 00 43
+R 00 00 00 02
+T 00 43 35 C0
+R 00 00 00 02
+T 00 45
+R 00 00 00 02
+T 00 45 4F 1F 01 6F 89 00 00 39
+R 00 00 00 02 01 07 00 03
+T 00 4D
+R 00 00 00 02
+T 00 4D 4F 1F 01 E6 89 00 00 54 39
+R 00 00 00 02 01 07 00 03
+T 00 56
+R 00 00 00 02
+T 00 56 CC 00 20 ED E3 5F 8E 00 00 BD 00 00 32
+R 00 00 00 02 01 09 00 03 81 0C 00 01
+T 00 63 62 39
+R 00 00 00 02
+T 00 00
+R 00 00 00 03

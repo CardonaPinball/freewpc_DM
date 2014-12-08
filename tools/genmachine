@@ -1,0 +1,1647 @@
+#!/usr/bin/perl
+#
+# Copyright 2006-2011 by Brian Dominy <brian@oddchange.com>
+#
+# This file is part of FreeWPC.
+#
+# FreeWPC is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# FreeWPC is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with FreeWPC; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+#
+# ------------------------------------------------------------------
+# genmachine - autogenerate declarations from machine description
+# ------------------------------------------------------------------
+# Syntax: genmachine <mdfile> <command>
+# where command can be:
+#    config - generate .h of all machine declarations/defines
+#    switchmasks - generate opto/edge trigger bitarrays
+#    strings - generate tables of strings of items
+#    dump - generate Perl hash structure of the database
+# All output is sent to stdout.
+
+use Data::Dumper;
+
+@EXPORT = qw (m);
+
+############### Global Variables ####################
+
+# m is a handle to the global database.  It is divided into categories,
+# or contexts, each of which is itself a hash table.  The context names
+# correspond to the section dividers in the machine description file.
+our $m = {};
+
+# The name of the current context
+my $contextName = "";
+
+# mc is the context handle, which points to the part of the database
+# for the current context
+my $mc = $m;
+
+# When autogenerating object IDs, $autoid is the next ID to be given out.
+my $autoid;
+
+
+################## Constants #######################
+
+my $GLOBAL_OBJECT = 2;
+
+# A table of regular expressions that says how object IDs are formatted
+# per context.
+my %contextDefinitionRe = (
+	"" => ".*",
+	"switches" => "[1-8FD][1-8]",
+	"lamps" => "[1-8][1-8]",
+	"drives" => "[HLGAFX][1-8]",
+	"gi" => "[0-9]+",
+	"lamplists" => "AUTO",
+	"containers" => "AUTO",
+	"tests" => "AUTO",
+	"deffs" => "AUTO",
+	"leffs" => "AUTO",
+	"adjustments" => "AUTO",
+	"audits" => "AUTO",
+	"system_sounds" => "AUTO",
+	"system_music" => "AUTO",
+	"highscores" => "GC|1|2|3|4",
+	"flags" => "AUTO",
+	"globalflags" => "AUTO",
+	"scores" => "AUTO",
+	"fonts" => "AUTO",
+	"timers" => "AUTO",
+	"templates" => "AUTO",
+);
+
+# A table of binary properties per context.  During any object declaration,
+# if one of these names is seen in the property list, then a named element
+# of the object declaration is created.  For example, if $sw is a handle
+# to a new switch object, then specifying "button" would set
+# $sw->{"button"}.  The table gives the value assigned, but usually it is
+# irrelevant what the actual value is.
+#
+# For properties marked $GLOBAL_OBJECT, there is assumed to be only one
+# object of this type in the system.  An element of the global database
+# ($m) is set as a shortcut to the object based on the property name.
+# For example, $m->{"*switches:outhole"} is a quick way of getting to the
+# (single) outhole switch object.
+# TODO : Global objects should be named consistently in the code, even if the
+# textual description is different.
+my %BinaryProperties = (
+	"switches" => { 
+		"opto" => 1, 
+		"edge" => 1,
+		"noplay" => 1,
+		"novalid" => 1,
+		"ingame" => 1,
+		"intest" => 1,
+		"button" => 1,
+		"service" => 1,
+		"cabinet" => 1,
+		"device" => 1, 
+		"virtual" => 1,
+		"standup" => 1,
+		"noscore" => 1,
+		"outhole" => $GLOBAL_OBJECT,
+		"shooter" => $GLOBAL_OBJECT,
+		"tilt" => $GLOBAL_OBJECT,
+		"slam-tilt" => $GLOBAL_OBJECT,
+		"buyin-button" => $GLOBAL_OBJECT,
+		"launch-button" => $GLOBAL_OBJECT,
+		"start-button" => $GLOBAL_OBJECT,
+		"trough-stack" => $GLOBAL_OBJECT,
+	},
+	"lamps" => {
+		"start" => $GLOBAL_OBJECT,
+		"buyin" => $GLOBAL_OBJECT,
+		"extra-ball" => $GLOBAL_OBJECT,
+		"shoot-again" => $GLOBAL_OBJECT,
+		"ball-save" => $GLOBAL_OBJECT,
+		"launch" => $GLOBAL_OBJECT,
+		"cabinet" => 1,
+	},
+	"drives" => {
+		"ballserve" => $GLOBAL_OBJECT,
+		"knocker" => $GLOBAL_OBJECT,
+		"launch" => $GLOBAL_OBJECT,
+		"motor" => 1,
+		"magnet" => 1,
+		"popper" => 1,
+		"upkick" => 1,
+		"eject" => 1,
+		"flash" => 1,
+		"flipper" => 1,
+		"nosearch" => 1,
+		"notinstalled" => 1,
+	},
+	"containers" => {
+		"trough" => $GLOBAL_OBJECT,
+	},
+	"deffs" => {
+		"amode" => $GLOBAL_OBJECT,
+		"runner" => 1, # TODO : synonymous for queue
+		"queue" => 1,
+		"timeout" => 1,
+		"abortable" => 1,
+	},
+	"leffs" => {
+		"amode" => $GLOBAL_OBJECT,
+		"runner" => 1,
+		"shared" => 1,
+	},
+	"lamplists" => {
+		"set" => 1,
+	},
+);
+
+# A table of enumerated properties per context.  Similar to binary
+# properties, but the property name is given here in the table and the
+# value is the name specified in the property list itself.  For example,
+# a lamp declared "yellow" would set $lamp->{"color"} = "yellow".
+my %EnumeratedProperties = (
+	"lamps" => {
+		"color" => {
+			"amber" => 1,
+			"white" => 1,
+			"red" => 1, 
+			"orange" => 1, 
+			"yellow" => 1,
+			"green" => 1,
+			"blue" => 1,
+			"purple" => 1,
+		},
+	},
+	"adjustments" => {
+		"type" => {
+			"integer" => 1,
+			"yes_no" => 1,
+			"on_off" => 1,
+			"score" => 1,
+			"percent" => 1,
+			"credit_count" => 1,
+		},
+	},
+	"audits" => {
+		"type" => {
+			"integer" => 1,
+		},
+	},
+);
+
+# When outputting defines for object IDs, specifies the prefix to use per
+# context.  For example, a switch "Example" is given an object ID named
+# SW_EXAMPLE.
+my %ContextPrefixes = (
+	"switches" => "SW",
+	"lamps" => "LM",
+	"lamplists" => "LAMPLIST",
+	"drives" => "SOL",
+	"gi" => "GI",
+	"containers" => "DEVNO",
+	"flags" => "FLAG",
+	"globalflags" => "GLOBAL_FLAG",
+	"scores" => "SC",
+	"adjustments" => "FAD",
+	"audits" => "FAU",
+	"deffs" => "DEFF",
+	"leffs" => "LEFF",
+	"fonts" => "FON",
+	"timers" => "TIM",
+);
+
+# Optionally, a name for the define to use for the maximum number of
+# elements in a particular object set.
+my %ContextMaxima = (
+	"containers" => "NUM_DEVICES",
+	"flags" => "MAX_FLAGS",
+	"globalflags" => "MAX_GLOBAL_FLAGS",
+	"adjustments" => "NUM_FEATURE_ADJUSTMENTS",
+	"audits" => "NUM_FEATURE_AUDITS",
+	"deffs" => "MAX_DEFFS",
+	"leffs" => "MAX_LEFFS",
+	"drives" => "NUM_POWER_DRIVES",
+	"lamplists" => "MAX_LAMPLIST",
+	"scores" => "NUM_SCORES",
+	"fonts" => "MAX_FONTS",
+	"timers" => "MAX_TIMERS",
+);
+
+# Likewise for predefined objects where the define does not need to
+# be emitted, but is already defined by the common header files.
+my %FixedMaxima = (
+	"switches" => "NUM_SWITCHES",
+	"lamps", "PINIO_NUM_LAMPS",
+	"drives" => "PINIO_NUM_SOLS",
+);
+
+# The contexts for which strings should be written out.
+@stringcontexts = ("switches", "drives", "lamps", "containers", 
+	"deffs", "leffs", "lamplists", "gi", "fonts");
+
+
+# The contexts which are emitted as ordinary variable declarations.
+my %VarDecl = (
+	"flags" => "flag_t",
+	"globalflags" => "global_flag_t",
+	"timers" => "free_timer_id_t",
+);
+
+###################################################################
+
+#
+# unique <context>
+#
+# Returns a sorted set of all of the elements within a particular
+# context, with no duplicates.
+#
+sub unique {
+	my ($category) = @_;
+	my @result;
+	my $integer = 1;
+	foreach $defname (keys %$category) {
+		my $def = $category->{$defname};
+		next if ($defname ne $def->{'ID'});
+		push @result, $def;
+		$integer = 0 if (!($def->{'number'} =~ m/^[0-9]/));
+	}
+	if ($integer) {
+		@result = sort { $a->{'number'} <=> $b->{'number'} } @result;
+	} else {
+		@result = sort { $a->{'ID'} cmp $b->{'ID'} } @result;
+	}
+	return @result;
+}
+
+sub add_flag {
+	my ($def, $property_name, $flag_field_name, $flag_name) = @_;
+	if (defined $def->{$property_name}) {
+		if (defined ($def->{$flag_field_name})) {
+			$def->{$flag_field_name} .= " | $flag_name";
+		} else {
+			$def->{$flag_field_name} = $flag_name;
+		}
+	}
+}
+
+
+#
+# check_define_global <context>, <object_reference>
+#
+# Checks to see if an object satisfies any of the GLOBAL_OBJECTs for its
+# type.  If so, marks the top-level database with a shortcut.
+#
+sub check_define_global {
+	my ($context, $def) = @_;
+	my $props = $BinaryProperties{$context};
+
+	foreach $propname (keys %$props) {
+		if ($props->{$propname} == $GLOBAL_OBJECT) {
+			if (defined $def->{$propname}) {
+				$m->{"*${context}:${propname}"} = $def;
+			}
+		}
+	}
+}
+
+sub close_switch_or_lamp {
+	my ($def) = @_;
+	$def->{'ID'} =~ m/(.)(.*)/;
+	my ($first, $second) = ($1, $2);
+	if ($first eq "D") {
+		$def->{'number'} = $second - 1;
+	}
+	elsif ($first eq "F") {
+		$def->{'number'} = 72 + $second - 1;
+	}
+	elsif ($def->{'c_ident'} =~ /^SW_/) {
+		$def->{'number'} = 8 + ($first - 1) * 8 + $second - 1;
+	}
+	else {
+		$def->{'number'} = ($first - 1) * 8 + $second - 1;
+	}
+}
+
+sub close_switch {
+	my ($def) = @_;
+	close_switch_or_lamp ($def);
+	$def->{'fn'} = "callset_" . $def->{'c_decl'};
+	$def->{'fnpage'} = "EVENT_PAGE";
+	$def->{'button'} = 1 if (defined $def->{'start-button'})
+		|| (defined $def->{'buyin-button'});
+
+	$def->{'debounce'} = "0" if (!defined $def->{'debounce'});
+}
+
+sub close_drive {
+	my ($drive) = @_;
+	if ($drive->{'ID'} =~ m/([HLGAXF])(.)/) {
+		$drive->{'number'} = $2 - 1; # assume 'H'
+		$drive->{'number'} += 8 if ($1 eq "L");
+		$drive->{'number'} += 16 if ($1 eq "G");
+		$drive->{'number'} += 24 if ($1 eq "A");
+		$drive->{'number'} += 32 if ($1 eq "F");
+		$drive->{'number'} += 40 if ($1 eq "X");
+	} else {
+		$drive->{'number'} = $drive->{'ID'};
+	}
+	$drive->{'c_ident'} =~ s/^SOL_/FLASH_/ if (defined $drive->{'flash'});
+	$drive->{'nosearch'} = 1 if (defined $drive->{'motor'});
+}
+
+sub close_container {
+	my ($container) = @_;
+	my ($coilname, @switchnames) = split /,[ \t]*/, $container->{'props'};
+	$container->{'coil'} = ($m->{'drives'})->{$coilname};
+	$container->{'size'} = scalar @switchnames;
+	$container->{'switches'} = \@switchnames;
+	foreach $swname (@switchnames) {
+		my $sw = ($m->{"switches"})->{$swname};
+		$sw->{"container"} = $container;
+		$sw->{"devno"} = "SW_DEVICE_DECL (" . $container->{'c_ident'} . ")";
+	}
+	$container->{'init_max_count'} = 0 if (!defined $container->{'init_max_count'});
+}
+
+sub close_gi {
+	my ($gi) = @_;
+	$gi->{'number'} = "TRIAC_GI_STRING(" .
+		$gi->{'ID'} . ")";
+}
+
+
+sub int_to_long_bcd {
+	my ($val) = @_;
+	my $res = "{ ";
+	my $digits = 10; # TODO
+
+	$place = 1000000 if ($digits == 8);
+	$place = 100000000 if ($digits == 10);
+
+	while (int ($place) > 0) {
+		$res .= "0x" . int ($val / $place) . ", ";
+		$val %= $place;
+		$place /= 100;
+	}
+	$res .= " }";
+	return $res;
+}
+
+
+sub close_score {
+	my ($score) = @_;
+	my $id = $score->{'name'};
+	my $val;
+
+	if ($id =~ /(\d+)K$/) { $val = $1 * 1000; }
+	elsif ($id =~ /(\d+)M$/) { $val = $1 * 1000000; }
+	else { $val = $id + 0; }
+
+	$score->{'value'} = $val;
+}
+
+
+# A table of "closure functions", which are invoked on a new object
+# declaration after the initial parse.  Use functions here to "fixup"
+# any objects that require any special processing.
+my %ContextClosures = (
+	"switches" => \&close_switch,
+	"lamps" => \&close_switch_or_lamp,
+	"drives" => \&close_drive,
+	"containers" => \&close_container,
+	"gi" => \&close_gi,
+	"scores" => \&close_score
+);
+
+
+####################################################################
+#
+# machine_load
+#
+# Load a machine description and parse into the internal format.
+#
+####################################################################
+sub machine_load {
+	my ($file) = @_;
+	my $lineno = 0;
+	local *FH;
+
+	sub warning { print STDERR "$file:$lineno: warning: " . (shift) . "\n"; }
+	sub error { print STDERR "$file:$lineno: error: " . (shift) . "\n"; die; }
+
+	open FH, $file or error ("cannot open $file");
+LINE: 
+	while (<FH>) {
+		$lineno++;
+		# Remove newline character
+		chomp;
+		# Remove leading/trailing spaces and tabs
+		s/^[ \t]//; s/[ \t]$//;
+		# Ignore comments and blank lines
+		next if /^#/; next if /^$/;
+		# Join with following line if necessary
+		while (/[\\,]$/) {
+			my $line = <FH>;
+			s/\\$//;
+			$_ .= $line;
+			chomp;
+			$lineno++;
+		}
+
+		# Check for the include directive
+		if (/^include[ \t]+(.*)/) {
+			machine_load ($1);
+			$mc->{'autoid'} = $autoid if ($contextName ne "");
+			$contextName = "";
+			$mc = $m;
+			$autoid = $mc->{'autoid'};
+			next;
+		}
+
+		# Check for the perlinclude directive
+		if (/^perlinclude[ \t]+(.*)/) {
+			require $1;
+			next;
+		}
+
+
+		# Check for a literal define.  These values are written to the
+		# file build/mach-config.h.
+		if (/^define[ \t]+(.*)/) {
+			if (!defined ($m->{'Extra-Defines'})) {
+				$m->{'Extra-Defines'} = [];
+			}
+			my $arrayref = $m->{'Extra-Defines'};
+			push @$arrayref, $1;
+			next;
+		}
+
+		# Check for a feature enable.  These values are written to the
+		# file build/mach-makefile.
+		if (/^have[ \t]+(.*)/) {
+			if (!defined ($m->{'Make-Features'})) {
+				$m->{'Make-Features'} = [];
+			}
+			my $arrayref = $m->{'Make-Features'};
+			push @$arrayref, $1;
+			next;
+		}
+
+		# Check for a context change
+		if (/^\[(.*)\]$/) {
+			$mc->{'autoid'} = $autoid if ($contextName ne "");
+			$contextName = $1;
+			if (!defined $m->{$contextName}) { 
+				$mc = $m->{$contextName} = {}; 
+				$autoid = 0;
+			} else {
+				$mc = $m->{$contextName};
+				$autoid = $mc->{'autoid'};
+			}
+			next;
+		}
+
+		# Check for a data definition.  The syntax depends on the context.
+		my $re = $contextDefinitionRe{$contextName};
+		if (($re eq "AUTO") || (/^($re):(.*)$/)) {
+			my ($ID, $parms, $name);
+			if ($re eq "AUTO") {
+				/^([^:]+):(.*)$/;
+				($ID, $parms, $name) = ($autoid, $2, $1);
+
+				# If redeclaring, use the ID given before.
+				if (defined $mc->{$name}) {
+					$ID = $mc->{$name}->{'ID'};
+				} else {
+					$autoid++;
+				}
+			}
+			else {
+				($ID, $parms, $name) = ($1, $2, undef);
+			}
+			my $def = $mc->{$ID} = {};
+			$def->{'ID'} = $def->{'number'} = $ID;
+			$mc->{$name} = $def if ((defined $name) && ($name ne $ID));
+			$def->{'name'} = $name;
+
+			# Parse the parameters to the definition
+			my @parmlist = split /,/, $parms;
+			PARM: foreach $parm (@parmlist) {
+				$parm =~ s/^[ \t]//; $parm =~ s/[ \t]$//;
+
+				# The first parm is always the name
+				if (!defined $def->{'name'}) {
+					$mc->{$parm} = $def;
+					$def->{'name'} = $parm;
+					next;
+				}
+
+				# Is it a binary property?
+				my $binprops = $BinaryProperties{$contextName};
+				if (defined $binprops->{$parm}) {
+					$def->{$parm} = $binprops->{$parm};
+					next PARM;
+				}
+
+				# Is it an enumerated property?
+				my $enumprops = $EnumeratedProperties{$contextName};
+				foreach $epropname (keys %$enumprops) {
+					my $eprop = $enumprops->{$epropname};
+					if (defined $eprop->{$parm}) {
+						$def->{$epropname} = $parm;
+						next PARM;
+					}
+				}
+
+				# Is the field stated explicitly?
+				if ($parm =~ /(.*)\((.*)\)/) {
+					$def->{$1} = $2;
+					next;
+				}
+
+				# Any other property is added to the default list
+				if (defined $def->{'props'}) {
+					$def->{'props'} .= ",$parm";
+				} else {
+					$def->{'props'} = "$parm";
+				}
+			}
+
+			# Derive C strings from the human readable name
+			my $c_string = $def->{'name'};
+			$c_string =~ tr/a-z/A-Z/;
+			$c_string =~ s/_/-/g;
+			$def->{'c_string'} = "\"$c_string\"";
+
+			my $c_ident = $c_string;
+			$c_ident =~ s/[ :\/\-]+/_/g;
+			$c_ident =~ s/[.\']//g;
+			my $prefix = $ContextPrefixes{$contextName};
+			if (defined $prefix) {
+				$prefix .= "_";
+			} else {
+				$prefix = "";
+			}
+
+			$def->{'c_ident'} = $prefix . $c_ident;
+
+			my $c_ident = $def->{'c_ident'};
+			if (!defined ($def->{'c_decl'})) {
+				$c_ident =~ tr/A-Z/a-z/;
+				if ($prefix eq "DEFF_") {
+					$c_ident =~ s/^deff_//;
+					$c_ident .= "_deff";
+				}
+				$def->{'c_decl'} = $c_ident;
+			}
+
+			$def->{'c_decl'} =~ s/unused/unused_$ID/;
+			$def->{'c_ident'} =~ s/UNUSED/UNUSED_$ID/;
+
+			# Invoke the closure if there is one
+			if (defined $ContextClosures{$contextName}) {
+				$ContextClosures{$contextName} ($def);
+			}
+
+			check_define_global ($contextName, $def);
+
+			# Check for a c_string that is too long.  Try to
+			# abbreviate it if possible.
+			while (length $def->{'c_string'} > 32) {
+				warning $def->{'c_string'} . " may be too long to display";
+				last;
+			}
+
+			next;
+		}
+
+		else {
+			# Handle lines that aren't data definitions.
+			error "unrecognized element $_ at line " . $lineno . "\n";
+		}
+	}
+	close FH;
+}
+
+
+sub machine_finish {
+	#----------------------------------------------------------------
+	# After loading the file, certain transformations may need to be
+	# made to the data, after everything is known.  Do those here.
+	#----------------------------------------------------------------
+
+	# Any switch that is part of a container should be marked as an
+	# edge switch
+	foreach $cnt (unique ($m->{"containers"})) {
+		my $sws = $cnt->{'switches'};
+		foreach $swname (@$sws) {
+			my $sw = ($m->{'switches'})->{$swname};
+			if (!defined $sw) { die "$swname is not a valid switch name"; }
+			$sw->{'edge'} = 1;
+		}
+	}
+
+	# Are there any GLOBAL_OBJECTS that aren't defined?
+	if (!defined $m->{'*lamps:ball-save'}) {
+		$m->{'*lamps:ball-save'} = $m->{'*lamps:shoot-again'};
+	}
+}
+
+
+sub machine_dump {
+	print "\n/* Internal database representation */\n";
+	print "/* " . Dumper ($m) . "*/\n";
+}
+
+sub print_boolean {
+	my ($def, $symbol) = @_;
+	if (defined $def && $def->{'name'} =~ /[yY]es/) {
+		print "#define $symbol 1\n";
+	} else {
+		print "#define $symbol 0\n";
+	}
+}
+
+sub print_value {
+	my ($def, $symbol) = @_;
+	if (defined $def && defined $def->{'name'}) {
+		my $value = $def->{'name'};
+		$value =~ tr/a-z/A-Z/;
+		print "#define $symbol \"" . $value . "\"\n";
+	}
+}
+
+sub print_define {
+	my ($def, $symbol) = @_;
+	if (defined $def) {
+		print "#define $symbol\n";
+	} else {
+		print "#undef $symbol\n";
+	}
+}
+
+sub print_c_ident {
+	my ($def, $symbol) = @_;
+	if (defined $def) {
+		my $value = $def->{'c_ident'};
+		print "#define $symbol $value\n";
+	} else {
+		print "#undef $symbol\n";
+	}
+}
+
+sub machine_write_var_decls {
+	print $START_SOURCE;
+	foreach $context (keys %ContextPrefixes) {
+		my $type = $VarDecl{$context};
+		next if (!defined $type);
+		my $mc = $m->{$context};
+		foreach my $def (unique ($mc)) {
+			print "$type " . $def->{'c_ident'} . ";\n";
+		}
+		print "\n";
+	}
+	print $END_SOURCE;
+}
+
+sub machine_write_defines {
+	# Print object IDs
+	foreach $context (keys %ContextPrefixes) {
+		my $mc = $m->{$context};
+		my $indexRe = $contextDefinitionRe{$context};
+		my $number = -1;
+		$indexRe = "[0-9]+" if ($indexRe eq "AUTO");
+		my $type = $VarDecl{$context};
+		print "/* Definitions of $context */\n";
+		foreach my $def (unique ($mc)) {
+			$number = $def->{'number'};
+			if (defined $type) {
+				print "extern U8 " . $def->{'c_ident'} . ";\n";
+			}
+			else {
+				print "#define " . $def->{'c_ident'} . " " .  $number . "\n";
+			}
+		}
+		my $max = $ContextMaxima{$context};
+		if (defined $max) {
+			$number++;
+			print "#define $max $number\n";
+		}
+		print "\n";
+	}
+
+	# Print extra defines
+	print "/* Extra defines */\n";
+	if (defined ($extra_defs = $m->{'Extra-Defines'})) {
+		foreach $def (@$extra_defs) {
+			print "#define $def\n";
+		}
+	}
+	print "\n";
+
+	# Print machine configuration
+	print "/* Global configuration */\n";
+	print_value ($m->{'Title'}, "MACHINE_NAME");
+	print_boolean ($m->{'Alphanumeric'}, "MACHINE_ALPHANUMERIC");
+	print_boolean ($m->{'DMD'}, "MACHINE_DMD");
+	print_boolean ($m->{'Fliptronic'}, "MACHINE_FLIPTRONIC");
+	print_boolean ($m->{'DCS'}, "MACHINE_DCS");
+	print_boolean ($m->{'WPC95'}, "MACHINE_WPC95");
+	print_boolean ($m->{'PIC'}, "MACHINE_PIC");
+
+	print_c_ident ($m->{'*switches:shooter'}, "MACHINE_SHOOTER_SWITCH");
+	print_c_ident ($m->{'*switches:tilt'}, "MACHINE_TILT_SWITCH");
+	print_c_ident ($m->{'*switches:slam-tilt'}, "MACHINE_SLAM_TILT_SWITCH");
+	print_c_ident ($m->{'*switches:start-button'}, "MACHINE_START_SWITCH");
+	print_c_ident ($m->{'*switches:buyin-button'}, "MACHINE_BUYIN_SWITCH");
+	print_c_ident ($m->{'*switches:launch-button'}, "MACHINE_LAUNCH_SWITCH");
+	print_c_ident ($m->{'*switches:outhole'}, "MACHINE_OUTHOLE_SWITCH");
+
+	print_c_ident ($m->{'*lamps:start'}, "MACHINE_START_LAMP");
+	print_c_ident ($m->{'*lamps:launch'}, "MACHINE_LAUNCH_LAMP");
+	print_c_ident ($m->{'*lamps:buyin'}, "MACHINE_BUYIN_LAMP");
+	print_c_ident ($m->{'*lamps:shoot-again'}, "MACHINE_SHOOT_AGAIN_LAMP");
+	print_c_ident ($m->{'*lamps:ball-save'}, "MACHINE_BALL_SAVE_LAMP");
+	print_c_ident ($m->{'*lamps:extra-ball'}, "MACHINE_EXTRA_BALL_LAMP");
+
+	print_c_ident ($m->{'*drives:launch'}, "MACHINE_LAUNCH_SOLENOID");
+	print_c_ident ($m->{'*drives:knocker'}, "MACHINE_KNOCKER_SOLENOID");
+	print_c_ident ($m->{'*drives:ballserve'}, "MACHINE_BALL_SERVE_SOLENOID");
+
+	my $trough = $m->{'*containers:trough'};
+	my $troughsize = $trough->{'size'};
+	$troughsize = 0 if ($troughsize eq "");
+	print "#define MACHINE_TROUGH_SIZE $troughsize\n";
+	my $troughsws = $trough->{'switches'};
+	foreach $swname (@$troughsws) {
+		$n++;
+		my $sw = ($m->{"switches"})->{$swname};
+		print "#define MACHINE_TROUGH$n " . $sw->{'c_ident'} . "\n";
+	}
+
+	# Print MACHINE_SOL_FLASHERP(sol), which returns true if SOL is
+	# a flasher.
+	my $drives = $m->{"drives"};
+	print "#define MACHINE_SOL_FLASHERP(sol) (\\\n";
+	foreach $drive (unique ($drives)) {
+		if (!defined $drive->{'notinstalled'} && defined $drive->{'flash'}) {
+			print "   ((sol) == " . $drive->{'c_ident'} . ") || \\\n";
+		}
+	}
+	print "0)\n\n";
+
+	# Print MACHINE_SOLENOID_P(sol), which returns true if SOL is
+	# a solenoid.
+	my $drives = $m->{"drives"};
+	print "#define MACHINE_SOLENOID_P(sol) (\\\n";
+	foreach $drive (unique ($drives)) {
+		if (!defined $drive->{'notinstalled'} && !defined $drive->{'flash'}) {
+			print "   ((sol) == " . $drive->{'c_ident'} . ") || \\\n";
+		}
+	}
+	print "0)\n\n";
+
+	# Print MACHINE_SOL_NOSEARCHP(sol), which returns true if SOL should
+	# not be fired during ball search.  Flashers need not be considered.
+	print "#define MACHINE_SOL_NOSEARCHP(sol) (\\\n";
+	foreach $drive (unique ($drives)) {
+		if (defined $drive->{'notinstalled'} || defined $drive->{'nosearch'}) {
+			print "   ((sol) == " . $drive->{'c_ident'} . ") || \\\n";
+		}
+	}
+	print "0)\n\n";
+
+	# Print feature_adj_t and MACHINE_FEATURE_ADJUSTMENTS.  Since it's
+	# part of a structure, strip out the fad_ prefix.
+	print "typedef struct {\n";
+	foreach $feature (unique ($m->{"adjustments"})) {
+		my $ident = $feature->{'c_decl'};
+		$ident =~ s/^fad_//;
+		print "   U8 $ident;\n";
+	}
+	print "} feature_adj_t;\n\n";
+
+	print "#define MACHINE_FEATURE_ADJUSTMENTS \\\n";
+	foreach $feature (unique ($m->{"adjustments"})) {
+		my $ident = $feature->{'c_decl'};
+		$ident =~ s/^fad_//;
+		my $type = $feature->{'type'};
+		my $default = $feature->{'props'};
+		my $string = $feature->{'c_string'};
+		print "  { $string, \&${type}_value, $default, \&feature_config.$ident }, \\\n";
+	}
+	print "\n\n";
+
+	# Print feature_audit_t and MACHINE_FEATURE_AUDITS.
+	print "#define MACHINE_FEATURE_AUDIT_MEMBERS \\\n";
+	foreach $feature (unique ($m->{"audits"})) {
+		my $ident = $feature->{'c_decl'};
+		$ident =~ s/^fau_//;
+		$ident =~ s/^([0-9])/_$1/;
+		print "   audit_t $ident; \\\n";
+	}
+	print "\n";
+
+	print "#define MACHINE_FEATURE_AUDITS \\\n";
+	foreach $feature (unique ($m->{"audits"})) {
+		my $ident = $feature->{'c_decl'};
+		$ident =~ s/^fau_//;
+		$ident =~ s/^([0-9])/_$1/;
+		my $type = $feature->{'type'};
+		my $string = $feature->{'c_string'};
+		print "  { $string, AUDIT_TYPE_INT, \&feature_audits.$ident }, \\\n";
+	}
+	print "\n\n";
+
+	# Print lamp effects
+	print "#define MACHINE_LAMP_EFFECTS \\\n";
+	foreach $leff (unique ($m->{"leffs"})) {
+		$fn = $leff->{'c_decl'};
+		$fnpage = $leff->{'page'} || "-1";
+		$fn =~ s/leff_(.*)/$1_leff/;
+		my $gi = $leff->{'GI'};
+		my $lamps = $leff->{'LAMPS'};
+
+		if (defined $gi && $leff->{'shared'}) {
+			die "cannot allocate GI from a shared leff ($fn)";
+		}
+
+		if ($leff->{'props'} =~ /(PRI_[a-zA-Z0-9]+)/) {
+			$prio = $1;
+		} else {
+			$prio = 0;
+		}
+
+		if (!defined $gi) { $gi = "0" }
+		if (!defined $lamps) { $lamps = "0" } else { $lamps = "LAMPLIST_" . $lamps; }
+		$gi = "L_ALL_GI" if ($gi eq "ALL");
+		$lamps = "L_ALL_LAMPS" if ($lamps eq "LAMPLIST_ALL");
+
+		print "   DECL_LEFF (" . 
+			$leff->{'c_ident'} . ", " .
+			($leff->{'runner'} ? "L_RUNNING" :
+				$leff->{'shared'} ? "L_SHARED" : "L_NORMAL") .
+			", " . $prio .  ", " .
+			"$lamps, " .
+			"$gi, " .
+			"$fn, " .
+			"$fnpage) \\\n";
+	}
+	print "\n";
+
+	# Print MACHINE_TEST_MENU_ITEMS
+	my $tests = $m->{"tests"};
+	print "#define MACHINE_TEST_MENU_ITEMS \\\n";
+	foreach $test (unique ($tests)) {
+		my $ident = $test->{'c_decl'};
+		print "   \&${ident}_test_item, \\\n";
+	}
+	print "\n";
+	foreach $test (unique ($tests)) {
+		my $ident = $test->{'c_decl'};
+		print "extern struct menu ${ident}_test_item;\n";
+	}
+	print "\n";
+
+	# Print system sounds and music
+	foreach my $snd (unique ($m->{"system_sounds"})) {
+		my $id = $snd->{'c_ident'};
+		my $value = $snd->{'props'};
+		print "#define MACHINE_${id}_SOUND $value\n";
+	}
+	foreach my $mus (unique ($m->{"system_music"})) {
+		my $id = $mus->{'c_ident'};
+		my $value = $mus->{'props'};
+		print "#define MACHINE_${id}_MUSIC $value\n";
+	}
+	print "\n";
+
+	# Print externs for fonts needed
+	foreach $font (unique ($m->{"fonts"})) {
+		$fontname = $font->{'c_decl'};
+		$fontname =~ s/fon_/font_/;
+		print "extern const struct font $fontname;\n";
+	}
+	print "\n";
+}
+
+
+sub machine_write_decl_names {
+	my ($categoryname) = @_;
+	my $max = $ContextMaxima{$categoryname};
+	if (!defined $max) {
+		$max = $FixedMaxima{$categoryname};
+	}
+	print "const char *names_of_${categoryname} [$max] = {\n";
+	foreach $def (unique ($m->{$categoryname})) {
+		my $ident = $def->{'c_ident'};
+		my $string = $def->{'c_string'};
+		print "   [$ident] = $string,\n";
+	}
+	print "};\n\n";
+}
+
+sub machine_write_container_decls {
+	print $START_SOURCE;
+
+	my @events = ("enter", "kick_attempt",
+		"kick_success", "kick_failure", "empty", "surprise_release");
+	my @bool_events = ("kick_request");
+
+	# Write prototypes for the autogenerated functions
+	foreach $def (unique ($m->{"containers"})) {
+		my $name = $def->{'c_decl'};
+		$name =~ s/^devno/dev/;
+
+		for $event (@events) {
+			print "extern void callset_${name}_${event} (void);" .
+				"  /* callset_invoke (${name}_${event}) */\n";
+		}
+		for $event (@bool_events) {
+			print "extern bool callset_${name}_${event} (void);" .
+				"  /* callset_invoke_boolean (${name}_${event}) */\n";
+		}
+	}
+	print "\n";
+
+	# Write the device_ops_t structures
+	foreach $def (unique ($m->{"containers"})) {
+		my $name = $def->{'c_decl'};
+		$name =~ s/^devno/dev/;
+		print "device_ops_t ${name}_ops = {\n";
+
+		for $event (@events) {
+			print "   .$event = callset_${name}_${event},\n";
+		}
+		for $event (@bool_events) {
+			print "   .$event = callset_${name}_${event},\n";
+		}
+
+		print "};\n\n";
+	}
+
+	print "device_properties_t device_properties_table[] = {\n";
+	foreach $def (unique ($m->{"containers"})) {
+		my $name = $def->{'c_decl'};
+		$name =~ s/^devno/dev/;
+		my $coilname = ($def->{'coil'})->{'c_ident'};
+		my $sw_count = $def->{'size'};
+		my $sws = $def->{'switches'};
+		my $init_max_count = $def->{'init_max_count'};
+		my $settle_delay = $def->{'settle_delay'};
+		print "[" . $def->{'c_ident'} . "] = {\n";
+		print "   .ops = \&${name}_ops,\n";
+		print "   .name = " . $def->{'c_string'} . ",\n";
+		print "   .sol = $coilname,\n";
+		print "   .sw_count = $sw_count,\n";
+		print "   .init_max_count = $init_max_count,\n";
+		if (!defined $settle_delay) {
+			$settle_delay = "TIME_700MS";
+		}
+		print "   .settle_delay = $settle_delay,\n";
+		print "   .sw = { ";
+		for $swname (@$sws) {
+			my $sw = ($m->{'switches'})->{$swname};
+			print $sw->{'c_ident'} . ", ";
+		}
+		print "},\n},\n";
+	}
+	print "};\n";
+	print $END_SOURCE;
+};
+
+
+sub machine_write_switch_decls {
+	print $START_SOURCE;
+
+	for $sw (unique ($m->{'switches'})) {
+		$fn = $sw->{'fn'};
+		next if (!defined $fn);
+		$swname = $sw->{'c_decl'};
+		if (!($swname =~ /unused/)) {
+			print "extern void $fn (void); /* callset_invoke ($swname) */\n";
+		}
+	}
+	print "\n";
+
+	print "const switch_info_t switch_table[] = {\n";
+	print "   [NUM_SWITCHES-1] = { 0, },\n";
+	for $sw (unique ($m->{'switches'})) {
+		$sw->{'playfield'} = 1 if ((!defined $sw->{'button'}) &&
+			(!defined $sw->{'cabinet'}) &&
+			(!defined $sw->{'service'}));
+
+		if (defined $sw->{'noscore'}) {
+			$sw->{'playfield'} = undef;
+			$sw->{'novalid'} = 1;
+			$sw->{'intest'} = 1;
+		}
+
+		if (defined $sw->{'noplay'}) {
+			warning "deprecated property 'noplay' seen on switch " . $sw->{'name'} . " ; use 'novalid' instead.";
+			$sw->{'novalid'} = 1;
+		}
+
+		add_flag ($sw, "opto", "flags", "SW_OPTICAL");
+		add_flag ($sw, "edge", "flags", "SW_EDGE");
+		add_flag ($sw, "novalid", "flags", "SW_NOVALID");
+		add_flag ($sw, "ingame", "flags", "SW_IN_GAME");
+		add_flag ($sw, "intest", "flags", "SW_IN_TEST");
+		add_flag ($sw, "playfield", "flags", "SW_PLAYFIELD");
+
+		my $c_decl = $sw->{'c_decl'};
+		my $c_ident = $sw->{'c_ident'};
+		print "   [" . $c_ident . "] = {\n";
+		for $field ("fn", "flags", "lamp", "sound",
+			"debounce", "devno") {
+			$val = $sw->{$field};
+			if (($c_decl =~ /unused/) && ($field eq "fn")) {
+				$val = "null_function";
+			}
+			print "      .$field = $val,\n" if defined $val;
+		}
+		print "   },\n";
+	}
+	print "};\n";
+
+	print $END_SOURCE;
+}
+
+
+sub machine_write_solenoid_decls {
+	print $START_SOURCE;
+
+	print "const U8 sol_time_table[NUM_POWER_DRIVES] = {\n";
+	for my $d (unique ($m->{'drives'})) {
+		my $def = $d->{'flash'} ? "FLASHER" : "SOL";
+		my $v = $d->{'time'} || ("$def" . "_TIME_DEFAULT");
+		if ($v =~ /^TIME_/) {
+			$v .= " * IRQS_PER_TICK";
+		}
+		print "   [" . $d->{'c_ident'} . "] = $v,\n";
+	}
+	print "};\n\n";
+
+	print "const U8 sol_duty_table[NUM_POWER_DRIVES] = {\n";
+	for my $d (unique ($m->{'drives'})) {
+		my $def = $d->{'flash'} ? "FLASHER" : "SOL";
+		my $v = $d->{'duty'} || ("$def" . "_DUTY_DEFAULT");
+		print "   [" . $d->{'c_ident'} . "] = $v,\n";
+	}
+	print "};\n\n";
+
+	print $END_SOURCE;
+}
+
+
+sub machine_write_makefile {
+	print "# Autogenerated by tools/genmachine\n";
+	# TODO : Print GAME_TEST_OBJS, the objects needed for machine
+	# extensions to test mode.
+
+	# Output special globals.  This syntax needs to be more regular.
+	print "# Extra features\n";
+	if (defined ($features = $m->{'Make-Features'})) {
+		foreach my $f (@$features) {
+			print "\$(eval \$(call have,$f))\n";
+		}
+	}
+	print "\$(eval \$(call have,CONFIG_DMD))\n" if ($m->{'DMD'}->{name} =~ /[yY]es/);
+	print "\$(eval \$(call have,CONFIG_ALPHA))\n" if ($m->{'Alphanumeric'}->{name} =~ /[yY]es/);
+	print "\$(eval \$(call have,CONFIG_PIC))\n" if ($m->{'PIC'}->{name} =~ /[yY]es/);
+	print "\$(eval \$(call have,CONFIG_FLIPTRONIC))\n" if ($m->{'Fliptronic'}->{name} =~ /[yY]es/);
+	print "\$(eval \$(call have,CONFIG_DCS))\n" if ($m->{'DCS'}->{name} =~ /[yY]es/);
+	print "\$(eval \$(call have,CONFIG_WPC95))\n" if ($m->{'WPC95'}->{name} =~ /[yY]es/);
+	print "\n";
+
+	# Enable the desired fonts
+	for $font (unique ($m->{'fonts'})) {
+		print "CONFIG_" . $font->{'c_ident'} . " := y\n";
+	}
+
+	# Generate rules for compiling templates.
+	for $inst (unique ($m->{'templates'})) {
+		my $driver = $inst->{'driver'};
+		my $ident = $inst->{'c_decl'};
+		my $id;
+		my $section = $inst->{'page'};
+
+		if (!defined $section) {
+			$section = "KERNEL_HW_OBJS";
+		}
+		else {
+			$section =~ s/PAGE$/OBJS/;
+		}
+
+		if (!defined ($tempid{$driver})) {
+			$tempid{$driver} = 0;
+		}
+		$id = $tempid{$driver}++;
+
+		my $args = "";
+		my @arglist = split /,/, $inst->{'props'};
+		for my $arg (@arglist) {
+			$args .= "-D $arg ";
+		}
+
+		my $c_file = "build/$ident.c";
+		my $h_file = "build/$ident.h";
+		my $o_file = "\$(BLDDIR)/$ident.o";
+		my $test_c_file = "build/${ident}_test.c";
+		my $test_o_file = "\$(BLDDIR)/${ident}_test.o";
+		my $sched_file = "\$(BLDDIR)/$ident.sched";
+		my $class_file = "build/$ident.h";
+		my $template_file = "drivers/$driver.ct";
+
+		my $include_test = $inst->{'includetest'} eq "yes";
+		
+		print "\n# Template ID : $id\n";
+		print "# Identifier: $ident\n";
+		print "# Driver: $driver\n";
+		print "# Arguments: $args\n";
+		print "# Include test: " . ($include_test eq 1 ? "Yes" : "No") . "\n";
+		print <<END;
+
+SCHED_HEADERS += $h_file
+TEMPLATE_OBJS += $o_file
+$section += $o_file
+
+$o_file : $c_file $h_file build/mach-Makefile
+
+$c_file $h_file : $template_file \$(CTEMP)
+	\$(CTEMP) -s $ident -i $id $args $template_file
+
+END
+		if ($include_test) {  
+			print <<END;
+TEST_OBJS += $test_o_file
+
+$test_o_file : $test_c_file build/mach-Makefile
+END
+		}
+	}
+	print "MACHINE_SCHED_FLAGS += \$(BLDDIR)/*.sched\n";
+
+	# Print rules for building the FIFs.
+	print "\n";
+}
+
+
+
+sub machine_lamp_get_value {
+	my ($lampid) = @_;
+	if ($lampid =~ /^%(.*)$/) {
+		$lamp = $m->{"*lamps:$1"};
+	}
+	else {
+		$lamp = ($m->{'lamps'})->{$lampid};
+	}
+	die "undefined lamp $lampid" if (!defined $lamp);
+	return $lamp->{'number'};
+}
+
+sub machine_lamp_get_name {
+	my ($lampnum) = @_;
+	for $lamp (unique ($m->{"lamps"})) {
+		if ($lamp->{'number'} eq $lampnum) {
+			return $lamp->{'c_ident'};
+		}
+	}
+	return $lampnum;
+}
+
+
+
+sub lamp_sort_bottom_to_top {
+	return -($a->{'y'} <=> $b->{'y'});
+}
+
+
+
+sub lamp_sort_top_to_bottom {
+	return ($a->{'y'} <=> $b->{'y'});
+}
+
+
+
+sub lamp_sort_left_to_right {
+	return ($a->{'x'} <=> $b->{'x'});
+}
+
+
+
+sub lamp_sort_right_to_left {
+	return -($a->{'x'} <=> $b->{'x'});
+}
+
+
+
+sub lamp_sort_circle_out1 {
+	my $ycenter = 5;
+	my $xcenter = 21;
+	return 
+	int sqrt (((($a->{'y'} - $ycenter) ** 2) + (($a->{'x'} - $xcenter) ** 2)))
+	<=>
+	int sqrt (((($b->{'y'} - $ycenter) ** 2) + (($b->{'x'} - $xcenter) ** 2)));
+}
+
+
+sub lamp_sort_circle_out2 {
+	my $ycenter = 8;
+	my $xcenter = 13;
+	return 
+	int sqrt (((($a->{'y'} - $ycenter) ** 2) + (($a->{'x'} - $xcenter) ** 2)))
+	<=>
+	int sqrt (((($b->{'y'} - $ycenter) ** 2) + (($b->{'x'} - $xcenter) ** 2)));
+}
+
+
+
+sub lamp_sort_circle_out3 {
+	my $ycenter = 10;
+	my $xcenter = 17;
+	return 
+	int sqrt (((($a->{'y'} - $ycenter) ** 2) + (($a->{'x'} - $xcenter) ** 2)))
+	<=>
+	int sqrt (((($b->{'y'} - $ycenter) ** 2) + (($b->{'x'} - $xcenter) ** 2)));
+}
+
+
+
+sub lamp_sort_circle_out4 {
+	my $ycenter = 13;
+	my $xcenter = 18;
+	return 
+	int sqrt (((($a->{'y'} - $ycenter) ** 2) + (($a->{'x'} - $xcenter) ** 2)))
+	<=>
+	int sqrt (((($b->{'y'} - $ycenter) ** 2) + (($b->{'x'} - $xcenter) ** 2)));
+}
+
+
+
+sub lamp_sort_circle_out5 {
+	my $ycenter = 15;
+	my $xcenter = 19;
+	return 
+	int sqrt (((($a->{'y'} - $ycenter) ** 2) + (($a->{'x'} - $xcenter) ** 2)))
+	<=>
+	int sqrt (((($b->{'y'} - $ycenter) ** 2) + (($b->{'x'} - $xcenter) ** 2)));
+}
+
+
+
+sub colored_lamps {
+	my ($color) = @_;
+	my $lamplist = "";
+	for $lamp (unique ($m->{"lamps"})) {
+		if ($lamp->{'color'} eq $color) {
+			$lamplist .= $lamp->{'c_ident'} . ",\n   ";
+		}
+	}
+	return $lamplist;
+}
+
+sub pf_lamps {
+	my ($sortfn) = @_;
+	my @lamps;
+	my $lastlamp = undef;
+	my $lamplist = "";
+	for $lamp (unique ($m->{"lamps"})) {
+		push @lamps, $lamp if (!defined $lamp->{'cabinet'});
+		if (!defined $lamp->{'y'}) {
+			$lamp->{'y'} = rand (40);
+			$lamp->{'x'} = rand (30);
+		}
+	}
+
+	if ($sortfn ne "all") {
+		@lamps = sort $sortfn @lamps;
+	}
+	$lamplist .= "/* break */ LAMP_BREAK,\n   ";
+	foreach $lamp (@lamps) {
+		if (defined $lastlamp) {
+			$a = $lastlamp;
+			$b = $lamp;
+			if (($sortfn ne "all") && (&$sortfn() != 0)) {
+				$lamplist .= "/* break */ LAMP_BREAK,\n   ";
+			}
+		}
+		$lamplist .= $lamp->{'c_ident'} . ",\n   ";
+		$lastlamp = $lamp;
+	}
+	return $lamplist;
+}
+
+sub machine_write_lamplist_decls {
+	print $START_SOURCE;
+
+	for $ls (unique ($m->{"lamplists"})) {
+		print "const lampnum_t " . $ls->{'c_decl'} . "[] = {\n   ";
+
+		my @lamps = split /,[ \t]*/, $ls->{'props'};
+		my $lamplist = "";
+		foreach $lamp (@lamps) {
+			if ($lamp =~ m/COLOR:(.*)/) {
+				$lamplist .= colored_lamps ("$1");
+			}
+			elsif ($lamp =~ m/PF:(.*)/) {
+				# The syntax PF:xyz generates a lamplist that has only
+				# playfield lamps, sorted according to a custom function
+				# written in Perl.  The name of the function appears after
+				# the colon.  There are a few functions in this file that
+				# can be used, or you can put them in a separate file
+				# and use the perlinclude directive to pull it in.
+				$lamplist .= pf_lamps ("$1");
+			}
+			elsif ($lamp =~ m/(.*)\.\.(.*)/) {
+				($min, $max) = (machine_lamp_get_value ($1),
+					machine_lamp_get_value ($2));
+				if ($min < $max) {
+					for ($i = $min; $i <= $max; $i++) {
+						$lamp = machine_lamp_get_name ($i);
+						$lamplist .= "$lamp,\n   ";
+					}
+				}
+				else {
+					for ($i = $min; $i >= $max; $i--) {
+						$lamp = machine_lamp_get_name ($i);
+						$lamplist .= "$lamp,\n   ";
+					}
+				}
+			} elsif ($parent = ($m->{"lamplists"})->{$lamp}) {
+				$lamplist .= $parent->{'value'};
+			} else {
+				$lamp = machine_lamp_get_value ($lamp);
+				$lamp = machine_lamp_get_name ($lamp);
+				$lamplist .= "$lamp,\n   ";
+			}
+		}
+		print "${lamplist}LAMP_END\n";
+		print "};\n\n";
+		$ls->{'value'} = $lamplist;
+
+		if (1) {
+			$c_decl = $ls->{'c_decl'};
+			$c_decl =~ s/lamplist/lampset/g;
+			print "const U8 " . $c_decl . "[] = {\n   ";
+			my $bits = {};
+			for $lamp (unique ($m->{"lamps"})) {
+				my $name =$lamp->{'c_ident'};
+				if ($lamplist =~ /$name/m) {
+					my $id = $lamp->{'ID'};
+					$bits->{$id} = 1;
+					# print "/* adding $id */\n";
+				}
+			}
+			for (my $col = 0; $col < 8; $col++) {
+				my $val = 0;
+				for (my $row = 0; $row < 8; $row++) {
+					my $id = ($col+1) . ($row+1);
+					if ($bits->{"$id"}) {
+						$val |= (1 << $row);
+					}
+				}
+				printf "0x%02X, ", $val;
+			}
+			print " };\n\n";
+		}
+	}
+
+	print "const lampnum_t * const lamplist_table[] = {\n";
+	for $ls (unique ($m->{"lamplists"})) {
+		print "   " . $ls->{'c_decl'} . ",\n";
+	}
+	print "};\n\n";
+
+	print "const U8 * lampset_table[] = {\n";
+	for $ls (unique ($m->{"lamplists"})) {
+		if (1) {
+			$name = $ls->{'c_decl'};
+			$name =~ s/lamplist/lampset/g;
+		}
+		else {
+			$name = "NULL";
+		}
+		print "   " . $name . ",\n";
+	}
+	print "};\n";
+
+	print $END_SOURCE;
+}
+
+sub machine_write_score_decls {
+	print $START_SOURCE;
+	print "const score_t score_table[] = {\n";
+	for $score (unique ($m->{'scores'})) {
+		$val = $score->{'value'};
+		print "[" . $score->{'c_ident'} . "] = " . int_to_long_bcd ($val)
+			. ",\n";
+	}
+	print "};\n";
+	print $END_SOURCE;
+}
+
+
+sub machine_write_font_decls {
+	print $START_SOURCE;
+	print "const font_t *font_table[] = {\n";
+	for $font (unique ($m->{'fonts'})) {
+		$decl = $font->{'c_decl'};
+		$decl =~ s/fon/font/;
+		print "   [" . $font->{'c_ident'} . "] = &$decl,\n";
+	}
+	print "};\n";
+	print $END_SOURCE;
+}
+
+sub machine_write_deff_decls {
+	print $START_SOURCE;
+
+	for $deff (unique ($m->{'deffs'})) {
+		print "extern /* page? */ void " . $deff->{'c_decl'} . " (void);\n";
+	}
+	print "\n";
+
+	print "const deff_t deff_table[] = {\n";
+	for $deff (unique ($m->{'deffs'})) {
+		my ($prio, $flags) = split /[ \t,]/, $deff->{'props'};
+		if (!($prio =~ /^PRI/)) {
+			die "Invalid priority '$prio' for deff " . $deff->{'c_ident'} .
+				"\n(priority must come before other flags)\n";
+		}
+		if (!defined $flags) {
+			$flags = $deff->{'runner'} ? "D_QUEUED" : "D_NORMAL";
+		}
+		my $page = $deff->{'page'} || "-1";
+		print "   [" . $deff->{'c_ident'} . "] = {\n";
+		print "      .flags = $flags,\n";
+		print "      .prio = $prio,\n";
+		print "      DEFF_FUNCTION (" . $deff->{'c_decl'} . ", " . $page . ")\n";
+		print "   },\n";
+	}
+	print "};\n";
+	print $END_SOURCE;
+}
+
+
+$infile = $ARGV[0];
+$command = $ARGV[1];
+
+
+$START_SOURCE = <<END;
+/* Autogenerated from $infile by genmachine */
+
+#include <freewpc.h>
+
+END
+
+$END_SOURCE = "\n";
+
+
+machine_load ($infile);
+machine_finish;
+
+#######################################################
+#  generate build/mach-config.h
+#######################################################
+if ($command eq "config") {
+	print "#ifndef _MACH_CONFIG_H\n";
+	print "#define _MACH_CONFIG_H\n";
+
+	machine_write_defines ();
+
+	for $context (@stringcontexts) {
+		print "extern const char *names_of_${context} [];\n";
+	}
+
+	print "\n#endif /* _MACH_CONFIG_H */\n";
+}
+
+#######################################################
+#  generate build/mach-Makefile
+#######################################################
+elsif ($command eq "makefile") {
+	machine_write_makefile ();
+}
+
+#######################################################
+#  generate build/mach-strings.c
+#######################################################
+elsif ($command eq "strings") {
+	print $START_SOURCE;
+	print "#undef TRIAC_GI_STRING\n";
+	print "#define TRIAC_GI_STRING(x) (x)\n\n";
+	for $context (@stringcontexts) {
+		machine_write_decl_names ($context);
+	}
+	print $END_SOURCE;
+}
+
+#######################################################
+#  generate build/mach-switchmasks.c
+#######################################################
+elsif ($command eq "switchmasks") {
+	print $START_SOURCE;
+	my @opto_mask;
+	for my $i (0..9) { $opto_mask[$i] = 0; }
+	foreach $sw (unique ($m->{"switches"})) {
+		if (defined $sw->{'opto'}) {
+			my $num = $sw->{'number'};
+			my $col = $num / 8;
+			my $row = $num % 8;
+			$opto_mask[$col] |= 1 << $row;
+		}
+	}
+	print "const U8 mach_opto_mask[] = {\n   ";
+	for my $i (0..9) {
+		my $val = sprintf "0x%02X", $opto_mask[$i];
+		print "$val, ";
+	}
+	print "\n};\n";
+
+	my @edge_mask;
+	for my $i (0..9) { $edge_mask[$i] = 0; }
+	foreach $sw (unique ($m->{"switches"})) {
+		if (defined $sw->{'edge'}) {
+			my $num = $sw->{'number'};
+			my $col = $num / 8;
+			my $row = $num % 8;
+			$edge_mask[$col] |= 1 << $row;
+		}
+	}
+	print "const U8 mach_edge_switches[] = {\n   ";
+	for my $i (0..9) {
+		my $val = sprintf "0x%02X", $edge_mask[$i];
+		print "$val, ";
+	}
+	print "\n};\n";
+	print $END_SOURCE;
+}
+
+#######################################################
+#  generate build/mach-lamplists.c
+#######################################################
+elsif ($command eq "lamplists") {
+	machine_write_lamplist_decls ();
+}
+
+#######################################################
+#  generate build/mach-containers.c
+#######################################################
+elsif ($command eq "containers") {
+	machine_write_container_decls ();
+}
+
+#######################################################
+#  generate build/mach-switches.c
+#######################################################
+elsif ($command eq "switches") {
+	machine_write_switch_decls ();
+}
+#######################################################
+#  generate build/mach-scores.c
+#######################################################
+elsif ($command eq "scores") {
+	machine_write_score_decls ();
+}
+
+#######################################################
+#  generate build/mach-scores.c
+#######################################################
+elsif ($command eq "deffs") {
+	machine_write_deff_decls ();
+}
+
+#######################################################
+#  generate build/mach-fonts.c
+#######################################################
+elsif ($command eq "fonts") {
+	machine_write_font_decls ();
+}
+
+#######################################################
+#  generate build/mach-drives.c
+#######################################################
+elsif ($command eq "drives") {
+	machine_write_solenoid_decls ();
+}
+
+#######################################################
+#  generate build/mach-vars.c
+#######################################################
+elsif ($command eq "vars") {
+	machine_write_var_decls ();
+}
+
+elsif ($command eq "dump") {
+	machine_dump ();
+}
+
+

@@ -1,0 +1,150 @@
+XH2
+H 4 areas 22 global symbols 2 banks 1 modes
+M ballsave.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _system_timer_pause Ref0000
+S _deff_start Ref0000
+S _freerunning_timer_function Ref0000
+S _leff_start Ref0000
+S _task_sleep Ref0000
+S _timed_mode_end Ref0000
+S _in_tilt Ref0000
+S _timed_mode_get_timer Ref0000
+S _serve_ball_auto Ref0000
+S _timed_mode_begin Ref0000
+S _leff_toggle Ref0000
+S m1 Ref0000
+S .__.ABS. Def0000
+S _null_function Ref0000
+S m2 Ref0000
+S _leff_stop Ref0000
+S _timer_restart Ref0000
+S _timed_mode_running_p Ref0000
+S _task_kill_gid Ref0000
+S _timed_mode_effect_running_p Ref0000
+S _timed_mode_reset Ref0000
+S _live_balls Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size E4 flags D00
+S _ball_save_leff Def00C7
+S _ballsave_get_timer Def006D
+S _ball_save_mode Def00D2
+S _ballsave_ball_drain Def0019
+S _ballsave_sw_left_outlane Def004C
+S _ballsave_lamp_update Def0000
+S _ballsave_single_ball_play Def00C1
+S _ballsave_disable Def00BB
+S _ballsave_test_active Def0013
+S _ballsave_valid_playfield Def003E
+S _ballsave_add_time Def0073
+A ram size 1 flags C00
+S _ball_save_timer Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 8E 00 D2 BD 00 00 5D 26 05 C6 04 7E
+R 00 00 00 02 01 03 00 02 81 06 00 13
+T 00 0C 00 00
+R 00 00 00 02 81 02 00 0F
+T 00 0E
+R 00 00 00 02
+T 00 0E C6 04 7E 00 00
+R 00 00 00 02 81 05 00 03
+T 00 13
+R 00 00 00 02
+T 00 13 8E 00 D2 7E 00 00
+R 00 00 00 02 01 03 00 02 81 06 00 11
+T 00 19
+R 00 00 00 02
+T 00 19 8E 00 D2 BD 00 00 5D 26 0F C6 1A BD
+R 00 00 00 02 01 03 00 02 81 06 00 11
+T 00 25 00 00 D7 00 00 C6 01 D7
+R 00 00 00 02 81 02 00 12 A0 05 00 0E
+T 00 2C 00 00 0D 00 00 27 0A
+R 00 00 00 02 A0 02 00 0B A0 05 00 0E
+T 00 31
+R 00 00 00 02
+T 00 31 BD 00 00 C6 14 BD 00 00 0F
+R 00 00 00 02 81 03 00 08 81 08 00 01
+T 00 3A 00 00
+R 00 00 00 02 A0 02 00 0B
+T 00 3B
+R 00 00 00 02
+T 00 3B D6 00 00 39
+R 00 00 00 02 A0 03 00 0B
+T 00 3E
+R 00 00 00 02
+T 00 3E 8E 00 D2 BD 00 00 C6 07 8E
+R 00 00 00 02 01 03 00 02 81 06 00 09
+T 00 47 00 D2 7E 00 00
+R 00 00 00 02 01 02 00 02 81 05 00 14
+T 00 4C
+R 00 00 00 02
+T 00 4C F6 00 00 C1 01 23 01
+R 00 00 00 02 81 03 00 15
+T 00 53
+R 00 00 00 02
+T 00 53 39
+R 00 00 00 02
+T 00 54
+R 00 00 00 02
+T 00 54 8E 00 D2 BD 00 00 5D 27 F6 8E
+R 00 00 00 02 01 03 00 02 81 06 00 11
+T 00 5E 00 00 AF E3 8E 01 A4 C6 1A BD 00 00 32
+R 00 00 00 02 81 02 00 02 81 0C 00 10
+T 00 6B 62 39
+R 00 00 00 02
+T 00 6D
+R 00 00 00 02
+T 00 6D 8E 00 D2 7E 00 00
+R 00 00 00 02 01 03 00 02 81 06 00 07
+T 00 73
+R 00 00 00 02
+T 00 73 32 7F E7 E4 0D 00 00 27 03 32 61 39
+R 00 00 00 02 A0 07 00 06
+T 00 7E
+R 00 00 00 02
+T 00 7E 8E 00 D2 BD 00 00 5D 26 1E 8E
+R 00 00 00 02 01 03 00 02 81 06 00 11
+T 00 88 00 D2 BD 00 00 E6 E4 C1 0F 22 08
+R 00 00 00 02 01 02 00 02 81 05 00 09
+T 00 93
+R 00 00 00 02
+T 00 93 8E 00 D2 32 61 7E 00 00
+R 00 00 00 02 01 03 00 02 81 08 00 14
+T 00 9B
+R 00 00 00 02
+T 00 9B C6 0F 8E 00 D2 32 61 7E 00 00
+R 00 00 00 02 01 05 00 02 81 0A 00 14
+T 00 A5
+R 00 00 00 02
+T 00 A5 8E 00 D2 BD 00 00 EB E4 C1 0F 23 E2 C6
+R 00 00 00 02 01 03 00 02 81 06 00 07
+T 00 B2 0F 8E 00 D2 32 61 7E 00 00
+R 00 00 00 02 01 04 00 02 81 09 00 14
+T 00 BB
+R 00 00 00 02
+T 00 BB 8E 00 D2 7E 00 00
+R 00 00 00 02 01 03 00 02 81 06 00 05
+T 00 C1
+R 00 00 00 02
+T 00 C1 8E 00 D2 7E 00 00
+R 00 00 00 02 01 03 00 02 81 06 00 05
+T 00 C7
+R 00 00 00 02
+T 00 C7
+R 00 00 00 02
+T 00 C7 5F BD 00 00 C6 06 BD 00 00 20 F5
+R 00 00 00 02 81 04 00 0A 81 09 00 04
+T 00 D2
+R 00 00 00 02
+T 00 D2 00 00 00 00
+R 00 00 00 02 81 02 00 0D 81 04 00 0D
+T 00 D6 00 00 00 00 00 00 00 00 00 1D 03 03
+R 00 00 00 02 81 02 00 0D 81 04 00 00
+T 00 E2 00 00
+R 00 00 00 02 01 02 00 03
+T 00 00
+R 00 00 00 03

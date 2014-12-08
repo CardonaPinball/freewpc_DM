@@ -1,0 +1,113 @@
+XH2
+H 3 areas 22 global symbols 2 banks 1 modes
+M mach_containers.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _callset_dev_top_sol_enter Ref0000
+S _callset_dev_trough_kick_request Ref0000
+S _callset_dev_eyeball_eject_enter Ref0000
+S _callset_dev_top_sol_kick_failure Ref0000
+S _callset_dev_subway_vuk_enter Ref0000
+S _callset_dev_top_sol_empty Ref0000
+S _callset_dev_eyeball_eject_kick_failure Ref0000
+S _callset_dev_eyeball_eject_empty Ref0000
+S _callset_dev_trough_enter Ref0000
+S _callset_dev_subway_vuk_kick_failure Ref0000
+S _callset_dev_top_sol_kick_success Ref0000
+S .__.ABS. Def0000
+S _callset_dev_top_sol_surprise_release Ref0000
+S _callset_dev_subway_vuk_empty Ref0000
+S _callset_dev_top_sol_kick_attempt Ref0000
+S _callset_dev_eyeball_eject_kick_success Ref0000
+S _callset_dev_trough_kick_failure Ref0000
+S _callset_dev_eyeball_eject_surprise_release Ref0000
+S _callset_dev_eyeball_eject_kick_attempt Ref0000
+S _callset_dev_trough_empty Ref0000
+S _callset_dev_subway_vuk_kick_success Ref0000
+S _callset_dev_top_sol_kick_request Ref0000
+S _callset_dev_subway_vuk_surprise_release Ref0000
+S _callset_dev_subway_vuk_kick_attempt Ref0000
+S _callset_dev_eyeball_eject_kick_request Ref0000
+S _callset_dev_trough_kick_success Ref0000
+S _callset_dev_trough_surprise_release Ref0000
+S _callset_dev_trough_kick_attempt Ref0000
+S _callset_dev_subway_vuk_kick_request Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 98 flags D00
+S _dev_trough_ops Def001C
+S _device_properties_table Def0060
+S _dev_top_sol_ops Def0000
+S _dev_eyeball_eject_ops Def002A
+S _dev_subway_vuk_ops Def000E
+T 00 00
+R 00 00 00 02
+T 00 00 00 00 00 00
+R 00 00 00 02 81 02 00 00 81 04 00 15
+T 00 04 00 00 00 00
+R 00 00 00 02 81 02 00 0E 81 04 00 0A
+T 00 08 00 00 00 00
+R 00 00 00 02 81 02 00 03 81 04 00 05
+T 00 0C 00 00
+R 00 00 00 02 81 02 00 0C
+T 00 0E
+R 00 00 00 02
+T 00 0E 00 00 00 00
+R 00 00 00 02 81 02 00 04 81 04 00 1C
+T 00 12 00 00 00 00
+R 00 00 00 02 81 02 00 17 81 04 00 14
+T 00 16 00 00 00 00
+R 00 00 00 02 81 02 00 09 81 04 00 0D
+T 00 1A 00 00
+R 00 00 00 02 81 02 00 16
+T 00 1C
+R 00 00 00 02
+T 00 1C 00 00 00 00
+R 00 00 00 02 81 02 00 08 81 04 00 01
+T 00 20 00 00 00 00
+R 00 00 00 02 81 02 00 1B 81 04 00 19
+T 00 24 00 00 00 00
+R 00 00 00 02 81 02 00 10 81 04 00 13
+T 00 28 00 00
+R 00 00 00 02 81 02 00 1A
+T 00 2A
+R 00 00 00 02
+T 00 2A 00 00 00 00
+R 00 00 00 02 81 02 00 02 81 04 00 18
+T 00 2E 00 00 00 00
+R 00 00 00 02 81 02 00 12 81 04 00 0F
+T 00 32 00 00 00 00
+R 00 00 00 02 81 02 00 06 81 04 00 07
+T 00 36 00 00
+R 00 00 00 02 81 02 00 11
+T 00 38
+R 00 00 00 02
+T 00 38 54 4F 50 20 53 4F 4C 00
+R 00 00 00 02
+T 00 40
+R 00 00 00 02
+T 00 40 53 55 42 57 41 59 20 56 55 4B 00
+R 00 00 00 02
+T 00 4B
+R 00 00 00 02
+T 00 4B 54 52 4F 55 47 48 00
+R 00 00 00 02
+T 00 52
+R 00 00 00 02
+T 00 52 45 59 45 42 41 4C 4C 20 45 4A 45 43 54
+R 00 00 00 02
+T 00 5F 00
+R 00 00 00 02
+T 00 60
+R 00 00 00 02
+T 00 60 00 38 00 00 03 01 00 3A 00 00 00 00 00
+R 00 00 00 02 01 02 00 02 01 04 00 02
+T 00 6D 2A 00 40 00 0E 01 01 00 3D 00 00 00 00
+R 00 00 00 02 01 03 00 02 01 05 00 02
+T 00 7A 00 2A 00 4B 00 1C 00 05 05 18 19 1A 1B
+R 00 00 00 02 01 04 00 02 01 06 00 02
+T 00 87 1C 00 2A 00 52 00 2A 0D 01 00 35 00 00
+R 00 00 00 02 01 05 00 02 01 07 00 02
+T 00 94 00 00 00 2A
+R 00 00 00 02

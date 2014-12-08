@@ -1,0 +1,105 @@
+XH2
+H 3 areas 18 global symbols 2 banks 1 modes
+M plunger.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _switch_poll_logical Ref0000
+S _task_sleep Ref0000
+S _in_tilt Ref0000
+S _launch_ball Ref0000
+S _task_sleep_sec1 Ref0000
+S _system_config Ref0000
+S _bit_on Ref0000
+S .__.ABS. Def0000
+S _task_add_duration Ref0000
+S _global_bits Ref0000
+S _task_create_gid1 Ref0000
+S _task_exit Ref0000
+S _in_game Ref0000
+S _task_kill_gid Ref0000
+S _GLOBAL_FLAG_BALL_AT_PLUNGER Ref0000
+S _bit_off Ref0000
+S _bit_test Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A page56 size 87 flags D00
+S _shooter_update Def0053
+S _shooter_switch_amode_start Def0070
+S _launch_button_serve_ball Def0026
+S _shooter_switch_valid_playfield Def0041
+S _launch_button_sw_left_button Def0018
+S _shooter_clear_monitor Def0073
+S _launch_button_sw_launch_button Def0023
+T 00 00
+R 00 00 00 02
+T 00 00 0D 00 00 27 04 0D 00 00 27 01
+R 00 00 00 02 A0 03 00 0C A0 08 00 02
+T 00 08
+R 00 00 00 02
+T 00 08 39
+R 00 00 00 02
+T 00 09
+R 00 00 00 02
+T 00 09 C6 00 00 8E 00 00 BD
+R 00 00 00 02 80 03 00 0E 81 06 00 09
+T 00 0F 00 00 5D 27 F4 BD 00 00 39
+R 00 00 00 02 81 02 00 10 81 08 00 03
+T 00 18
+R 00 00 00 02
+T 00 18 F6 00 1E C1 01 27 01 39
+R 00 00 00 02 81 03 00 05
+T 00 20
+R 00 00 00 02
+T 00 20 7E 00 00
+R 00 00 00 02 01 03 00 02
+T 00 23
+R 00 00 00 02
+T 00 23 7E 00 00
+R 00 00 00 02 01 03 00 02
+T 00 26
+R 00 00 00 02
+T 00 26 F6 00 1F C1 01 27 01 39
+R 00 00 00 02 81 03 00 05
+T 00 2E
+R 00 00 00 02
+T 00 2E 8E 00 36 C6 29 7E 00 00
+R 00 00 00 02 01 03 00 02 81 08 00 0A
+T 00 36
+R 00 00 00 02
+T 00 36 C6 14 BD 00 00 BD 00 00 7E
+R 00 00 00 02 81 05 00 04 01 08 00 02
+T 00 3F 00 00
+R 00 00 00 02 81 02 00 0B
+T 00 41
+R 00 00 00 02
+T 00 41 C6 29 BD 00 00 C6 28 BD 00 00 C6
+R 00 00 00 02 81 05 00 0D 81 0A 00 0D
+T 00 4C 00 00 8E 00 00 7E
+R 00 00 00 02 80 02 00 0E 81 05 00 09
+T 00 51 00 00
+R 00 00 00 02 81 02 00 0F
+T 00 53
+R 00 00 00 02
+T 00 53 C6 16 BD 00 00 5D 26 08 8E 00 73 C6 28
+R 00 00 00 02 81 05 00 00 01 0B 00 02
+T 00 60 7E 00 00
+R 00 00 00 02 81 03 00 0A
+T 00 63
+R 00 00 00 02
+T 00 63 C6 28 BD 00 00 C6 00 00 8E
+R 00 00 00 02 81 05 00 0D 80 08 00 0E
+T 00 6B 00 00 7E 00 00
+R 00 00 00 02 81 02 00 09 81 05 00 06
+T 00 70
+R 00 00 00 02
+T 00 70 7E 00 53
+R 00 00 00 02 01 03 00 02
+T 00 73
+R 00 00 00 02
+T 00 73 5F BD 00 00 C6 78 BD 00 00 C6
+R 00 00 00 02 81 04 00 08 81 09 00 01
+T 00 7D 00 00 8E 00 00 BD
+R 00 00 00 02 80 02 00 0E 81 05 00 09
+T 00 82 00 00 7E 00 00
+R 00 00 00 02 81 02 00 0F 81 05 00 0B

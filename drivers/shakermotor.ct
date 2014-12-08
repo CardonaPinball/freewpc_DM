@@ -1,0 +1,181 @@
+@@class shakermotor
+@@parameter sol
+
+@@
+@@file @self.sched
+@@
+!@self_service 16 20c
+
+
+@@
+@@file @self.h
+@@
+
+typedef enum  {
+	SHAKER_OFF = 0,
+	SHAKER_ONE_QUARTER_ON,
+	SHAKER_THREE_EIGTH_ON,
+	SHAKER_HALF_ON,
+//	SHAKER_THREEQUARTER_ON,
+//	SHAKER_FULL_ON,
+}shaker_power_t;
+
+
+/* Conversion factor between time units and task ticks.
+   Shaker counts time units so must be scaled to task ticks
+   which really turns it into milliseconds.
+
+   Note that the granularity is set in the file shaker.sched */
+#define TIME_UNIT (IRQS_PER_TICK / 16)
+
+/* A typedef for time unit variables.  Because these are 8-bit,
+   they max at 255.  With default granularity of 4ms, that
+	gives a maximum of about a 1s cycle.  (Even when 1ms
+	granularity is supported, 8-bits is still adequate.) */
+typedef U8 time_unit_t;
+
+//the time unit count that, when reached, should turn on shaker
+extern __fastram__ time_unit_t shaker_on_time;
+
+//keep track of time ticks of shaker on and off time
+extern __fastram__ time_unit_t shaker_on_off_time_counter;
+
+
+//what is total of off and on time
+// (since we specify on time above, this effectively sets the duty cycle)
+extern __fastram__ time_unit_t 	shaker_on_off_total_time;
+
+//how long is shaker to run
+extern __fastram__ time_unit_t 	shaker_timeout;
+
+
+
+void shaker_start (shaker_power_t on_time, U8 timeout);
+void shaker_stop (void);
+
+
+/* RTT(name=shaker_service freq=16) */
+//this is called approximately every 4 ms
+extern inline void shaker_service (void) {
+	if (unlikely (shaker_on_off_time_counter) > 0) { 					//should be off most of time
+		shaker_on_off_time_counter--;
+		if (shaker_on_off_time_counter == 0) {
+			shaker_on_off_time_counter = shaker_on_off_total_time; 		//this duty cycle run is over, start back at top
+			sol_disable (SOL_SHAKER_MOTOR); 							//always start with it off
+			if (shaker_timeout == 0) shaker_on_off_time_counter = 0; 	//if our global time is up, then end the run
+			else --shaker_timeout;
+		}//end of shaker_on_off_time_counter == 0
+		else if (shaker_on_off_time_counter == shaker_on_time)  sol_enable (SOL_SHAKER_MOTOR); //after off time is up, turn on for remainder of duty cycle
+	}//end of shaker_on_off_time_counter > 0
+} //end of function
+
+
+
+
+
+
+
+
+
+
+
+@@
+@@file @self.c
+@@
+
+/*
+ * demolition man
+ * shaker.c
+ *
+ * written by James Cardona
+ *
+ *
+ * */
+/* CALLSET_SECTION (shaker, __machine4__) */
+
+#include <freewpc.h>
+#include "shaker.h"
+
+
+//the time unit count that, when reached, should turn on shaker
+__fastram__ time_unit_t shaker_on_time;
+
+//keep track of time ticks of shaker on and off time
+__fastram__ time_unit_t shaker_on_off_time_counter;
+
+
+//what is total of off and on time
+// (since we specify on time above, this effectively sets the duty cycle)
+__fastram__ time_unit_t shaker_on_off_total_time;
+
+//how long is shaker to run
+__fastram__ time_unit_t shaker_timeout;
+
+
+__fastram__ __boolean timeout;
+
+
+
+
+
+
+/* Start the output using duty/duration */
+void shaker_start (shaker_power_t on_time, U8 timeout_time) {
+	if (timeout) {
+				timeout = FALSE;
+				rtt_disable ();
+				sol_disable (SOL_SHAKER_MOTOR);
+			
+				shaker_on_off_time_counter	= 16;
+				shaker_on_off_total_time 	= 16;
+			
+				if (on_time > SHAKER_HALF_ON) 			on_time = SHAKER_HALF_ON;
+				if (on_time == SHAKER_OFF) 				shaker_on_time	= 0;
+				if (on_time == SHAKER_ONE_QUARTER_ON) 	shaker_on_time	= 4;
+				if (on_time == SHAKER_THREE_EIGTH_ON) 	shaker_on_time	= 6;
+				if (on_time == SHAKER_HALF_ON) 			shaker_on_time	= 8;
+			//	if (on_time == SHAKER_THREEQUARTER_ON) 	shaker_on_time	= 12;
+			//	if (on_time == SHAKER_FULL_ON) 			shaker_on_time	= 16;
+			
+				//since timeout is called once for every pass through the timer
+				// we have 4ms * 16 counts = 64ms for 1 pass
+				//and then a max time out of 16 yields 16 * 64ms = approximately 1 second
+				if (timeout_time > 16) 	timeout_time = 16;
+				shaker_timeout	= timeout_time;
+			
+				rtt_enable ();
+				task_sleep_sec(1);
+				timeout = TRUE;
+	}
+}//end of function
+
+
+
+/* Stop the output */
+void shaker_stop (void) {
+	rtt_disable ();
+	sol_disable (SOL_SHAKER_MOTOR);
+	shaker_on_off_time_counter 	= 0;
+	shaker_on_off_total_time 	= 0;
+	shaker_on_time 				= 0;
+	rtt_enable ();
+				task_sleep_sec(1);
+				timeout = TRUE;
+}
+
+
+
+CALLSET_ENTRY (shaker, init) {
+	timeout = TRUE;
+	shaker_on_off_time_counter 	= 0;
+	shaker_timeout 				= 0;
+	shaker_on_off_total_time 	= 0;
+	shaker_on_time 				= 0;
+}
+
+
+
+CALLSET_ENTRY (shaker, tilt, stop_game, amode_start) {
+	shaker_stop ();
+}
+

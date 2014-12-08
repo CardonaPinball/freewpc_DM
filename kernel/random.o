@@ -1,0 +1,61 @@
+XH2
+H 5 areas 8 global symbols 2 banks 1 modes
+M random.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S .__.ABS. Def0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size 59 flags D00
+S _random_idle_every_second Def0038
+S _random_hw_event Def004B
+S _random Def0000
+S _random_scaled Def0028
+S _random_init Def004F
+A permanent size 2 flags D00
+S _random_cong_seed Def0000
+A ram size 1 flags C00
+S _random_entropy Def0000
+T 00 00
+R 00 00 00 02
+T 00 00 32 7E FC 00 00 58 49 58 49 58 49 58 49
+R 00 00 00 02 01 05 00 03
+T 00 0D 58 49 F3 00 00 C3 00 01 ED E4 44 56 A8
+R 00 00 00 02 01 05 00 03
+T 00 1A E4 E8 61 FD 00 00 EC E4 1F 89 4F 32 62
+R 00 00 00 02 01 06 00 03
+T 00 27 39
+R 00 00 00 02
+T 00 28
+R 00 00 00 02
+T 00 28 32 7F E7 E4 BD 00 00 A6 E4 3D 1F 89 4F
+R 00 00 00 02 01 07 00 02
+T 00 35 32 61 39
+R 00 00 00 02
+T 00 38
+R 00 00 00 02
+T 00 38 F6 00 00 C4 07 F7 00 00 27 08
+R 00 00 00 02 01 03 00 04 01 08 00 04
+T 00 42
+R 00 00 00 02
+T 00 42 BD 00 00 7A 00 00 26 F8
+R 00 00 00 02 01 03 00 02 01 06 00 04
+T 00 4A
+R 00 00 00 02
+T 00 4A 39
+R 00 00 00 02
+T 00 4B
+R 00 00 00 02
+T 00 4B 7C 00 00 39
+R 00 00 00 02 01 03 00 04
+T 00 4F
+R 00 00 00 02
+T 00 4F 8E 17 45 BF 00 00 7F 00 00 39
+R 00 00 00 02 01 06 00 03 01 09 00 04
+T 00 00
+R 00 00 00 03
+T 00 00 00 00
+R 00 00 00 03
+T 00 00
+R 00 00 00 04

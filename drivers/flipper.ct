@@ -1,0 +1,187 @@
+/*
+ * Copyright 2008-2012 by Brian Dominy <brian@oddchange.com>
+ *
+ * This file is part of FreeWPC.
+ *
+ * FreeWPC is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * FreeWPC is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with FreeWPC; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+/*
+ * Fliptronic Flipper driver
+ *
+ * It is a more specific version of the special solenoid driver.
+ *
+ * The code to control a single flipper depends on four parameters:
+ * the solenoid numbers for the power and holding coils, and the
+ * switch numbers for the button and end-of-stroke.
+ */
+
+@@class flipper
+@@parameter id
+@@parameter power_sol
+@@parameter hold_sol
+@@parameter button
+@@parameter eos
+
+
+@@
+@@file @self.sched
+@@
+!@self_service		4		40c
+
+
+@@
+@@file @class.h
+@@
+
+#ifndef __@class_DRIVER_H
+#define __@class_DRIVER_H
+
+#include <freewpc.h>
+extern __fastram__ U8 @class_enabled;
+extern __fastram__ U8 @class_running;
+
+
+/**
+ * Refresh all of the flipper outputs.
+ */
+extern inline void @class_refresh (void)
+{
+	wpc_write_flippers (@class_running & @class_enabled);
+}
+
+#endif /* __@class_DRIVER_H */
+
+@@
+@@file @class.c
+@@
+
+#include <freewpc.h>
+#include <@self.h>
+
+@@classvar __fastram__ U8 @class_enabled;
+#define ALL_FLIPPERS 0xFF
+#define NO_FLIPPERS 0x0
+
+@@classvar __fastram__ U8 @class_running;
+
+
+/* Initialize the device */
+CALLSET_ENTRY (@self, init)
+{
+	@self_timer = 0;
+	@class_enabled = NO_FLIPPERS;
+}
+
+/* Enable the device at start ball */
+CALLSET_ENTRY (@self, start_ball)
+{
+	@class_enabled = ALL_FLIPPERS;
+}
+
+/* Disable the device at end ball/tilt */
+CALLSET_ENTRY (@self, end_ball, tilt)
+{
+	@class_enabled = NO_FLIPPERS;
+}
+
+
+@@
+@@file @self.h
+@@
+
+/* Schedule this driver every 4ms.  This should be enough
+to see all switch transitions, and to update the coils. */
+#define RTT_SCHED 4
+
+/* Length of time for the initial power pulse */
+#define POWER_PULSE 40
+#define POWER_TICKS (POWER_PULSE / RTT_SCHED)
+
+#include <@class.h>
+
+extern __fastram__ S8 @self_timer;
+extern bool flippers_enabled;
+
+/**
+ * The service routine for a single flipper.
+ */
+extern inline void @self_service (void)
+{
+	if (flippers_enabled && rt_switch_poll (@button))
+	{
+		/* Flipper button is pressed.  See what phase we are in. */
+		if (@self_timer == 0)
+		{
+			/* Start the high power 40ms pulse */
+			sol_enable (@power_sol);
+			sol_enable (@hold_sol);
+			@self_timer = POWER_TICKS;
+		}
+		else if (@self_timer > 0)
+		{
+			/* Allow the high power pulse to keep running */
+			if (--@self_timer == 0)
+			{
+				/* The high power pulse has expired.  Switch to hold power */
+				sol_disable (@power_sol);
+				@self_timer = -1;
+			}
+		}
+		else if (@self_timer < 0)
+		{
+			/* The flipper is in hold mode.  Check for foldback */
+			if (!rt_switch_poll (@eos)) // TODO - check polarity
+			{
+				/* Start another high power pulse.
+				TODO - a bad EOS switch will fry this puppy. */
+				sol_enable (@power_sol);
+				sol_enable (@hold_sol);
+				@self_timer = POWER_TICKS;
+			}
+		}
+	}
+	else
+	{
+		/* Flipper button is not pressed: the coil should be off */
+		@self_timer = 0;
+		sol_disable (@power_sol);
+		sol_disable (@hold_sol);
+	}
+}
+
+
+@@
+@@file @self.c
+@@
+
+#include <freewpc.h>
+
+/** Each flipper has its own timer instance variable.
+ * When zero, it means the flipper is not running at all.
+ *
+ * When positive, it means the flipper is in high power mode, and will
+ * stay this way for 40ms.
+ *
+ * When negative, it measn the flipper is in low power mode.
+ */
+__fastram__ U8 @self_timer;
+
+CALLSET_ENTRY (@self, init)
+{
+	@self_timer = 0;
+}
+
+/* vim: set filetype=c: */

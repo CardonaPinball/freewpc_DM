@@ -1,0 +1,100 @@
+XH2
+H 3 areas 11 global symbols 2 banks 1 modes
+M ladder.c
+G 00 00 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F
+B _CSEG base 0 size 0 map 0 flags 0
+B _DSEG base 0 size 0 map 0 flags 4 fsfx _DS
+S _score_compare Ref0000
+S _score_add Ref0000
+S _score_copy Ref0000
+S _score_long_multiple Ref0000
+S m1 Ref0000
+S .__.ABS. Def0000
+S _score Ref0000
+A _CODE size 0 flags CC80 bank 0
+A _DATA size 0 flags CCC0 bank 1
+A .text size C3 flags D00
+S _generic_ladder_score Def0082
+S _generic_ladder_score_and_advance Def0097
+S _generic_ladder_reset Def0000
+S _fixed_ladder_advance Def001F
+S _fixed_ladder_scorex Def0013
+S _fixed_ladder_scorex_and_advance Def0049
+S _fixed_ladder_score Def0018
+S _fixed_ladder_score_and_advance Def005D
+S _generic_ladder_advance Def0004
+S _fixed_ladder_reset Def0073
+T 00 00
+R 00 00 00 02
+T 00 00 6F 98 03 39
+R 00 00 00 02
+T 00 04
+R 00 00 00 02
+T 00 04 34 40 EE 03 E6 C4 E1 84 24 03 5C E7 C4
+R 00 00 00 02
+T 00 11
+R 00 00 00 02
+T 00 11 35 C0
+R 00 00 00 02
+T 00 13
+R 00 00 00 02
+T 00 13 AE 06 7E 00 00
+R 00 00 00 02 81 05 00 03
+T 00 18
+R 00 00 00 02
+T 00 18 C6 01 AE 06 7E 00 00
+R 00 00 00 02 81 07 00 03
+T 00 1F
+R 00 00 00 02
+T 00 1F 34 40 32 7E AF E4 AE 04 AF E3 EE 62 AE
+R 00 00 00 02
+T 00 2C 46 BD 00 00 32 62 C1 FF 27 04 32 62 35
+R 00 00 00 02 81 04 00 00
+T 00 39 C0
+R 00 00 00 02
+T 00 3A
+R 00 00 00 02
+T 00 3A AE 42 AF E3 AE 46 BD 00 00 32 62 32 62
+R 00 00 00 02 81 09 00 01
+T 00 47 35 C0
+R 00 00 00 02
+T 00 49
+R 00 00 00 02
+T 00 49 34 40 32 7E AF E4 AE 06 BD 00 00 AE E4
+R 00 00 00 02 81 0B 00 03
+T 00 56 32 62 35 40 7E 00 1F
+R 00 00 00 02 01 07 00 02
+T 00 5D
+R 00 00 00 02
+T 00 5D 34 40 32 7E AF E4 C6 01 AE 06 BD 00 00
+R 00 00 00 02 81 0D 00 03
+T 00 6A AE E4 32 62 35 40 7E 00 1F
+R 00 00 00 02 01 09 00 02
+T 00 73
+R 00 00 00 02
+T 00 73 34 40 EE 84 EF E3 AE 06 BD 00 00 32 62
+R 00 00 00 02 81 0B 00 02
+T 00 80 35 C0
+R 00 00 00 02
+T 00 82
+R 00 00 00 02
+T 00 82 34 40 E6 98 03 4F DD 00 00 EC 01 DE
+R 00 00 00 02 A0 09 00 04
+T 00 8D 00 00 30 CB E6 84 35 40 7E 00 00
+R 00 00 00 02 A0 02 00 04 81 0B 00 06
+T 00 97
+R 00 00 00 02
+T 00 97 34 40 32 7E AF E4 E6 98 03 E1 84 25 04
+R 00 00 00 02
+T 00 A4
+R 00 00 00 02
+T 00 A4 32 62 35 C0
+R 00 00 00 02
+T 00 A8
+R 00 00 00 02
+T 00 A8 4F EE 01 30 CB E6 84 BD 00 00 EE E4 AE
+R 00 00 00 02 81 0A 00 06
+T 00 B5 43 E6 84 E1 C4 24 E8 5C E7 84 32 62 35
+R 00 00 00 02
+T 00 C2 C0
+R 00 00 00 02
